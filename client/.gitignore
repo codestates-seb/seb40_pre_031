@@ -18,6 +18,9 @@
 .env.test.local
 .env.production.local
 
+# 빈 폴더
+.gitkeep
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
