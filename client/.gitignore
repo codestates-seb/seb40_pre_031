@@ -19,7 +19,7 @@
 .env.production.local
 
 # 빈 폴더
-.gitkeep
+!empty_dir/.gitkeep
 
 npm-debug.log*
 yarn-debug.log*
