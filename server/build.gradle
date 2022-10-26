@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'org.asciidoctor.convert' version '1.5.8'
+	id 'org.ec4j.editorconfig' version '0.0.3'
+	id 'checkstyle'
 	id 'java'
 }
 
@@ -47,3 +49,19 @@ tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
 }
+
+editorconfig {
+	excludes = ['build']
+}
+
+checkstyle {
+	maxWarnings = 0
+	configFile = file("${rootDir}/naver-checkstyle-rules.xml")
+	configProperties = ["suppressionFile": "${rootDir}/naver-checkstyle-suppressions.xml"]
+	toolVersion = "9.2"
+}
+
+check.dependsOn editorconfigCheck
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
