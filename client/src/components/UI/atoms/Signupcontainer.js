@@ -15,6 +15,23 @@ const SignupRobotBox = styled.div`
     background-color : rgb(241 242 243);
 `
 const SignupinfoBox = styled.div`
+    width : 410px;
+    height : 285px;
+    display : flex;
+    flex-direction : column;
+    background-color : white;
+
+`
+const SignupsubinfoBox = styled.div`
+    display : flex;
+    justify-content : flex-start;
+    align-items : center;
+    width : 411px;
+    height : 24px;
+    margin : 10px 0 10px 0;
+    .Signupsvg{
+        margin : 0 10px 0 0;
+    }
 `
 
-export {SignupcontainerBox, SignupRobotBox};
+export {SignupcontainerBox, SignupRobotBox, SignupinfoBox, SignupsubinfoBox};

@@ -1,6 +1,6 @@
 import { SignupcontainerBox, SignupRobotBox } from '../atoms/Signupcontainer';
 import { Signupinputtext, Signupinputlabel } from '../atoms/Signupinput';
-import { SignupinfoPassword } from '../atoms/Signupinfo';
+import { SignupinfoPassword } from '../atoms/SignupinfoPassword';
 import { Socialbutton } from '../atoms/Socialbutton';
 
 const data = ["Display name", "Email", "Password"];
@@ -12,7 +12,7 @@ const SignupForm = () => {
         <SignupcontainerBox>
             {data.map(el =>
                 <>
-                    <Signupinputlabel for={el}>{el}</Signupinputlabel>
+                    <Signupinputlabel htmlFor={el}>{el}</Signupinputlabel>
                     <Signupinputtext id={el}></Signupinputtext>
                 </>
             )}
