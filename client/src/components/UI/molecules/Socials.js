@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Socialbutton } from '../atoms/Social'
+import { Socialbutton } from '../atoms/Socialbutton'
 import { SiNaver } from 'react-icons/si';
 import { VscGithub } from 'react-icons/vsc';
 import { FcGoogle } from 'react-icons/fc';
@@ -29,7 +29,7 @@ const Socials = () => {
             <dl>
                 {data.map(el =>
                     <dt>
-                        <Socialbutton name={el.name} color={el.color}>
+                        <Socialbutton size = "293.2px"name={el.name} color={el.color}>
                             <el.svg className="Socialsvg" />
                         Sign up with {el.name}</Socialbutton>
                     </dt>

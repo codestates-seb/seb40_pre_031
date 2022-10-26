@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 const Socialbutton = styled.button`
-    width : 293.2px;
+    width : ${({size}) => size};
     box-sizing: content-box;
     height : 15px;
     padding : 0.8em;
@@ -14,7 +14,7 @@ const Socialbutton = styled.button`
     display :flex;
     justify-content : center;
     align-items : center;
-    background : ${({ name }) => name === "Google" ? "rgb(255 255 255)" : name === "Naver" ? "#03C75A" : "rgb(47 51	55)"};
+    background : ${({ name }) => name === "Google" ? "rgb(255 255 255)" : name === "Naver" ? "#03C75A" : name === "GitHub" ? "rgb(47 51	55)": "rgb(13 149 255)"};
     color : ${({ color }) => color};
 
     .Socialsvg{
