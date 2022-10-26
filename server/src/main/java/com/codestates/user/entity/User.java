@@ -1,4 +1,4 @@
-package com.codestates.users.entity;
+package com.codestates.user.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

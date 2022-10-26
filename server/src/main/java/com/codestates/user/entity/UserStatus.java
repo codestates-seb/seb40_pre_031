@@ -1,4 +1,4 @@
-package com.codestates.users.entity;
+package com.codestates.user.entity;
 
 import lombok.Getter;
 
