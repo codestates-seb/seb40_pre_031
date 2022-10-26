@@ -17,7 +17,8 @@ const Signinput = () => {
                 </>
             )}
             <SignupinfoPassword margin={margin[0]} color={color[0]}>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</SignupinfoPassword>
-            <SignupRobotBox></SignupRobotBox>
+            <SignupRobotBox>
+            </SignupRobotBox>
             <SignupinfoPassword margin={margin[1]} color={color[1]}><input type="checkBox"></input>Opt-in to receive occasional product updates, user research invitations, company announcements, and digests.
             </SignupinfoPassword>
             <Socialbutton size="245px" color="white">Sign up</Socialbutton>
