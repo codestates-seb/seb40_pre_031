@@ -28,7 +28,7 @@ public class Comment {
 
 	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
-	private CommentStatus commentStatus;
+	private CommentStatus commentStatus = CommentStatus.PUBLIC;
 
 	// private User user;
 
