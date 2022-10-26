@@ -16,21 +16,30 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Answer {
+public class AnswerVote {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "answer_id")
+	@Column(name = "answer_vote_id")
 	private Long id;
-
-	@Column(nullable = false, columnDefinition = "TEXT")
-	private String content;
 
 	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
-	private AnswerStatus status = AnswerStatus.PUBLIC;
+	private AnswerVoteStatus answerVoteStatus = AnswerVoteStatus.NONE;
 
 	// private User user;
 
-	// private Question question;
+	// private Answer answer;
+
+	public enum AnswerVoteStatus {
+		NONE("추천안함"),
+		UP("추천"),
+		DONW("비추천");
+
+		private String status;
+
+		AnswerVoteStatus(String status) {
+			this.status = status;
+		}
+	}
 }
