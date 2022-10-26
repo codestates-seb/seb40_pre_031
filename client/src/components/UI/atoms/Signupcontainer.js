@@ -19,7 +19,7 @@ const SignupinfoBox = styled.div`
     height : 285px;
     display : flex;
     flex-direction : column;
-    background-color : white;
+    background-color : transparent;
 
 `
 const SignupsubinfoBox = styled.div`

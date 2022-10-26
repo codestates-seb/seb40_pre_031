@@ -40,7 +40,3 @@ const Socials = () => {
 }
 
 export default Socials;
-
-// <dt><Socialbutton> <SiNaversvg/>Sign up with Google</Socialbutton></dt>
-// <dt><Socialbutton>Sign up with Google</Socialbutton></dt>
-// <dt><Socialbutton>Sign up with Google</Socialbutton></dt>

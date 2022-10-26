@@ -28,6 +28,8 @@ const Signuplabel = styled.label`
     font-size : 12px;
     color : gray;
     margin : 10px 0 0 0;
+    background-color : transparent;
+
 `
 
 const Signupinfo = () => {
