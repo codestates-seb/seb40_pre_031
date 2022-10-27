@@ -19,6 +19,8 @@ import javax.persistence.OneToOne;
 import com.codestates.answer.entity.Answer;
 import com.codestates.user.entity.User;
 
+import com.codestates.global.auditing.Basetime;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +29,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Question {
+public class Question extends Basetime {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "question_id")

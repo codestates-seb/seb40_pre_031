@@ -18,6 +18,8 @@ import com.codestates.answer.entity.AnswerVote;
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
 
+import com.codestates.global.auditing.Basetime;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "USERS")
-public class User {
+public class User extends Basetime {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
