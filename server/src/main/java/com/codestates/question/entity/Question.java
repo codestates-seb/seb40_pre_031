@@ -48,13 +48,13 @@ public class Question {
 	private QuestionStatus status;
 
 	@ManyToOne
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy = "question")
 	private List<Answer> answerList = new ArrayList<>();
 
-	@OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private QuestionVote questionVote;
 
 	public void setUser(User user) {

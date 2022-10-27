@@ -32,11 +32,11 @@ public class QuestionVote {
 	private QuestionVoteStatus questionVoteStatus = QuestionVoteStatus.NONE;
 
 	@ManyToOne
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@OneToOne
-	@JoinColumn(name = "QUESTION_ID")
+	@JoinColumn(name = "question_id")
 	private Question question;
 
 	public void setUser(User user) {
@@ -45,6 +45,7 @@ public class QuestionVote {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+
 		if (question.getQuestionVote() != this) {
 			question.setQuestionVote(this);
 		}

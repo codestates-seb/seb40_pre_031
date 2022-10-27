@@ -29,7 +29,7 @@ import lombok.Setter;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "USER_ID")
+	@Column(name = "user_id")
 	private Long id;
 
 	@Column(nullable = false, updatable = false, unique = true)
@@ -59,6 +59,7 @@ public class User {
 
 	public void addQuestion(Question question) {
 		questionList.add(question);
+
 		if (question.getUser() != this) {
 			question.setUser(this);
 		}
@@ -66,6 +67,7 @@ public class User {
 
 	public void addAnswers(Answer answer) {
 		answerList.add(answer);
+
 		if (answer.getUser() != this) {
 			answer.setUser(this);
 		}
