@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.codestates.global.auditing.Basetime;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Answer {
+public class Answer extends Basetime {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
