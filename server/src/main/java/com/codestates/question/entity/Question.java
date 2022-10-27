@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.codestates.status.PostStatus;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,5 +38,5 @@ public class Question {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	private QuestionStatus status;
+	private PostStatus status = PostStatus.PUBLIC;
 }
