@@ -15,6 +15,8 @@ import com.codestates.user.entity.User;
 
 import com.codestates.global.auditing.Basetime;
 
+import com.codestates.status.VoteStatus;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,7 +34,7 @@ public class AnswerVote extends Basetime {
 
 	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
-	private AnswerVoteStatus answerVoteStatus = AnswerVoteStatus.NONE;
+	private VoteStatus status = VoteStatus.NONE;
 
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")

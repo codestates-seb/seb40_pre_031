@@ -1,13 +1,13 @@
-package com.codestates.question.entity;
+package com.codestates.status;
 
-public enum QuestionVoteStatus {
+public enum VoteStatus {
 	UP("추천"),
 	NONE("상태없음"),
 	DOWN("비추천");
 
 	private final String status;
 
-	QuestionVoteStatus(String status) {
+	VoteStatus(String status) {
 		this.status = status;
 	}
 }

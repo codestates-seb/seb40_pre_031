@@ -1,12 +1,12 @@
-package com.codestates.question.entity;
+package com.codestates.status;
 
-public enum QuestionStatus {
+public enum PostStatus {
 	PUBLIC("공개"),
 	PRIVATE("비공개");
 
 	private final String status;
 
-	QuestionStatus(String status) {
+	PostStatus(String status) {
 		this.status = status;
 	}
 }

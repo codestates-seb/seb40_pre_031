@@ -21,6 +21,8 @@ import com.codestates.user.entity.User;
 
 import com.codestates.global.auditing.Basetime;
 
+import com.codestates.status.PostStatus;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -47,7 +49,7 @@ public class Question extends Basetime {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	private QuestionStatus status;
+	private PostStatus status = PostStatus.PUBLIC;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")

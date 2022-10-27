@@ -20,6 +20,8 @@ import com.codestates.question.entity.QuestionVote;
 
 import com.codestates.global.auditing.Basetime;
 
+import com.codestates.status.UserStatus;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

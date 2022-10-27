@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.codestates.status.PostStatus;
 import com.codestates.global.auditing.Basetime;
 
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class Comment extends Basetime {
 
 	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
-	private CommentStatus commentStatus = CommentStatus.PUBLIC;
+	private PostStatus status = PostStatus.PUBLIC;
 
 	// private User user;
 
