@@ -2,20 +2,34 @@ import { SignupcontainerBox, SignupRobotBox } from '../atoms/Signupcontainer';
 import { Signupinputtext, Signupinputlabel } from '../atoms/Signupinput';
 import { SignupinfoPassword } from '../atoms/SignupinfoPassword';
 import { Socialbutton } from '../atoms/Socialbutton';
+import useInput from '../../../hooks/useInput';
 
-const data = ["Display name", "Email", "Password"];
 const margin = ["4px 0 4px 0", "15px 0 15px 0", "30px 0 4px 0"];
 const color = ["gray", "black"];
 
+const Input = ({ id, type, bind }) => {
+    return (
+        <>
+            <Signupinputlabel htmlFor={id}>{id}</Signupinputlabel>
+            <Signupinputtext {...bind} id={id} type={type}></Signupinputtext>
+        </>
+    )
+
+}
+
 const Signinput = () => {
+
+    const [id, idBind] = useInput("");
+    const [password, passwordBind] = useInput("");
+    const [email, emailBind] = useInput("");
+
     return (
         <SignupcontainerBox>
-            {data.map(el =>
-                <>
-                    <Signupinputlabel htmlFor={el}>{el}</Signupinputlabel>
-                    <Signupinputtext id={el}></Signupinputtext>
-                </>
-            )}
+
+            <Input id="Display name" type="text" bind= {idBind}></Input>
+            <Input id="Email" type="text" bind= {emailBind}></Input>
+            <Input id="Password" type="password" bind= {passwordBind}></Input>
+
             <SignupinfoPassword margin={margin[0]} color={color[0]}>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</SignupinfoPassword>
             <SignupRobotBox>
             </SignupRobotBox>

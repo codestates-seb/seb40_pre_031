@@ -12,7 +12,6 @@ function Signupquestion(props) {
   );
 }
 
-
 function SignupUpandDown(props) {
   return (
     <svg width={26} height={26} className="Signupsvg" {...props} fill="rgb(10,149,255)">

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { SignupinfoBox, SignupsubinfoBox } from '../atoms/Signupcontainer';
-import { SignupUpandDown, Signupquestion, Signuptag, Signuptrophy } from '../atoms/SvgComponent';
+import { SignupUpandDown, Signupquestion, Signuptag, Signuptrophy } from '../atoms/SvgComponents';
 
 const data = [
     {
