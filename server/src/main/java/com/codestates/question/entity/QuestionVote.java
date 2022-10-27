@@ -7,6 +7,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+import com.codestates.user.entity.User;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,9 +31,22 @@ public class QuestionVote {
 	@Column(nullable = false, length = 20)
 	private QuestionVoteStatus questionVoteStatus = QuestionVoteStatus.NONE;
 
-	// mapping 필요
-	// private User user;
+	@ManyToOne
+	@JoinColumn(name = "USER_ID")
+	private User user;
 
-	// mapping 필요
-	// private Question question;
+	@OneToOne
+	@JoinColumn(name = "QUESTION_ID")
+	private Question question;
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+		if (question.getQuestionVote() != this) {
+			question.setQuestionVote(this);
+		}
+	}
 }
