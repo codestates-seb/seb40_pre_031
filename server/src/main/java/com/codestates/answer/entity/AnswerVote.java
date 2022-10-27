@@ -44,18 +44,6 @@ public class AnswerVote extends Basetime {
 	@JoinColumn(name = "ANSWER_ID")
 	private Answer answer;
 
-	public enum AnswerVoteStatus {
-		NONE("추천안함"),
-		UP("추천"),
-		DONW("비추천");
-
-		private String status;
-
-		AnswerVoteStatus(String status) {
-			this.status = status;
-		}
-	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
