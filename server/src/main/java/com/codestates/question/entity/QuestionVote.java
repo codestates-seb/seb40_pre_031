@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.codestates.status.VoteStatus;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,7 +26,7 @@ public class QuestionVote {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	private QuestionVoteStatus questionVoteStatus = QuestionVoteStatus.NONE;
+	private VoteStatus status = VoteStatus.NONE;
 
 	// mapping 필요
 	// private User user;
