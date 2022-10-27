@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.codestates.status.VoteStatus;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,21 +27,9 @@ public class AnswerVote {
 
 	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
-	private AnswerVoteStatus answerVoteStatus = AnswerVoteStatus.NONE;
+	private VoteStatus status = VoteStatus.NONE;
 
 	// private User user;
 
 	// private Answer answer;
-
-	public enum AnswerVoteStatus {
-		NONE("추천안함"),
-		UP("추천"),
-		DONW("비추천");
-
-		private String status;
-
-		AnswerVoteStatus(String status) {
-			this.status = status;
-		}
-	}
 }

@@ -1,7 +1,6 @@
 package com.codestates.status;
 
 public enum PostStatus {
-
 	PUBLIC("공개"),
 	PRIVATE("비공개");
 
