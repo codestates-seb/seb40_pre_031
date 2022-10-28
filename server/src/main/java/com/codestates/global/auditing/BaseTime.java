@@ -19,7 +19,7 @@ public abstract class BaseTime {
 	/* 생성 시간 */
 	@CreatedDate
 	@Column(updatable = false)
-	private LocalDateTime createAT;
+	private LocalDateTime createdAt;
 
 	/* 수정 시간 */
 	@LastModifiedDate

@@ -30,12 +30,12 @@ class AnswerTest {
 
 		Answer savedAnswer = answerRepository.save(answer);
 
-		assertThat(savedAnswer.getCreateAT())
+		assertThat(savedAnswer.getCreatedAt())
 			.isNotNull();
 		assertThat(savedAnswer.getClass())
 			.isNotNull();
 
-		System.out.println("savedAnswer.getCreateAT() = " + savedAnswer.getCreateAT());
+		System.out.println("savedAnswer.getCreateAT() = " + savedAnswer.getCreatedAt());
 		System.out.println("savedAnswer.getModifiedAT() = " + savedAnswer.getModifiedAt());
 	}
 }
