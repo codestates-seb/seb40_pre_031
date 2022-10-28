@@ -45,7 +45,7 @@ public class User extends BaseTime {
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20, nullable = false)
-	private UserStatus usersStatus = UserStatus.USER_ACTIVE;
+	private UserStatus userStatus = UserStatus.USER_ACTIVE;
 
 	@OneToMany(mappedBy = "user")
 	private List<Question> questionList = new ArrayList<>();
