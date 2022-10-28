@@ -1,5 +1,8 @@
 package com.codestates.answer.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.codestates.comment.entity.Comment;
 import com.codestates.global.auditing.BaseTime;
 import com.codestates.question.entity.Question;
 import com.codestates.status.PostStatus;
@@ -40,12 +45,15 @@ public class Answer extends BaseTime {
 	private PostStatus status = PostStatus.PUBLIC;
 
 	@ManyToOne
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "QUESTION_ID")
+	@JoinColumn(name = "question_id")
 	private Question question;
+
+	@OneToMany(mappedBy = "answer")
+	private List<Comment> commentList = new ArrayList<>();
 
 	@OneToOne(mappedBy = "answer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private AnswerVote answerVote;
@@ -56,6 +64,14 @@ public class Answer extends BaseTime {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	public void addComment(Comment comment) {
+		commentList.add(comment);
+
+		if (comment.getAnswer() != this) {
+			comment.setAnswer(this);
+		}
 	}
 
 	public void setAnswerVote(AnswerVote answerVote) {

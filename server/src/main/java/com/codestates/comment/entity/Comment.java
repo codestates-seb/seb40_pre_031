@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.codestates.answer.entity.Answer;
 import com.codestates.global.auditing.BaseTime;
 import com.codestates.status.PostStatus;
 import com.codestates.user.entity.User;
@@ -39,5 +40,9 @@ public class Comment extends BaseTime {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "answer_id")
+	private Answer answer;
 }
 
