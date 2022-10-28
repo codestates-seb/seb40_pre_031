@@ -31,7 +31,7 @@ public class UserService {
 	public User updateUser(User user) {
 		User findUser = findVerifiedUser(user.getId());
 
-		if (findUser.getUserStatus() == UserStatus.USER_OUT|| findUser.getUserStatus() == UserStatus.ADMIN) {
+		if (findUser.getUserStatus() == UserStatus.USER_OUT || findUser.getUserStatus() == UserStatus.ADMIN) {
 			throw new BusinessLogicException(ExceptionCode.OUT_OF_CONTROL);
 		} else {
 			// 수정하기
@@ -47,8 +47,13 @@ public class UserService {
 
 	// 회원 조회
 	public User findMember(long userId) {
+		User findUser = findVerifiedUser(userId);
 
-		return findVerifiedUser(userId);
+		if (findUser.getUserStatus() == UserStatus.USER_OUT || findUser.getUserStatus() == UserStatus.ADMIN) {
+			throw new BusinessLogicException(ExceptionCode.OUT_OF_CONTROL);
+		} else {
+			return findUser;
+		}
 	}
 
 	// 회원 삭제 --> 상태를 바꾸는 메서드로 구현할 것
