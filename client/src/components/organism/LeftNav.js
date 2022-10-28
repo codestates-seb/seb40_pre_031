@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 // 왼쪽 사이드바를 재활용하기 위한 Organism
 
-function Leftnav() {
+function LeftNav() {
   return (
     <Container>
       <LeftNavList></LeftNavList>
@@ -23,4 +23,4 @@ function Leftnav() {
   );
 }
 
-export default Leftnav;
+export default LeftNav;
