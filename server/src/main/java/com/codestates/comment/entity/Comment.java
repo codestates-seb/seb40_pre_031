@@ -7,9 +7,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.codestates.global.auditing.BaseTime;
 import com.codestates.status.PostStatus;
+import com.codestates.user.entity.User;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,8 +36,8 @@ public class Comment extends BaseTime {
 	@Enumerated(EnumType.STRING)
 	private PostStatus status = PostStatus.PUBLIC;
 
-	// private User user;
-
-	// private Answer answer;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 }
 
