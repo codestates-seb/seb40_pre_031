@@ -39,11 +39,18 @@ const common = {
 `,
 };
 
+const margin = {
+  small: "4px 0 4px 0",
+  medium : "15px 0 15px 0", 
+  large : "30px 0 4px 0"
+}
+
 // theme 객체에 감싸서 반환한다.
 const theme = {
   device,
   fontSizes,
-  common
+  common,
+  margin,
 };
 
 export default theme;

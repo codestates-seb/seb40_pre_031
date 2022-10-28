@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const SignupcontainerBox = styled.form`
+const SignupLogincontainerBox = styled.form`
     box-sizing: content-box;
     width : 268px;
-    height : 610px;
+    height : ${({height}) => height};
     padding : 24px;
     margin : 20px 0 24px 0;
     border-radius : 5px;
@@ -66,4 +66,4 @@ const SignupinputBox = styled.div`
     }
 `
 
-export {SignupcontainerBox, SignupRobotBox, SignupinfoBox, SignupsubinfoBox, SignupResponsiveBox, SignupinputBox};
+export {SignupLogincontainerBox, SignupRobotBox, SignupinfoBox, SignupsubinfoBox, SignupResponsiveBox, SignupinputBox};

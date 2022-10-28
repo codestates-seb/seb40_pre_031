@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { SignupinputBox } from './Signupcontainer';
+import {SignupExclamation} from './SvgComponents'
 
 const Signupinputtext = styled.input`
     width : 270px;
@@ -18,5 +20,18 @@ const Signupinputlabel = styled.label`
     
 `
 
-// border : 1px solid rgb(215 218 224);
-export {Signupinputtext,Signupinputlabel};
+
+const Input = ({bind}) => {
+    return (
+        <>
+            <Signupinputlabel htmlFor={bind.id}>{bind.id}</Signupinputlabel>
+            <SignupinputBox>
+                <Signupinputtext {...bind} ></Signupinputtext>
+                {bind.pass ? null : <SignupExclamation className="Exclamation"></SignupExclamation>}
+            </SignupinputBox>
+        </>
+    )
+
+}
+
+export {Signupinputtext,Signupinputlabel,Input};
