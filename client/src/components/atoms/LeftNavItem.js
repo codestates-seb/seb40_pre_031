@@ -3,23 +3,23 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 const StyledLink = styled(NavLink)`
-  box-sizing: border-box;
-  display: flex;
-  justify-content: left;
   align-items: center;
-  width: 164px;
+  box-sizing: border-box;
+  color: var(--black-600);
+  cursor: pointer;
+  display: flex;
   height: 100%;
+  justify-content: left;
   padding: ${(props) => props.padding || '4px 4px 4px 30px'};
   text-decoration: none;
-  color: #525960;
-  cursor: pointer;
+  width: 164px;
   :hover {
-    color: #0c0d0e;
+    color: var(--black-900);
   }
   &.active {
-    background: #f1f2f3;
-    color: #0c0d0e;
-    border-right: 5px solid #f48224;
+    background: var(--black-050);
+    border-right: 5px solid var(--orange);
+    color: var(--black-900);
     font-weight: bold;
   }
 `;

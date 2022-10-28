@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import LeftNavList from '../molecules/LeftNavList';
 
 const Container = styled.div`
-  position: sticky;
-  top: 0px;
-  padding-top: 24px;
-  display: flex;
   align-items: center;
-  width: 164px;
+  background: var(--white);
+  display: flex;
   height: 100%;
-  background: #ffffff;
+  top: 0px;
+  position: sticky;
+  padding-top: 24px;
+  width: 164px;
   z-index: 10;
 `;
 // 왼쪽 사이드바를 재활용하기 위한 Organism

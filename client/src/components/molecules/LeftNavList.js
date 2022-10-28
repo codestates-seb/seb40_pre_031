@@ -42,7 +42,11 @@ const Promo = styled.li`
   width: 164px;
   height: 290.75px;
   padding: 12px 12px 6px 12px;
-  border: 1px solid #e3e6e8;
+  border: 1px solid var(--black-075);
+  div {
+    color: var(--black-750);
+    font-size: 13px;
+  }
 `;
 
 // Promo 아이콘 패딩값을 주기위해 사용
@@ -76,7 +80,7 @@ function Leftnavlist() {
       <LeftNavHead name={'COLLECTIVES'} />
       <Item>
         <Icon>
-          <IconStarVerified fill={'#f48224'} />
+          <IconStarVerified fill={'var(--orange)'} />
         </Icon>
         <LeftNavItem link={'/collectives'} name={'Explore Collectives'} />
       </Item>
@@ -97,8 +101,8 @@ function Leftnavlist() {
         />
         <LeftNavButton
           name={'Why Teams?'}
-          color={'#6A737C'}
-          bgcolor={'#FFFFFF'}
+          color={'var(--black-500)'}
+          bgcolor={'var(--white)'}
           link={'https://stackoverflow.co/teams/'}
         />
       </Promo>

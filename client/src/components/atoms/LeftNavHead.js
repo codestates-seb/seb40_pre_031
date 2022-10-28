@@ -10,7 +10,7 @@ const Itemhead = styled.li`
   height: 14.38px;
   font-size: 11px;
   margin: 16px 0 4px 8px;
-  color: #6a737c;
+  color: var(--black-500);
 `;
 
 // 왼쪽사이드바의 목록 제목 부분
