@@ -15,7 +15,7 @@ import lombok.Getter;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Basetime {
+public abstract class BaseTime {
 	/* 생성 시간 */
 	@CreatedDate
 	@Column(updatable = false)
