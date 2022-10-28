@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.codestates.answer.entity.Answer;
 import com.codestates.global.auditing.BaseTime;
@@ -35,7 +34,6 @@ public class Question extends BaseTime {
 	@Column(name = "question_id")
 	private Long id;
 
-
 	@Column(nullable = false)
 	private String title;
 
@@ -53,11 +51,11 @@ public class Question extends BaseTime {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "question")
+	@OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Answer> answerList = new ArrayList<>();
 
-	@OneToOne(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	private QuestionVote questionVote;
+	@OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<QuestionVote> questionVoteList = new ArrayList<>();
 
 	public void setUser(User user) {
 		this.user = user;
@@ -71,8 +69,8 @@ public class Question extends BaseTime {
 		}
 	}
 
-	public void setQuestionVote(QuestionVote questionVote) {
-		this.questionVote = questionVote;
+	public void addQuestionVote(QuestionVote questionVote) {
+		questionVoteList.add(questionVote);
 
 		if (questionVote.getQuestion() != this) {
 			questionVote.setQuestion(this);
