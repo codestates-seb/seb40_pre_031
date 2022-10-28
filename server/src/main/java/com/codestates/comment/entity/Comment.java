@@ -8,8 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.codestates.global.auditing.BaseTime;
 import com.codestates.status.PostStatus;
-import com.codestates.global.auditing.Basetime;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Comment extends Basetime {
+public class Comment extends BaseTime {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Comment extends Basetime {
 	private Long id;
 
 	@Column(nullable = false, columnDefinition = "TEXT")
-	private String Content;
+	private String content;
 
 	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)

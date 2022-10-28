@@ -20,6 +20,7 @@ public class ConstraintViolationError {
 		this.reason = reason;
 	}
 	public static List<ConstraintViolationError> of(Set<ConstraintViolation<?>> constraintViolations) {
+
 		return constraintViolations.stream()
 			.map(constraintViolation -> new ConstraintViolationError(
 				constraintViolation.getPropertyPath().toString(),

@@ -20,6 +20,7 @@ public class FieldError {
 	}
 	public static List<FieldError> of(BindingResult bindingResult) {
 		final List<org.springframework.validation.FieldError> fieldErrorList = bindingResult.getFieldErrors();
+
 		return fieldErrorList.stream()
 			.map(error -> new FieldError(error.getField(),
 				error.getRejectedValue() == null ? "" : error.getRejectedValue().toString(),
