@@ -31,14 +31,14 @@ public class QuestionController {
 
 	/* 질문글 수정 */
 	@PatchMapping("/{question_id}")
-	public ResponseEntity patchQuestion(@Valid @Positive @PathVariable String question_id) {
-		
+	public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long questionId) {
+
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	/* 특정 질문글 조회 */
 	@GetMapping("/{question_id}")
-	public ResponseEntity getQuestion(@Valid @Positive @PathVariable String question_id) {
+	public ResponseEntity getQuestion(@PathVariable("question_id") @Positive Long questionId) {
 
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -52,7 +52,7 @@ public class QuestionController {
 
 	/* 질문글 삭제*/
 	@DeleteMapping("/{question_id}")
-	public ResponseEntity deleteQuestion(@Valid @Positive @PathVariable String question_id) {
+	public ResponseEntity deleteQuestion(@PathVariable("question_id") @Positive Long questionId) {
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
