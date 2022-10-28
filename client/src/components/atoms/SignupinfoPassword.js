@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//유효성 검사시 나타나는 메세지
 const SignupinfoPassword = styled.p`
     width : 268px;
     margin : ${({margin,theme}) => theme.margin[margin]};

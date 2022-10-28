@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { SignupinputBox } from './Signupcontainer';
 import {SignupExclamation} from './SvgComponents'
 
+// input 과 label을 묶어 만든 컴포넌트
+// 한세트이므로 atoms에 할당했습니다
 const Signupinputtext = styled.input`
     width : 270px;
     height : 31px;

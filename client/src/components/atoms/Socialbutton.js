@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-
+//소셜로그인 버튼
+//Login 버튼과 Sign up버튼에도 재활용 했습니다.
 const Socialbutton = styled.button`
     width : ${({size}) => size};
     box-sizing: content-box;

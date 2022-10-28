@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//로그인페이지와 회원가입에 쓰는 div, form 모음
 const SignupLogincontainerBox = styled.form`
     box-sizing: content-box;
     width : 268px;

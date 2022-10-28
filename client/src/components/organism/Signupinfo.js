@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { SignupinfoBox, SignupsubinfoBox,SignupResponsiveBox } from '../atoms/Signupcontainer';
 import { SignupUpandDown, Signupquestion, Signuptag, Signuptrophy } from '../atoms/SvgComponents';
 
+//회원가입 왼쪽 정보 나타내는곳
+
 const data = [
     {
         content: "Get unstuck — ask a question",
@@ -40,8 +42,8 @@ const Signupinfo = () => {
         <>
         <SignupinfoBox>
             <h2>Join the Stack Overflow community</h2>
-            {data.map((el) =>
-                <SignupsubinfoBox>
+            {data.map((el, idx) =>
+                <SignupsubinfoBox key={idx}>
                    <el.svg> </el.svg> <label>{el.content}</label>
                 </SignupsubinfoBox>
             )}

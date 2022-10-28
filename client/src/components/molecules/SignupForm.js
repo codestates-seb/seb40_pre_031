@@ -5,10 +5,9 @@ import { useEffect, useState } from 'react';
 import { Input } from '../atoms/Signupinput';
 import useInput from '../../hooks/useInput';
 
-const margin = ["4px 0 4px 0", "15px 0 15px 0", "30px 0 4px 0"];
 const color = ["gray", "black"];
 
-
+// 회원가입 작성하는 곳
 const Signinput = () => {
 
     const [id, idBind] = useInput("", true, "text", "Display name");
@@ -24,6 +23,7 @@ const Signinput = () => {
         regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{3,4}');
         regex.test(email) ? emailBind.setPass(true) : emailBind.setPass(false)
     }
+
     useEffect(() => {
         passwordBind.setPass(true);
         emailBind.setPass(true);
@@ -46,6 +46,7 @@ const Signinput = () => {
 
             <Socialbutton size="245px" color="white" onClick={onClick}>Sign up</Socialbutton>
             <SignupinfoPassword margin="large" color={color[0]}>By clicking “Sign up”, you agree to our terms of service, privacy policy and cookie policy</SignupinfoPassword>
+            
         </SignupLogincontainerBox>
     )
 }

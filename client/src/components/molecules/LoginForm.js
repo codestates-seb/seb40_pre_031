@@ -5,8 +5,7 @@ import { Socialbutton } from '../atoms/Socialbutton.js';
 import { SignupinfoPassword } from '../atoms/SignupinfoPassword.js';
 import { useEffect } from 'react';
 
-const color = ["gray", "black"];
-
+//로그인 정보 작성하는곳
 const LoginForm = () => {
     const [email, bindEmail] = useInput("", true, "text", "Email")
     const [password, bindPassword] = useInput("", true, "password", "Password")
