@@ -10,11 +10,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import com.codestates.answer.entity.Answer;
 import com.codestates.answer.entity.AnswerVote;
+import com.codestates.comment.entity.Comment;
 import com.codestates.global.auditing.BaseTime;
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
@@ -45,13 +45,16 @@ public class User extends BaseTime {
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20, nullable = false)
-	private UserStatus usersStatus = UserStatus.USER_ACTIVE;
+	private UserStatus userStatus = UserStatus.USER_ACTIVE;
 
 	@OneToMany(mappedBy = "user")
 	private List<Question> questionList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user")
 	private List<Answer> answerList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
+	private List<Comment> commentList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user")
 	private List<QuestionVote> questionVoteList = new ArrayList<>();
@@ -72,6 +75,14 @@ public class User extends BaseTime {
 
 		if (answer.getUser() != this) {
 			answer.setUser(this);
+		}
+	}
+
+	public void addComment(Comment comment) {
+		commentList.add(comment);
+
+		if (comment.getUser() != this) {
+			comment.setUser(this);
 		}
 	}
 
