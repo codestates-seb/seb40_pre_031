@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import com.codestates.global.auditing.BaseTime;
 import com.codestates.status.VoteStatus;
@@ -38,7 +37,7 @@ public class AnswerVote extends BaseTime {
 	@JoinColumn(name = "USER_ID")
 	private User user;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "ANSWER_ID")
 	private Answer answer;
 
@@ -49,8 +48,8 @@ public class AnswerVote extends BaseTime {
 	public void setAnswer(Answer answer) {
 		this.answer = answer;
 
-		if (answer.getAnswerVote() != this) {
-			answer.setAnswerVote(this);
+		if (!answer.getAnswerVoteList().contains(this)) {
+			answer.getAnswerVoteList().add(this);
 		}
 	}
 }

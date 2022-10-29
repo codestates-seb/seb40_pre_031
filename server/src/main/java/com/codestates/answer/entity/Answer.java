@@ -3,7 +3,6 @@ package com.codestates.answer.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.codestates.comment.entity.Comment;
 import com.codestates.global.auditing.BaseTime;
@@ -55,8 +53,8 @@ public class Answer extends BaseTime {
 	@OneToMany(mappedBy = "answer")
 	private List<Comment> commentList = new ArrayList<>();
 
-	@OneToOne(mappedBy = "answer", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	private AnswerVote answerVote;
+	@OneToMany(mappedBy = "answer")
+	private List<AnswerVote> answerVoteList = new ArrayList<>();
 
 	public void setUser(User user) {
 		this.user = user;
@@ -74,8 +72,8 @@ public class Answer extends BaseTime {
 		}
 	}
 
-	public void setAnswerVote(AnswerVote answerVote) {
-		this.answerVote = answerVote;
+	public void addAnswerVote(AnswerVote answerVote) {
+		answerVoteList.add(answerVote);
 
 		if (answerVote.getAnswer() != this) {
 			answerVote.setAnswer(this);
