@@ -5,9 +5,12 @@ import QuestionAskButton from "../atoms/QuestionAskButton";
 const QuestionHeadLayout = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 12px;
+  height: 62.094px;
   h1 {
+    flex: 1 auto;
+    font-size: 2.07692308rem;
     font-weight: 400;
-    width: 425px;
   }
 `;
 
