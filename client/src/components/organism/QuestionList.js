@@ -5,6 +5,7 @@ import QuestionSummaryContent from '../molecules/QuestionSummaryContent';
 
 const QuestionListLayout = styled.div`
   display: flex;
+  padding: 12px;
   border-bottom: 1px solid var(--bc-light);
   `
 
