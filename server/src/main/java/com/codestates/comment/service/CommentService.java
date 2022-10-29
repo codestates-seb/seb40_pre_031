@@ -18,11 +18,11 @@ public class CommentService {
 		commentRepository.save(comment);
 	}
 
-	public void updateComment(Long commentId, String content) {
+	public Comment updateComment(Long commentId, String content) {
 		Comment found = findVerifiedComment(commentId);
 		found.setContent(content);
 
-		commentRepository.save(found);
+		return commentRepository.save(found);
 	}
 
 	public void deleteComment(Long commentId) {

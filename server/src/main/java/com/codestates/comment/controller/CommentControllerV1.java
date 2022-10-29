@@ -43,9 +43,9 @@ public class CommentControllerV1 {
 	@PatchMapping("/{comment_id}")
 	public ResponseEntity patchComment(@Positive @PathVariable(name = "comment_id") Long commentId,
 		@Valid @RequestBody CommentPatchDto commentPatchDto) {
-		commentService.updateComment(commentId, commentPatchDto.getContent());
+		Comment updated = commentService.updateComment(commentId, commentPatchDto.getContent());
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok().body(updated);
 	}
 
 	@DeleteMapping("{comment_id}")
