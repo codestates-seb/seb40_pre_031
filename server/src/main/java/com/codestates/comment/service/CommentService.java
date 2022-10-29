@@ -25,6 +25,12 @@ public class CommentService {
 		commentRepository.save(found);
 	}
 
+	public void deleteComment(Long commentId) {
+		Comment found = findVerifiedComment(commentId);
+
+		commentRepository.delete(found);
+	}
+
 	public Comment findVerifiedComment(Long commentId) {
 		Optional<Comment> found = commentRepository.findById(commentId);
 
