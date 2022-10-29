@@ -6,12 +6,14 @@ import javax.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codestates.comment.dto.CommentPatchDto;
 import com.codestates.comment.dto.CommentPostDto;
 import com.codestates.comment.entity.Comment;
 import com.codestates.comment.service.CommentService;
@@ -35,5 +37,13 @@ public class CommentControllerV1 {
 		commentService.createComment(comment);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+
+	@PatchMapping("/{comment_id}")
+	public ResponseEntity patchComment(@Positive @PathVariable(name = "comment_id") Long commentId,
+		@Valid @RequestBody CommentPatchDto commentPatchDto) {
+		commentService.updateComment(commentId, commentPatchDto.getContent());
+
+		return ResponseEntity.ok().build();
 	}
 }
