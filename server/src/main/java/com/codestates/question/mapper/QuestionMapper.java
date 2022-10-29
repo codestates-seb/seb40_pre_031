@@ -1,6 +1,7 @@
 package com.codestates.question.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import com.codestates.question.dto.QuestionPatchDto;
@@ -14,5 +15,6 @@ public interface QuestionMapper {
 
 	Question questionPatchDtoToQuestion(QuestionPatchDto questionPatchDto);
 
-	QuestionResponseDto questionToQuestionResponseDto(QuestionResponseDto questionResponseDto);
+	@Mapping(source = "id", target = "questionId")
+	QuestionResponseDto questionToQuestionResponseDto(Question question);
 }
