@@ -10,7 +10,6 @@ const AskQuestion = styled.button`
   color: var(--theme-button-primary-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   border: 1px solid transparent; /*투명한 테두리 추가*/
-  
   padding: 0.8em;
   
   `;
