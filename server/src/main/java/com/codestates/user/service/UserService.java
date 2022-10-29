@@ -72,7 +72,7 @@ public class UserService {
 		Optional<User> optionalUser = userRepository.findByEmail(email);
 
 		if (optionalUser.isPresent()) {
-			throw new RuntimeException();
+			throw new BusinessLogicException(ExceptionCode.USER_EXIST);
 		}
 	}
 
