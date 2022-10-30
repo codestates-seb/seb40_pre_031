@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
 
-const LogoWrapper = styled.div`
+const DropdownBox = styled.div`
   height: 100%;
   width: 50px;
   display: flex;
@@ -16,9 +16,9 @@ const LogoWrapper = styled.div`
 
 const HeaderMenu = () => {
     return (
-      <LogoWrapper>
+      <DropdownBox>
         <AiOutlineMenu size={18} />
-      </LogoWrapper>
+      </DropdownBox>
     );
 };
 

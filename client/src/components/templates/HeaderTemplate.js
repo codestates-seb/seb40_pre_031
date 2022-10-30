@@ -1,13 +1,12 @@
 import styled from 'styled-components'
+import HeaderMenu from '../atoms/HeaderMenu';
 import HeaderLogo from '../atoms/HeaderLogo';
+import HeaderNav from '../atoms/HeaderNav';
 import HeaderSearch from '../atoms/HeaderSearch';
 import HeaderButton from '../atoms/HeaderButton';
-import HeaderMenu from '../atoms/HeaderMenu';
-import HeaderLinkText from '../atoms/HeaderLinkText';
-
 import { useMediaQuery } from "react-responsive";
 
-const HeaderWrapper = styled.header`
+const HeaderBox = styled.div`
   width: 100vw;
   height: 50px;
   display: flex;
@@ -31,22 +30,22 @@ function HeaderTemplate(){
   const isTabletOrMobile  = useMediaQuery({ query: '(min-width: 660px)' })
 
     return (
-      <HeaderWrapper>
+      <HeaderBox>
         <HeaderMenu />
         <HeaderLogo />
         {isTabletOrMobile ? (
           <>
-            <HeaderLinkText to={{ AboutUrl }}>About</HeaderLinkText>
-            <HeaderLinkText>Products</HeaderLinkText>
-            <HeaderLinkText to={{ ForTeamsUrl }}>For Teams</HeaderLinkText>
+            <HeaderNav to={{ AboutUrl }}>About</HeaderNav>
+            <HeaderNav>Products</HeaderNav>
+            <HeaderNav to={{ ForTeamsUrl }}>For Teams</HeaderNav>
           </>
         ) : (
-          <HeaderLinkText>Products</HeaderLinkText>
+          <HeaderNav>Products</HeaderNav>
         )}
 
         <HeaderSearch />
         <HeaderButton />
-      </HeaderWrapper>
+      </HeaderBox>
     );
 }
 

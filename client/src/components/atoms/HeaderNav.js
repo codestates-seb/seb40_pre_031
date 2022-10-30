@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LinkItem = styled.a`
+const LinkItem = styled.li`
       position: relative;
       display: flex;
       white-space: nowrap;
@@ -17,8 +17,8 @@ const LinkItem = styled.a`
       }
 `
 
-const HeaderLinkText = ({children}) => {
+const HeaderNav = ({children}) => {
     return <LinkItem>{children}</LinkItem>;
 };
 
-export default HeaderLinkText;
+export default HeaderNav;

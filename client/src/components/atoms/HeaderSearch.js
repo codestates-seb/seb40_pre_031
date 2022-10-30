@@ -16,6 +16,7 @@ const SearchForm = styled.form`
     border-color: #39739d;
     outline: solid 2px rgba(87, 159, 251, 0.3);
   }
+
   div {
     display: flex;
     flex-direction: row;
@@ -36,8 +37,6 @@ const SearchForm = styled.form`
     }
   }
 `;
-
-
 
 const HeaderSearch = () => {
     return (
