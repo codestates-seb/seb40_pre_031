@@ -103,7 +103,6 @@ function SearchInputIcon(props) {
     );
   }
 
-
 }
 
 export { LogoIcon, MenuIcon, MenuX, SearchInputIcon };

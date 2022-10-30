@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
+import { useState} from 'react';
+import HeaderInfo from '../atoms/HeaderInfo';
 
 
 const LinkButton = styled.button`
@@ -18,13 +20,24 @@ const LinkButton = styled.button`
 `;
 
 const HeaderButton = () => {
+  const [isLogin, setIsLogin] = useState(true);
+
     return (
-      <div style={{ minWidth: 135 }}>
-        <LinkButton>Log in</LinkButton>
-        <LinkButton backgroundColor="#26a4ff" color="white">
-          <Link to="/signup">Sign up</Link>
-        </LinkButton>
-      </div>
+      <>
+        {!isLogin ? (
+          <div style={{ minWidth: 135 }}>
+            <LinkButton>Log in</LinkButton>
+            <LinkButton backgroundColor="#26a4ff" color="white">
+              <Link to="/signup">Sign up</Link>
+            </LinkButton>
+          </div>
+        ) : (
+          <>
+          <div> Hi! Name </div>
+          <HeaderInfo/>
+          </>
+        )}
+      </>
     );
 };
 

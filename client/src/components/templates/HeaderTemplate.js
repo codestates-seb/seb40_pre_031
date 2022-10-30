@@ -5,6 +5,7 @@ import HeaderNav from '../atoms/HeaderNav';
 import HeaderSearch from '../atoms/HeaderSearch';
 import HeaderButton from '../atoms/HeaderButton';
 import { useMediaQuery } from "react-responsive";
+import { useState } from 'react';
 
 const HeaderBox = styled.div`
   width: 100vw;
@@ -26,14 +27,15 @@ const AboutUrl = 'https://stackoverflow.co/';
 const ForTeamsUrl = 'https://stackoverflow.co/teams/';
 
 function HeaderTemplate(){
-
-  const isTabletOrMobile  = useMediaQuery({ query: '(min-width: 660px)' })
+  
+  const isDesktopSize  = useMediaQuery({ query: '(min-width: 660px)' })
+  const [isLogin, setIsLogin] = useState(false);
 
     return (
       <HeaderBox>
         <HeaderMenu />
         <HeaderLogo />
-        {isTabletOrMobile ? (
+        {isDesktopSize && !isLogin ? (
           <>
             <HeaderNav to={{ AboutUrl }}>About</HeaderNav>
             <HeaderNav>Products</HeaderNav>
@@ -42,7 +44,6 @@ function HeaderTemplate(){
         ) : (
           <HeaderNav>Products</HeaderNav>
         )}
-
         <HeaderSearch />
         <HeaderButton />
       </HeaderBox>
