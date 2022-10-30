@@ -6,6 +6,7 @@ const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  position: relative;
   h3 {
     font-size: 15px;
     color: var(--black-900);
@@ -20,9 +21,18 @@ const TitleBox = styled.div`
     border: 1px solid var(--black-200);
     border-radius: 3px;
   }
+  .titlecheck {
+    position: absolute;
+    bottom: -15px;
+    color: var(--red);
+  }
+  .hide {
+    display: none;
+  }
 `;
 
 const AskQuestionTitleBox = forwardRef(({ onChange }, ref) => {
+  const { title, p } = ref;
   return (
     <TitleBox>
       <h3>Title</h3>
@@ -30,9 +40,12 @@ const AskQuestionTitleBox = forwardRef(({ onChange }, ref) => {
       <input
         type="text"
         placeholder="e,g is there an R function the index of an element in a vector?"
-        ref={ref}
+        ref={title}
         onChange={onChange}
       ></input>
+      <p className="titlecheck hide" ref={p}>
+        1자이상 35자 이하인 제목을 정확히 입력해 주세요
+      </p>
     </TitleBox>
   );
 });

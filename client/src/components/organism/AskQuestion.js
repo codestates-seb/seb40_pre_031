@@ -28,7 +28,7 @@ const Questionfoam = styled.div`
 `;
 
 function AskQuestion() {
-  const titleRef = useRef(null);
+  const titleRef = { title: useRef(null), p: useRef(null) };
   const editorRef = useRef(null);
   const tagRef = useRef(null);
 
@@ -38,8 +38,14 @@ function AskQuestion() {
   };
 
   const titleOnChange = () => {
-    const value = titleRef.current.value;
-    console.log(value);
+    const value = titleRef.title.current.value;
+    console.log(value.length);
+    if (value.length >= 35) {
+      titleRef.p.current.classList.remove('hide');
+      return;
+    } else if (value.length < 36) {
+      titleRef.p.current.classList.add('hide');
+    }
   };
 
   const buttonOnClick = () => {
@@ -48,7 +54,11 @@ function AskQuestion() {
       content: editorRef.current.getInstance().getMarkdown(),
       tag: tagRef.current.value,
     };
-    console.log(data);
+    if (data.title === '' || data.title.length >= 35) {
+      alert('1자이상 35자 이하인 제목을 정확히 입력해 주세요 ');
+      titleRef.current.focus();
+      return;
+    }
   };
 
   return (

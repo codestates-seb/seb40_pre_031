@@ -15,7 +15,7 @@ const Write = forwardRef(({ onChange }, ref) => {
         onChange={onChange}
         previewStyle="vertical"
         initialEditType="markdown"
-        initialValue="질문을 적어주세요"
+        initialValue="My question"
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
         ref={ref}
       />
