@@ -6,61 +6,70 @@ import { ReactComponent as FooterLogo } from '../../assets/footer-logo.svg';
 const FooterBox = styled.div`
   width: 100vw;
   padding: 16px;
-  background-color: #232629; //--black-800: hsl(210,8%,15%);
+  background-color: var(--black-800);//#232629; //--black-800: hsl(210,8%,15%);
   color: #9199a1; // --black-550: hsl(210,8%,60%)
+`;
 
-  > .footer-container {
+const FooterContainer = styled.div `
     max-width: 1264px;
     box-sizing: border-box;
     display: flex;
     margin: 0 auto;
     padding: 32px 12px 12px 12px;
+`
 
-    a {
+const FooterLink = styled.a`
       text-decoration: none;
       color: #9199a1; // --black-550: hsl(210,8%,60%)
       cursor: pointer;
-    }
+`
 
-    li,
-    ul {
+const List = styled.ul`
       list-style: none;
       margin: 0;
       padding: 0;
-    }
-    > .footer-logo {
-      flex: 0 0 64px;
-      margin: 12px 0 32px 0;
-    }
+`
+const Item = styled.li`
+      list-style: none;
+      margin: 0;
+      padding: 0;
+`
 
-    > .footer-nav {
+const ImgContainer = styled.div`
+  flex: 0 0 64px;
+  margin: -12px 32px 0;
+`;
+const FooterNav = styled.div`
       display: flex;
       flex: 2 1 auto;
       flex-wrap: wrap;
+`
 
-      > .footer-column {
-        padding: 0 12px 24px 0;
-        flex: 1 0 auto;
-        > h5 {
-          margin-top: 0;
-          margin-bottom: 12px;
-          font-size: 13px;
-          color: #babfc4; //    --black-200: hsl(210,8%,75%);
-          > a {
-            color: inherit;
-          }
-        }
-        > ul {
-          font-size: 13px;
-          > li {
-            margin: 0;
-            padding: 4px 0;
-          }
-        }
-      }
+const FooterColumn = styled.div`
+      padding: 0 12px 24px 0;
+      flex: 1 0 auto;
+
+  h5{
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #babfc4; //    --black-200: hsl(210,8%,75%);
+    
+    a{
+      color: inherit;
     }
+  }
+`
+    
+const LinkList = styled.ul`
+    font-size: 13px;
+  li{
+         margin: 0;
+         padding: 4px 0;
+  }
+`
 
-    > .footer-copyright {
+const FooterCopyright = styled.div`
       display: flex;
       flex: 1 1 150px;
       flex-direction: column;
@@ -69,72 +78,72 @@ const FooterBox = styled.div`
       vertical-align: baseline;
       padding: 12px;
 
-      > ul {
-        display: flex;
-
-        > li {
+  ul{
+    display: flex;
+  
+    li{
           padding: 4px 0;
           margin-left: 12px;
           font-size: 11px;
           line-height: calc(17 / 13);
           :first-child {
-            margin-left: 0;
+          margin-left: 0;
           }
-        }
       }
-
-      > p {
-        margin-top: auto;
-        margin-bottom: 20px;
-        line-height: 1.4;
-
-      }
-
-    }
   }
-`;
+
+  p{
+    margin-top: auto;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+`
+
+
+
 
 const FooterTemplate = () => {
     return (
       <FooterBox>
-        <div className="footer-container">
-          <div className="footer-logo">
+        <FooterContainer>
+          <ImgContainer>
             <Link to="/main">
               <FooterLogo />
             </Link>
-          </div>
+          </ImgContainer>
 
-          <nav className="footer-nav">
-            <div className="footer-column">
+          <FooterNav>
+            <FooterColumn>
               <h5>
-                <br/>
                 <Link to="/main">STACK OVERFLOW</Link>
               </h5>
-              <ul>
-                <li>
+              <List>
+                <Item>
                   <Link to="/questions">Questions</Link>
-                </li>
-                <a href="https://stackoverflow.com/help">
-                  <li>Help</li>
-                </a>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <a href="https://stackoverflow.co/">
+                </Item>
+                <FooterLink href="https://stackoverflow.com/help">
+                  <Item>Help</Item>
+                </FooterLink>
+              </List>
+            </FooterColumn>
+
+            <FooterColumn>
+              <FooterLink href="https://stackoverflow.co/">
                 <h5>PRODUCTS</h5>
-              </a>
-              <ul>
+              </FooterLink>
+              <LinkList>
                 <li>Teams</li>
                 <li>Advertising</li>
                 <li>Collectives</li>
                 <li>Talent</li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <a href="https://stackoverflow.co/">
+              </LinkList>
+            </FooterColumn>
+
+            <FooterColumn>
+              <FooterLink href="https://stackoverflow.co/">
                 <h5>COMPANY</h5>
-              </a>
-              <ul>
+              </FooterLink>
+              <LinkList>
                 <li>About</li>
                 <li>Press</li>
                 <li>Work Here</li>
@@ -144,13 +153,14 @@ const FooterTemplate = () => {
                 <li>Contact Us</li>
                 <li>Cookie Settings</li>
                 <li>Cookie Policy</li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <a href="https://stackexchange.com/">
+              </LinkList>
+            </FooterColumn>
+
+            <FooterColumn>
+              <FooterLink href="https://stackexchange.com/">
                 <h5>STACK EXCHANGE NETWORK</h5>
-              </a>
-              <ul>
+              </FooterLink>
+              <LinkList>
                 <li>Technology</li>
                 <li>Culture & recreation</li>
                 <li>Life & arts</li>
@@ -159,45 +169,47 @@ const FooterTemplate = () => {
                 <li>Business</li>
                 <li>API</li>
                 <li>Data</li>
-              </ul>
-            </div>
-          </nav>
-          <div className="footer-copyright">
-            <ul>
+              </LinkList>
+            </FooterColumn>
+          </FooterNav>
+          <FooterCopyright>
+            <LinkList>
               <li>
-                <a href="https://stackoverflow.blog/">Blog</a>
+                <FooterLink href="https://stackoverflow.blog/">Blog</FooterLink>
               </li>
               <li>
-                <a href="https://www.facebook.com/officialstackoverflow/">
+                <FooterLink href="https://www.facebook.com/officialstackoverflow/">
                   Facebook
-                </a>
+                </FooterLink>
               </li>
               <li>
-                <a href="https://twitter.com/stackoverflow">Twitter</a>
+                <FooterLink href="https://twitter.com/stackoverflow">
+                  Twitter
+                </FooterLink>
               </li>
               <li>
-                <a href="https://www.linkedin.com/company/stack-overflow">
+                <FooterLink href="https://www.linkedin.com/company/stack-overflow">
                   LinkedIn
-                </a>
+                </FooterLink>
               </li>
               <li>
-                <a href="https://www.instagram.com/thestackoverflow/">
+                <FooterLink href="https://www.instagram.com/thestackoverflow/">
                   Instagram
-                </a>
+                </FooterLink>
               </li>
-            </ul>
+            </LinkList>
             <p>
               Site design / logo © 2022 Stack Exchange Inc; user contributions
               licensed under{' '}
               <span>
-                <a href="https://stackoverflow.com/help/licensing">
+                <FooterLink href="https://stackoverflow.com/help/licensing">
                   CC BY-SA.{' '}
-                </a>
+                </FooterLink>
               </span>
               <span>rev 2022.10.28.42999</span>
             </p>
-          </div>
-        </div>
+          </FooterCopyright>
+        </FooterContainer>
       </FooterBox>
     );
 };
