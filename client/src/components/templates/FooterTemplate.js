@@ -70,34 +70,39 @@ const LinkList = styled.ul`
 `
 
 const FooterCopyright = styled.div`
-      display: flex;
-      flex: 1 1 150px;
-      flex-direction: column;
-      box-sizing: border-box;
-      font-size: 12px;
-      vertical-align: baseline;
-      padding: 12px;
+  display: flex;
+  flex: 1 1 150px;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-size: 12px;
+  vertical-align: baseline;
+  padding: 12px;
 
-  ul{
+  ul {
     display: flex;
-  
-    li{
-          padding: 4px 0;
-          margin-left: 12px;
-          font-size: 11px;
-          line-height: calc(17 / 13);
-          :first-child {
-          margin-left: 0;
-          }
+
+    li {
+      padding: 4px 0;
+      margin-left: 12px;
+      font-size: 11px;
+      line-height: calc(17 / 13);
+      :first-child {
+        margin-left: 0;
       }
+    }
   }
 
-  p{
+  p {
     margin-top: auto;
+    
     margin-bottom: 20px;
     line-height: 1.4;
   }
-`
+`;
+
+const LastLink = styled.span`
+  text-decoration: underline;
+`;
 
 
 
@@ -202,9 +207,9 @@ const FooterTemplate = () => {
               Site design / logo © 2022 Stack Exchange Inc; user contributions
               licensed under{' '}
               <span>
-                <FooterLink href="https://stackoverflow.com/help/licensing">
+                <LastLink href="https://stackoverflow.com/help/licensing">
                   CC BY-SA.{' '}
-                </FooterLink>
+                </LastLink>
               </span>
               <span>rev 2022.10.28.42999</span>
             </p>
