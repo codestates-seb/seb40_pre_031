@@ -6,8 +6,8 @@ import { ReactComponent as FooterLogo } from '../../assets/footer-logo.svg';
 const FooterBox = styled.div`
   width: 100vw;
   padding: 16px;
-  background-color: var(--black-800);//#232629; //--black-800: hsl(210,8%,15%);
-  color: #9199a1; // --black-550: hsl(210,8%,60%)
+  background-color: var(--black-800);
+  color: var(--theme-footer-link-color); 
 `;
 
 const FooterContainer = styled.div `
@@ -20,9 +20,9 @@ const FooterContainer = styled.div `
 
 const FooterLink = styled.a`
       text-decoration: none;
-      color: #9199a1; // --black-550: hsl(210,8%,60%)
+      color: var(--theme-footer-link-color);
       cursor: pointer;
-`
+`;
 
 const List = styled.ul`
       list-style: none;
@@ -94,7 +94,7 @@ const FooterCopyright = styled.div`
 
   p {
     margin-top: auto;
-    
+
     margin-bottom: 20px;
     line-height: 1.4;
   }
