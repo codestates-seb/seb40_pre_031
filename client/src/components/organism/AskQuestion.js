@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import AskQuestionButton from '../atoms/AskQuestionButton';
 import AskQuestionEditorBox from '../molecules/AskQuestionEditorBox';
@@ -28,15 +28,38 @@ const Questionfoam = styled.div`
 `;
 
 function AskQuestion() {
+  const titleRef = useRef(null);
+  const editorRef = useRef(null);
+  const tagRef = useRef(null);
+
+  const editorOnChange = () => {
+    const value = editorRef.current.getInstance().getMarkdown();
+    console.log(value);
+  };
+
+  const titleOnChange = () => {
+    const value = titleRef.current.value;
+    console.log(value);
+  };
+
+  const buttonOnClick = () => {
+    const data = {
+      title: titleRef.current.value,
+      content: editorRef.current.getInstance().getMarkdown(),
+      tag: tagRef.current.value,
+    };
+    console.log(data);
+  };
+
   return (
     <Container>
       <AskQuestionHeader />
       <Questionfoam>
-        <AskQuestionTitleBox />
-        <AskQuestionEditorBox />
-        <AskQuestionTagBox />
+        <AskQuestionTitleBox ref={titleRef} onChange={titleOnChange} />
+        <AskQuestionEditorBox ref={editorRef} onChange={editorOnChange} />
+        <AskQuestionTagBox ref={tagRef} />
       </Questionfoam>
-      <AskQuestionButton />
+      <AskQuestionButton onClick={buttonOnClick} />
     </Container>
   );
 }

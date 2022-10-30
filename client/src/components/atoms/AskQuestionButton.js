@@ -15,8 +15,8 @@ const Button = styled.button`
   }
 `;
 
-function AskQuestionButton() {
-  return <Button>Ask your question</Button>;
+function AskQuestionButton({ onClick }) {
+  return <Button onClick={onClick}>Ask your question</Button>;
 }
 
 export default AskQuestionButton;

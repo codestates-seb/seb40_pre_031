@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const TitleBox = styled.div`
@@ -22,7 +22,7 @@ const TitleBox = styled.div`
   }
 `;
 
-function AskQuestionTitleBox(ref) {
+const AskQuestionTitleBox = forwardRef(({ onChange }, ref) => {
   return (
     <TitleBox>
       <h3>Title</h3>
@@ -30,9 +30,11 @@ function AskQuestionTitleBox(ref) {
       <input
         type="text"
         placeholder="e,g is there an R function the index of an element in a vector?"
+        ref={ref}
+        onChange={onChange}
       ></input>
     </TitleBox>
   );
-}
+});
 
 export default AskQuestionTitleBox;

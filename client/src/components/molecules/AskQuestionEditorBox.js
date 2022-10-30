@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import Write from './Editor';
 
@@ -18,16 +18,16 @@ const Editorbox = styled.div`
   }
 `;
 
-function AskQuestionEditorBox() {
+const AskQuestionEditorBox = forwardRef(({ onChange }, ref) => {
   return (
     <Editorbox>
       <h3>Body</h3>
       <p>
         Include all the information someone would need to answer your question
       </p>
-      <Write height={'500px'} />
+      <Write ref={ref} onChange={onChange} />
     </Editorbox>
   );
-}
+});
 
 export default AskQuestionEditorBox;

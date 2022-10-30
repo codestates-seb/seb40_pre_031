@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
 const TagBox = styled.div`
@@ -22,7 +22,7 @@ const TagBox = styled.div`
   }
 `;
 
-function AskQuestionTagBox() {
+const AskQuestionTagBox = forwardRef(({}, ref) => {
   return (
     <TagBox>
       <h3>Tags</h3>
@@ -30,9 +30,9 @@ function AskQuestionTagBox() {
         Add up to 5 tags to describe what your question is about. Start typing
         to see suggestions
       </p>
-      <input type="text" placeholder="e,g (arrays xml json)"></input>
+      <input type="text" placeholder="e,g (arrays xml json)" ref={ref}></input>
     </TagBox>
   );
-}
+});
 
 export default AskQuestionTagBox;
