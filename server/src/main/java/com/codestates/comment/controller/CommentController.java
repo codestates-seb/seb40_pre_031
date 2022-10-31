@@ -22,10 +22,10 @@ import com.codestates.comment.service.CommentService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/v1/questions/{question_id}/answers/{answer_id}/comments/")
+@RequestMapping("/questions/{question_id}/answers/{answer_id}/comments/")
 @Validated
 @RequiredArgsConstructor
-public class CommentControllerV1 {
+public class CommentController {
 	private final CommentService commentService;
 
 	@PostMapping("")

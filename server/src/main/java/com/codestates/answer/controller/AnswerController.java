@@ -23,11 +23,11 @@ import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/v1/questions/{question_id}/answers/")
+@RequestMapping("/questions/{question_id}/answers/")
 @Validated
 @RequiredArgsConstructor
 @Slf4j
-public class AnswerControllerV1 {
+public class AnswerController {
 	private final AnswerService answerService;
 
 	@PostMapping("")
