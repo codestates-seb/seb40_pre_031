@@ -4,6 +4,7 @@ import useInput from '../../hooks/useInput.js';
 import { Socialbutton } from '../atoms/Socialbutton.js';
 import { SignupinfoPassword } from '../atoms/SignupinfoPassword.js';
 import { useEffect } from 'react';
+import { login } from '../../apis/Loigin.js';
 
 //로그인 정보 작성하는곳
 const LoginForm = () => {
@@ -16,6 +17,12 @@ const LoginForm = () => {
         const regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{3,4}');
         regex.test(email) ? bindEmail.setPass(true) : bindEmail.setPass(false);
     }
+
+    const onSubmit = (e) =>{
+        e.preventDefault();
+        //서버와 통신
+        login(email,password).then((result) => console.log(result));
+    }
    
     useEffect(() => {
         bindEmail.setPass(true);
@@ -23,7 +30,7 @@ const LoginForm = () => {
     }, [email, password])
 
     return (
-        <SignupLogincontainerBox height="210px" onSubmit={(e) => e.preventDefault()} >
+        <SignupLogincontainerBox height="210px" onSubmit={onSubmit} >
             <Input bind={bindEmail}></Input>
             {bindEmail.pass ? null : <SignupinfoPassword margin ={"small"} color="var(--red-500)"> The email is not a valid email address.</SignupinfoPassword> }
             <Input bind={bindPassword}></Input>
