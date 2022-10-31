@@ -1,21 +1,36 @@
 package com.codestates.user.service;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.codestates.auth.event.UserRegistrationApplicationEvent;
+import com.codestates.auth.utils.CustomAuthorityUtils;
 import com.codestates.exception.BusinessLogicException;
 import com.codestates.exception.ExceptionCode;
 import com.codestates.status.UserStatus;
 import com.codestates.user.entity.User;
 import com.codestates.user.repository.UserRepository;
 
+@Transactional
 @Service
 public class UserService {
 	private final UserRepository userRepository;
+	private final ApplicationEventPublisher publisher;
+	private final PasswordEncoder passwordEncoder;
+	private final CustomAuthorityUtils authorityUtils;
 
-	public UserService(UserRepository userRepository) {
+	public UserService(UserRepository userRepository, ApplicationEventPublisher publisher,
+		PasswordEncoder passwordEncoder,
+		CustomAuthorityUtils authorityUtils) {
 		this.userRepository = userRepository;
+		this.publisher = publisher;
+		this.passwordEncoder = passwordEncoder;
+		this.authorityUtils = authorityUtils;
 	}
 
 	// 회원 등록
@@ -23,8 +38,15 @@ public class UserService {
 
 		// 이미 존재하는 이메일인지 확인
 		verifyExistsEmail(user.getEmail());
+		String encryptedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encryptedPassword);
 
-		return userRepository.save(user);
+		List<String> roles = authorityUtils.createRoles(user.getEmail());
+		user.setRoles(roles);
+		User saveUser = userRepository.save(user);
+
+		// publisher.publishEvent(new UserRegistrationApplicationEvent(this, saveUser));
+		return saveUser;
 	}
 
 	// 회원 수정
@@ -46,6 +68,7 @@ public class UserService {
 	}
 
 	// 회원 조회
+	@Transactional(readOnly = true)
 	public User findMember(long userId) {
 		User findUser = findVerifiedUser(userId);
 
