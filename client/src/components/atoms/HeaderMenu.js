@@ -35,7 +35,7 @@ const HeaderMenu = () => {
                     top: '100%',
                   }}
                 >
-                  <Leftnavlist></Leftnavlist>
+                  <Leftnavlist />
                 </div>
               </div>
             </>

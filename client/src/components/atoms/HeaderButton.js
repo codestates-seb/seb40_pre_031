@@ -8,17 +8,18 @@ import HeaderInfo from '../atoms/HeaderInfo';
 const LinkButton = styled.button`
   height: 35px;
   margin-right: 8px;
-  background-color: ${(props) => props.backgroundColor || "#e1ecf4"};
-  color: ${(props) => props.color || "#39739d"};
+  background-color: ${(props) => props.backgroundColor || '#e1ecf4'};
+  color: ${(props) => props.color || 'var(--powder-700)'};
   font-size: 12px;
   padding: 8px 10px;
-  border: 1px solid #39739d;
+  border: 1px solid var(--powder-700);
   border-radius: 4px;
   :hover {
-    background-color: #b3d3ea;
+    background-color: var(--powder-300);
   }
 `;
 
+//로그인 전 or 후, 상태에 따라 달라지는 Header
 const HeaderButton = () => {
   const [isLogin, setIsLogin] = useState(true);
 
