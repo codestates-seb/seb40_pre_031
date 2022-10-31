@@ -25,14 +25,13 @@ class AnswerTest {
 	@DisplayName("Auditing 테스트")
 	void auditingTest() {
 		Answer answer = new Answer();
-		answer.setId(1L);
 		answer.setContent("테스트");
 
 		Answer savedAnswer = answerRepository.save(answer);
 
 		assertThat(savedAnswer.getCreatedAt())
 			.isNotNull();
-		assertThat(savedAnswer.getClass())
+		assertThat(savedAnswer.getModifiedAt())
 			.isNotNull();
 
 		System.out.println("savedAnswer.getCreateAT() = " + savedAnswer.getCreatedAt());
