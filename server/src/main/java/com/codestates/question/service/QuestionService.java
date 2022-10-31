@@ -1,10 +1,15 @@
 package com.codestates.question.service;
 
-import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.codestates.question.entity.Question;
+import com.codestates.question.repository.QuestionRepository;
+import com.codestates.user.entity.User;
+import com.codestates.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,33 +17,55 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestionService {
 	/* DI */
+	private final QuestionRepository questionRepository;
+	private final UserRepository userRepository;
 
 	/* 질문글 등록 */
-	public Question createQuestion() {
+	public Question createQuestion(Question question, User user) {
+		userRepository.save(user);
 
-		return null;
+		question.setUser(user);
+
+		questionRepository.save(question);
+
+		return question;
 	}
 
 	/* 질문글 수정 */
-	public Question updateQuestion() {
+	public Question updateQuestion(Question question) {
+		Question verifiedQuestion = findVerifiedQuestion(question.getId());
 
-		return null;
+		/* 수정 */
+		Optional.ofNullable(question.getTitle()).ifPresent(verifiedQuestion::setTitle);
+		Optional.ofNullable(question.getContent()).ifPresent(verifiedQuestion::setContent);
+
+		return questionRepository.save(verifiedQuestion);
 	}
 
 	/* 특정 질문글 조회 */
-	public Question findQuestion() {
+	public Question findQuestion(Long questionId) {
 
-		return null;
+		return findVerifiedQuestion(questionId);
 	}
 
 	/* 전체 질문글 조회 */
-	public List<Question> findQuestions() {
+	public Page<Question> findQuestions(int page, int size) {
 
-		return null;
+		return questionRepository.questionPage(PageRequest.of(page, size));
 	}
 
 	/* 질문글 삭제 */
-	public void deleteQuestion() {
+	public void deleteQuestion(Long questionId) {
+		Question findQuestion = findVerifiedQuestion(questionId);
 
+		questionRepository.deleteById(questionId);
+	}
+
+	private Question findVerifiedQuestion(Long questionId) {
+		/* 존재하는 질문인지 확인 */
+		Optional<Question> getQuestion = questionRepository.findById(questionId);
+
+		return getQuestion.orElseThrow(
+			() -> new RuntimeException("QUESTION_NOT_FOUND"));
 	}
 }
