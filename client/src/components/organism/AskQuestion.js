@@ -1,36 +1,39 @@
 import React, { useRef } from 'react';
+// import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
-import AskQuestionButton from '../atoms/AskQuestionButton';
+import PostQuestionButton from '../atoms/PostQuestionButton';
 import AskQuestionEditorBox from '../molecules/AskQuestionEditorBox';
 import AskQuestionHeader from '../molecules/AskQuestionHeader';
 import AskQuestionTagBox from '../molecules/AskQuestionTagBox';
 import AskQuestionTitleBox from '../molecules/AskQuestionTitleBox';
 
 const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  background: var(--black-050);
   display: flex;
   flex-direction: column;
-  background: var(--black-050);
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const Questionfoam = styled.div`
   background: var(--white);
-  width: 1000px;
-  height: 100%;
   border: 1px solid var(--black-200);
   border-radius: 4px;
-  padding: 16px;
+  box-shadow: 5px 5px 5px 0px var(--black-100);
   display: flex;
   flex-direction: column;
   gap: 15px;
-  box-shadow: 5px 5px 5px 0px var(--black-100);
+  height: 100%;
+  padding: 16px;
+  width: 1000px;
 `;
 
 function AskQuestion() {
   const titleRef = { title: useRef(null), p: useRef(null) };
   const editorRef = useRef(null);
   const tagRef = useRef(null);
+  // const navigate = useNavigate();
 
   const editorOnChange = () => {
     const value = editorRef.current.getInstance().getMarkdown();
@@ -50,15 +53,24 @@ function AskQuestion() {
 
   const buttonOnClick = () => {
     const data = {
-      title: titleRef.current.value,
+      title: titleRef.title.current.value,
       content: editorRef.current.getInstance().getMarkdown(),
-      tag: tagRef.current.value,
     };
     if (data.title === '' || data.title.length >= 35) {
       alert('1자이상 35자 이하인 제목을 정확히 입력해 주세요 ');
-      titleRef.current.focus();
+      titleRef.title.current.focus();
       return;
     }
+    console.log(data);
+    axios
+      .post('/questions/ask', data)
+      .then((res) => {
+        console.log(res);
+        // navigate('/questions');
+      })
+      .catch((error) => {
+        console.log(error.res);
+      });
   };
 
   return (
@@ -69,7 +81,7 @@ function AskQuestion() {
         <AskQuestionEditorBox ref={editorRef} onChange={editorOnChange} />
         <AskQuestionTagBox ref={tagRef} />
       </Questionfoam>
-      <AskQuestionButton onClick={buttonOnClick} />
+      <PostQuestionButton onClick={buttonOnClick} />
     </Container>
   );
 }
