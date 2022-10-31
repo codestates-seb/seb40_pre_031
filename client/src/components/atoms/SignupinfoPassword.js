@@ -13,6 +13,6 @@ width : 268px;
 height: 20px;
 font-size : 12px;
 font-weight : 500;
-color : rgb(229	62	66);
+color : var(--red-500);
 `
 export  {SignupinfoPassword, SignupinfoExplamation};

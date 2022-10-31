@@ -14,6 +14,9 @@ const SignupRobotBox = styled.div`
     weight : 268px;
     height : 160px;
     background-color : rgb(241 242 243);
+    border-radius : 5px;
+    padding : 10px 0 0 55px;
+    border : ${({ischecked}) => ischecked ? null : "solid 1px red"};
 `
 const SignupinfoBox = styled.div`
     width : 410px;
