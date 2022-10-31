@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +39,7 @@ public class User extends BaseTime {
 	@Column(nullable = false, updatable = false, unique = true)
 	private String email;
 
-	@Column(length = 30, nullable = false)
+	@Column(nullable = false)
 	private String password;
 
 	@Column(length = 50, nullable = false)
@@ -46,6 +48,9 @@ public class User extends BaseTime {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20, nullable = false)
 	private UserStatus userStatus = UserStatus.USER_ACTIVE;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles = new ArrayList<>();
 
 	@OneToMany(mappedBy = "user")
 	private List<Question> questionList = new ArrayList<>();
@@ -106,5 +111,9 @@ public class User extends BaseTime {
 		this.email = email;
 		this.password = password;
 		this.displayName = displayName;
+	}
+	public enum UserRole {
+		ROLE_USER,
+		ROLE_ADMIN
 	}
 }
