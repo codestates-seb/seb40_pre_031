@@ -18,9 +18,9 @@ public class CommentService {
 		commentRepository.save(comment);
 	}
 
-	public Comment updateComment(Long commentId, String content) {
-		Comment found = findVerifiedComment(commentId);
-		found.setContent(content);
+	public Comment updateComment(Comment comment) {
+		Comment found = findVerifiedComment(comment.getId());
+		found.setContent(comment.getContent());
 
 		return commentRepository.save(found);
 	}

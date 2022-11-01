@@ -15,11 +15,13 @@ import com.codestates.global.auditing.BaseTime;
 import com.codestates.status.PostStatus;
 import com.codestates.user.entity.User;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
@@ -44,5 +46,29 @@ public class Comment extends BaseTime {
 	@ManyToOne
 	@JoinColumn(name = "answer_id")
 	private Answer answer;
+
+	@Builder
+	public Comment(Long id, String content, User user, Answer answer) {
+		this.id = id;
+		this.content = content;
+		this.user = user;
+		this.answer = answer;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+
+		if (!user.getCommentList().contains(this)) {
+			user.getCommentList().add(this);
+		}
+	}
+
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+
+		if (!answer.getCommentList().contains(this)) {
+			answer.getCommentList().add(this);
+		}
+	}
 }
 
