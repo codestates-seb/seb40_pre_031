@@ -1,7 +1,5 @@
 package com.codestates.auth.handler;
 
-import com.codestates.auth.utils.ErrorResponder;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -12,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
+
+import com.codestates.auth.utils.ErrorResponder;
 
 import lombok.extern.slf4j.Slf4j;
 
