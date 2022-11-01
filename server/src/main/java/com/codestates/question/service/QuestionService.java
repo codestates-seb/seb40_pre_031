@@ -7,7 +7,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.codestates.question.entity.Question;
+import com.codestates.question.entity.QuestionVote;
 import com.codestates.question.repository.QuestionRepository;
+import com.codestates.question.repository.QuestionVoteRepository;
+import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
 import com.codestates.user.repository.UserRepository;
 
@@ -18,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class QuestionService {
 	/* DI */
 	private final QuestionRepository questionRepository;
+	private final QuestionVoteRepository questionVoteRepository;
 	private final UserRepository userRepository;
 
 	/* 질문글 등록 */
@@ -62,10 +66,22 @@ public class QuestionService {
 	}
 
 	private Question findVerifiedQuestion(Long questionId) {
-		/* 존재하는 질문인지 확인 */
 		Optional<Question> getQuestion = questionRepository.findById(questionId);
 
 		return getQuestion.orElseThrow(
 			() -> new RuntimeException("QUESTION_NOT_FOUND"));
+	}
+
+	public VoteStatus checkUserVoteStatus(Question question, User user) {
+		userRepository.save(user);
+
+		Optional<QuestionVote> optionalQuestionVote = questionVoteRepository.findByQuestionAndUser(question, user);
+
+		if (optionalQuestionVote.isEmpty()) {
+
+			return VoteStatus.NONE;
+		}
+
+		return optionalQuestionVote.get().getStatus();
 	}
 }
