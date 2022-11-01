@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +15,6 @@ import javax.persistence.OneToMany;
 
 import com.codestates.answer.entity.Answer;
 import com.codestates.global.auditing.BaseTime;
-import com.codestates.status.PostStatus;
 import com.codestates.user.entity.User;
 
 import lombok.Getter;
@@ -41,11 +38,12 @@ public class Question extends BaseTime {
 	private String content;
 
 	@Column(nullable = false)
-	private Integer view = 0;
+	private Integer views = 0;
 
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false, length = 20)
-	private PostStatus status = PostStatus.PUBLIC;
+	@Column(nullable = false)
+	private Integer votes = 0;
+
+	private Long chosenAnswerId;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
