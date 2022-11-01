@@ -1,6 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-import QuestionAskButton from "../atoms/QuestionAskButton";
+import styled from 'styled-components';
+import QuestionAskButton from '../atoms/QuestionAskButton';
 
 const QuestionHeadLayout = styled.div`
   display: flex;
@@ -18,7 +17,7 @@ const QuestionHead = () => {
   return (
     <QuestionHeadLayout>
       <h1>All Questions</h1>
-      <QuestionAskButton/>
+      <QuestionAskButton />
     </QuestionHeadLayout>
   );
 };

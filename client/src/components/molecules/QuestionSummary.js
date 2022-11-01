@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const SummaryLayout = styled.div`
@@ -14,13 +13,11 @@ const SummaryLayout = styled.div`
 
   & div {
     margin-bottom: 4px;
-
-
   }
-  `;
+`;
 
 const QuestionVotes = styled.div`
-  font-size:  var(--fs-caption);
+  font-size: var(--fs-caption);
 `;
 
 const AnswerSummaryBox = styled.div`
@@ -29,17 +26,15 @@ const AnswerSummaryBox = styled.div`
   border: 1px solid var(--green-700);
   border-radius: 3px;
 
-  font-size:  var(--fs-caption);
-  color: var(--green-700); 
+  font-size: var(--fs-caption);
+  color: var(--green-700);
   padding: 2px 4px;
-  `;
+`;
 
 const QuestionViews = styled.div`
-
-  font-size:  var(--fs-caption);
-  color: var(--black-500); 
-  `;
-
+  font-size: var(--fs-caption);
+  color: var(--black-500);
+`;
 
 const QuestionSummary = () => {
   return (

@@ -1,11 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
 import QuestionHead from '../organism/QuestionHead';
 import QuestionLists from '../templates/QuestionLists';
 
-const QuestionLayout = styled.div`
-    
-  `;
+const QuestionLayout = styled.div``;
 
 const QuestionPage = () => {
   return (
