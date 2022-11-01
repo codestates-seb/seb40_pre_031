@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 import Write from './Editor';
 
@@ -30,5 +30,7 @@ const AskQuestionEditorBox = forwardRef(({ onChange }, ref) => {
     </Editorbox>
   );
 });
+
+AskQuestionEditorBox.displayName = 'AskQuestionEditorBox';
 
 export default AskQuestionEditorBox;

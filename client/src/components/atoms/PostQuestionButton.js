@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 // 질문 등록 버튼 atom

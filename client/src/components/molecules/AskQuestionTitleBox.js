@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 
 // 질문 제목 부분을 묶는 div
@@ -38,7 +38,9 @@ const AskQuestionTitleBox = forwardRef(({ onChange }, ref) => {
   return (
     <TitleBox>
       <h3>Title</h3>
-      <p>Be specific and imagine you're asking a question to another person</p>
+      <p>
+        Be specific and imagine you&apos;re asking a question to another person
+      </p>
       <input
         type="text"
         placeholder="e,g is there an R function the index of an element in a vector?"
@@ -51,5 +53,7 @@ const AskQuestionTitleBox = forwardRef(({ onChange }, ref) => {
     </TitleBox>
   );
 });
+
+AskQuestionTitleBox.displayName = 'AskQuestionTitleBox';
 
 export default AskQuestionTitleBox;

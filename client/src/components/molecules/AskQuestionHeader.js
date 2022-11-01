@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 // 질문 작성 헤더부분 (h1, 백그라운드 이미지 부분)

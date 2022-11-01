@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 
 // 질문 tag 부분을 묶는 div
@@ -24,6 +24,7 @@ const TagBox = styled.div`
   }
 `;
 
+// eslint-disable-next-line no-empty-pattern
 const AskQuestionTagBox = forwardRef(({}, ref) => {
   return (
     <TagBox>
@@ -36,5 +37,7 @@ const AskQuestionTagBox = forwardRef(({}, ref) => {
     </TagBox>
   );
 });
+
+AskQuestionTagBox.displayName = 'AskQuestionTagBox';
 
 export default AskQuestionTagBox;

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 // 에디터 불러오기
@@ -24,4 +24,5 @@ const Write = forwardRef(({ onChange }, ref) => {
     </>
   );
 });
+Write.displayName = 'editorwrite';
 export default Write;
