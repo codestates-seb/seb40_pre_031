@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codestates.question.dto.QuestionPatchDto;
 import com.codestates.question.dto.QuestionPostDto;
 import com.codestates.question.dto.QuestionResponseDto;
+import com.codestates.question.dto.ResponseSpecificQuestionDto;
 import com.codestates.question.entity.Question;
 import com.codestates.question.mapper.QuestionMapper;
 import com.codestates.question.repository.QuestionRepository;
 import com.codestates.question.service.QuestionService;
+import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
@@ -69,9 +71,17 @@ public class QuestionController {
 
 	/* 특정 질문글 조회 */
 	@GetMapping("/{question_id}")
-	public ResponseEntity<QuestionResponseDto> getQuestion(@PathVariable("question_id") @Positive Long questionId) {
+	public ResponseEntity<ResponseSpecificQuestionDto> getQuestion(
+		@PathVariable("question_id") @Positive Long questionId) {
 		Question question = questionService.findQuestion(questionId);
-		QuestionResponseDto response = mapper.questionToQuestionResponseDto(question);
+
+		User user = new User();
+		user.setEmail(UUID.randomUUID() + "cheese@cat.com");
+		user.setPassword("123~");
+		user.setDisplayName("cheese");
+
+		VoteStatus voteStatus = questionService.checkUserVoteStatus(question, user);
+		ResponseSpecificQuestionDto response = mapper.questionToResponsePickOneDto(question, voteStatus);
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
