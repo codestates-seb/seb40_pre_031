@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codestates.answer.dto.AnswerPatchDto;
 import com.codestates.answer.dto.AnswerPostDto;
-import com.codestates.answer.entity.Answer;
 import com.codestates.answer.service.AnswerService;
 
 import groovy.util.logging.Slf4j;
@@ -33,10 +32,7 @@ public class AnswerController {
 	@PostMapping("")
 	public ResponseEntity postAnswer(@Positive @PathVariable(name = "question_id") Long questionId,
 		@Valid @RequestBody AnswerPostDto answerPostDto) {
-		Answer answer = new Answer();
-		answer.setContent(answerPostDto.getContent());
-
-		answerService.createAnswer(answer);
+		answerService.createAnswer(questionId, 1L, answerPostDto);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
