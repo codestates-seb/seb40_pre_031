@@ -18,9 +18,9 @@ public class AnswerService {
 		answerRepository.save(answer);
 	}
 
-	public void updateAnswer(Long answerId, String content) {
-		Answer found = findVerifiedAnswer(answerId);
-		found.setContent(content);
+	public void updateAnswer(Answer answer) {
+		Answer found = findVerifiedAnswer(answer.getId());
+		found.setContent(answer.getContent());
 
 		answerRepository.save(found);
 	}
