@@ -16,23 +16,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codestates.answer.dto.AnswerPatchDto;
 import com.codestates.answer.dto.AnswerPostDto;
+import com.codestates.answer.entity.Answer;
 import com.codestates.answer.service.AnswerService;
+import com.codestates.question.service.QuestionService;
+import com.codestates.user.service.UserService;
 
-import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/questions/{question_id}/answers/")
 @Validated
 @RequiredArgsConstructor
-@Slf4j
 public class AnswerController {
 	private final AnswerService answerService;
+	private final QuestionService questionService;
+	private final UserService userService;
 
 	@PostMapping("")
 	public ResponseEntity postAnswer(@Positive @PathVariable(name = "question_id") Long questionId,
 		@Valid @RequestBody AnswerPostDto answerPostDto) {
-		answerService.createAnswer(questionId, 1L, answerPostDto);
+		Answer answer = Answer.builder()
+			.content(answerPostDto.getContent())
+			.question(questionService.findQuestion(questionId))
+			.user(userService.findMember(1L))
+			.build();
+
+		answerService.createAnswer(answer);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
@@ -40,7 +49,12 @@ public class AnswerController {
 	@PatchMapping("{answer_id}")
 	public ResponseEntity patchAnswer(@Positive @PathVariable(name = "answer_id") Long answerId,
 		@Valid @RequestBody AnswerPatchDto answerPatchDto) {
-		answerService.updateAnswer(answerId, answerPatchDto.getContent());
+		Answer answer = Answer.builder()
+			.id(answerId)
+			.content(answerPatchDto.getContent())
+			.build();
+
+		answerService.updateAnswer(answer);
 
 		return ResponseEntity.ok().build();
 	}

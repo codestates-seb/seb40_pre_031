@@ -20,11 +20,13 @@ import com.codestates.question.entity.Question;
 import com.codestates.status.PostStatus;
 import com.codestates.user.entity.User;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
 @Setter
@@ -56,8 +58,20 @@ public class Answer extends BaseTime {
 	@OneToMany(mappedBy = "answer")
 	private List<AnswerVote> answerVoteList = new ArrayList<>();
 
+	@Builder
+	public Answer(Long id, String content, User user, Question question) {
+		this.id = id;
+		this.content = content;
+		this.user = user;
+		this.question = question;
+	}
+
 	public void setUser(User user) {
 		this.user = user;
+
+		if (!user.getAnswerList().contains(this)) {
+			user.getAnswerList().add(this);
+		}
 	}
 
 	public void setQuestion(Question question) {
