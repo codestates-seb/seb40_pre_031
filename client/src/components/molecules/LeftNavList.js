@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LeftNavHead from '../atoms/LeftNavHead';
 import LeftNavItem from '../atoms/LeftNavItem';
 import LeftNavButton from '../atoms/LeftNavButton';
-import { IconGlobe, IconStarVerified } from '../atoms/SvgComponent';
+import { IconGlobe, IconStarVerified } from '../atoms/SvgComponents';
 import { ReactComponent as Teampromo } from '../../assets/icon/sidebar-promo.svg';
 
 // List ul 을 이용해 전체 리스트 묶기

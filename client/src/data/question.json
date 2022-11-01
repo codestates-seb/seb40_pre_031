@@ -1,0 +1,70 @@
+{
+  "question_id": 1,
+  "users_id": "testUser",
+  "title": "test title",
+  "content": "아토믹 디자인 생각보다 어렵네요 요리조리",
+  "views": 2,
+  "status": -1,
+  "created_at": "2022-10-27 12:00:00",
+  "modified_at": "2022-10-27 12:03:37",
+
+  "answer": [
+    {
+      "answers_id": 1,
+      "users_id": "answerUser1",
+      "question_id": 1,
+      "content": "마자요 겁나 어려움. 폴더 구조 다시 생각해봐야 할 것 같아요. 우리 팀에 더 맞는 방법 있을지도",
+      "status": 4,
+      "created_at": "2022-10-27 12:04:00",
+      "modified_at": "2022-10-27 12:04:08",
+
+      "comments": [
+        {
+          "comments_id": 1,
+          "users_id": "commentUser1",
+          "answers_id": 1,
+          "content": "어떤 방법이 좋을까요?",
+          "status": 2,
+          "created_at": "2022-10-27 12:06:00",
+          "modified_at": "2022-10-27 12:10:00"
+        }
+      ]
+    },
+    {
+      "answers_id": 2,
+      "users_id": "answerUser2",
+      "question_id": 1,
+      "content": "마자요 겁나 어려움. 폴더 구조 다시 생각해봐야 할 것 같아요. 우리 팀에 더 맞는 방법 있을지도",
+      "status": 4,
+      "created_at": "2022-10-27 12:04:00",
+      "modified_at": "2022-10-27 12:04:08",
+
+      "comments": [
+        {
+          "comments_id": 2,
+          "users_id": "commentUser",
+          "answers_id": 2,
+          "content": "어떤 방법이 좋을까요?",
+          "status": 2,
+          "created_at": "2022-10-27 12:06:00",
+          "modified_at": "2022-10-27 12:10:00"
+        }
+      ]
+    }    
+
+
+
+
+
+
+
+  ]
+
+
+
+
+
+
+
+
+}
