@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import HeaderMenu from '../atoms/HeaderMenu';
 import HeaderLogo from '../atoms/HeaderLogo';
 import HeaderNav from '../atoms/HeaderNav';
 import HeaderSearch from '../atoms/HeaderSearch';
 import HeaderButton from '../atoms/HeaderButton';
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from 'react-responsive';
 import { useState } from 'react';
 
 const HeaderBox = styled.div`
@@ -12,7 +12,7 @@ const HeaderBox = styled.div`
   height: 50px;
   display: flex;
   flex-direction: row;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
   background-color: #f8f9f9;
@@ -26,28 +26,27 @@ const HeaderBox = styled.div`
 const AboutUrl = 'https://stackoverflow.co/';
 const ForTeamsUrl = 'https://stackoverflow.co/teams/';
 
-function HeaderTemplate(){
-  
-  const isDesktopSize  = useMediaQuery({ query: '(min-width: 660px)' })
-  const [isLogin, setIsLogin] = useState(false);
+function HeaderTemplate() {
+  const isDesktopSize = useMediaQuery({ query: '(min-width: 660px)' });
+  const [isLogin] = useState(false);
 
-    return (
-      <HeaderBox>
-        <HeaderMenu />
-        <HeaderLogo />
-        {isDesktopSize && !isLogin ? (
-          <>
-            <HeaderNav to={{ AboutUrl }}>About</HeaderNav>
-            <HeaderNav>Products</HeaderNav>
-            <HeaderNav to={{ ForTeamsUrl }}>For Teams</HeaderNav>
-          </>
-        ) : (
+  return (
+    <HeaderBox>
+      <HeaderMenu />
+      <HeaderLogo />
+      {isDesktopSize && !isLogin ? (
+        <>
+          <HeaderNav to={{ AboutUrl }}>About</HeaderNav>
           <HeaderNav>Products</HeaderNav>
-        )}
-        <HeaderSearch />
-        <HeaderButton />
-      </HeaderBox>
-    );
+          <HeaderNav to={{ ForTeamsUrl }}>For Teams</HeaderNav>
+        </>
+      ) : (
+        <HeaderNav>Products</HeaderNav>
+      )}
+      <HeaderSearch />
+      <HeaderButton />
+    </HeaderBox>
+  );
 }
 
 export default HeaderTemplate;

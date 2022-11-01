@@ -1,6 +1,5 @@
-import React from 'react';
-import styled from "styled-components";
-import { SearchInputIcon } from "../atoms/SvgComponents";
+import styled from 'styled-components';
+import { SearchInputIcon } from '../atoms/SvgComponents';
 
 const SearchForm = styled.form`
   width: 650px;
@@ -39,14 +38,14 @@ const SearchForm = styled.form`
 `;
 
 const HeaderSearch = () => {
-    return (
-      <SearchForm>
-        <div>
-          <SearchInputIcon style={{ backgroundColor: "#fffff" }} />
-          <input type="text" placeholder="Search..." />
-        </div>
-      </SearchForm>
-    );
+  return (
+    <SearchForm>
+      <div>
+        <SearchInputIcon style={{ backgroundColor: '#fffff' }} />
+        <input type="text" placeholder="Search..." />
+      </div>
+    </SearchForm>
+  );
 };
 
 export default HeaderSearch;

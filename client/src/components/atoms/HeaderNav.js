@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import styled from 'styled-components';
 
 const LinkItem = styled.li`
@@ -17,8 +17,9 @@ const LinkItem = styled.li`
   }
 `;
 
-const HeaderNav = ({children}) => {
-    return <LinkItem>{children}</LinkItem>;
+// eslint-disable-next-line react/prop-types
+const HeaderNav = ({ children }) => {
+  return <LinkItem>{children}</LinkItem>;
 };
 
 export default HeaderNav;
