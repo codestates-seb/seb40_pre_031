@@ -22,15 +22,20 @@ class AnswerRepositoryTest {
 
 	@BeforeEach
 	void init() {
-		Answer answer = new Answer();
-		answer.setContent(content);
+		Answer answer = Answer.builder()
+			.content(content)
+			.build();
+
 		answerRepository.save(answer);
 	}
 
 	@Test
 	@DisplayName("답변 저장")
 	void saveAnswer() {
-		Answer answer = new Answer();
+		Answer answer = Answer.builder()
+			.content(content)
+			.build();
+
 		answer.setContent(content);
 
 		Answer savedAnswer = answerRepository.save(answer);

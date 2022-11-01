@@ -34,15 +34,19 @@ public class AnswerVote extends BaseTime {
 	private VoteStatus status = VoteStatus.NONE;
 
 	@ManyToOne
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "ANSWER_ID")
+	@JoinColumn(name = "answer_id")
 	private Answer answer;
 
 	public void setUser(User user) {
 		this.user = user;
+
+		if (!user.getAnswerVoteList().contains(this)) {
+			user.getAnswerVoteList().add(this);
+		}
 	}
 
 	public void setAnswer(Answer answer) {

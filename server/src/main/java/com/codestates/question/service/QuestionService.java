@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestionService {
 	/* DI */
+	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
 	private final QuestionVoteRepository questionVoteRepository;
 	private final UserRepository userRepository;

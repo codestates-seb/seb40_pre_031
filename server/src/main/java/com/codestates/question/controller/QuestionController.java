@@ -88,12 +88,11 @@ public class QuestionController {
 
 	/* 전체 질문글 조회 */
 	@GetMapping
-	public Page<QuestionResponseDto> getQuestions(Pageable pageable) {
-
+	public Page<ResponseAllQuestionsDto> getQuestions(Pageable pageable) {
 		Page<Question> pageQuestions = questionRepository.questionPage(pageable);
 
-		Page<QuestionResponseDto> response = pageQuestions.map(question ->
-			new QuestionResponseDto(question));
+		Page<ResponseAllQuestionsDto> response = pageQuestions.map(mapper::questionToResponseAllPagesDto);
+
 		return response;
 	}
 
