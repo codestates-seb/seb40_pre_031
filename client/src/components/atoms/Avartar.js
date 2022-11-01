@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const AvartarImage = styled.img`
@@ -7,12 +6,10 @@ const AvartarImage = styled.img`
   display: block;
   border: none;
   background-color: var(--orange);
-  `;
+`;
 
 const Avartar = () => {
-  return (
-    <AvartarImage />
-  );
+  return <AvartarImage />;
 };
 
 export default Avartar;

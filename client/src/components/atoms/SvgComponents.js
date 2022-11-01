@@ -1,8 +1,12 @@
-import styled from "styled-components";
-
 function Signupquestion(props) {
   return (
-    <svg width={26} height={26} className="Signupsvg" {...props} fill="rgb(10,149,255)">
+    <svg
+      width={26}
+      height={26}
+      className="Signupsvg"
+      {...props}
+      fill="rgb(10,149,255)"
+    >
       <path
         d="M4.2 4H22a2 2 0 012 2v11.8a3 3 0 002-2.8V5a3 3 0 00-3-3H7a3 3 0 00-2.8 2z"
         opacity={0.5}
@@ -14,7 +18,13 @@ function Signupquestion(props) {
 
 function SignupUpandDown(props) {
   return (
-    <svg width={26} height={26} className="Signupsvg" {...props} fill="rgb(10,149,255)">
+    <svg
+      width={26}
+      height={26}
+      className="Signupsvg"
+      {...props}
+      fill="rgb(10,149,255)"
+    >
       <path d="M12 .7a2 2 0 013 0l8.5 9.6a1 1 0 01-.7 1.7H4.2a1 1 0 01-.7-1.7L12 .7z" />
       <path
         d="M20.6 16H6.4l7.1 8 7-8zM15 25.3a2 2 0 01-3 0l-8.5-9.6a1 1 0 01.7-1.7h18.6a1 1 0 01.7 1.7L15 25.3z"
@@ -26,7 +36,13 @@ function SignupUpandDown(props) {
 
 function Signuptag(props) {
   return (
-    <svg width={26} height={26} className="Signupsvg" {...props} fill="rgb(10,149,255)">
+    <svg
+      width={26}
+      height={26}
+      className="Signupsvg"
+      {...props}
+      fill="rgb(10,149,255)"
+    >
       <path d="M14.8 3a2 2 0 00-1.4.6l-10 10a2 2 0 000 2.8l8.2 8.2c.8.8 2 .8 2.8 0l10-10c.4-.4.6-.9.6-1.4V5a2 2 0 00-2-2h-8.2zm5.2 7a2 2 0 110-4 2 2 0 010 4z" />
       <path
         d="M13 0a2 2 0 00-1.4.6l-10 10a2 2 0 000 2.8c.1-.2.3-.6.6-.8l10-10a2 2 0 011.4-.6h9.6a2 2 0 00-2-2H13z"
@@ -38,7 +54,13 @@ function Signuptag(props) {
 
 function Signuptrophy(props) {
   return (
-    <svg width={26} height={26} className="Signupsvg" {...props} fill="rgb(10,149,255)">
+    <svg
+      width={26}
+      height={26}
+      className="Signupsvg"
+      {...props}
+      fill="rgb(10,149,255)"
+    >
       <path d="M21 4V2H5v2H1v5c0 2 2 4 4 4v1c0 2.5 3 4 7 4v3H7s-1.2 2.3-1.2 3h14.4c0-.6-1.2-3-1.2-3h-5v-3c4 0 7-1.5 7-4v-1c2 0 4-2 4-4V4h-4zM5 11c-1 0-2-1-2-2V6h2v5zm11.5 2.7l-3.5-2-3.5 1.9L11 9.8 7.2 7.5h4.4L13 3.8l1.4 3.7h4L15.3 10l1.4 3.7h-.1zM23 9c0 1-1 2-2 2V6h2v3z" />
     </svg>
   );
@@ -53,8 +75,7 @@ function SignupExclamation(props) {
       className="s-input-icon js-alert-icon svg-icon iconAlertCircle d-none"
       viewBox="0 0 18 18"
       {...props}
-      fill = "rgb(223 79 84)"
-      
+      fill="rgb(223 79 84)"
     >
       <path d="M9 17c-4.36 0-8-3.64-8-8 0-4.36 3.64-8 8-8 4.36 0 8 3.64 8 8 0 4.36-3.64 8-8 8ZM8 4v6h2V4H8Zm0 8v2h2v-2H8Z" />
     </svg>
@@ -110,4 +131,13 @@ function IconStarVerified(props) {
   );
 }
 
-export {SignupUpandDown, Signupquestion, Signuptag, Signuptrophy, SignupExclamation, LoginStackoverflow, IconGlobe, IconStarVerified};
+export {
+  SignupUpandDown,
+  Signupquestion,
+  Signuptag,
+  Signuptrophy,
+  SignupExclamation,
+  LoginStackoverflow,
+  IconGlobe,
+  IconStarVerified,
+};
