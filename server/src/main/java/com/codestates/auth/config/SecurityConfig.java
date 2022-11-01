@@ -20,10 +20,10 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.codestates.auth.JwtTokenizer;
-import com.codestates.auth.handler.UserAuthenticationEntryPoint;
 import com.codestates.auth.filter.JwtAuthenticationFilter;
 import com.codestates.auth.filter.JwtVerificationFilter;
 import com.codestates.auth.handler.UserAccessDeniedHandler;
+import com.codestates.auth.handler.UserAuthenticationEntryPoint;
 import com.codestates.auth.handler.UserAuthenticationFailureHandler;
 import com.codestates.auth.handler.UserAuthenticationSuccessHandler;
 import com.codestates.auth.utils.CustomAuthorityUtils;
@@ -58,12 +58,22 @@ public class SecurityConfig {
 			.apply(new CustomFilterConfigurer())
 			.and()
 			.authorizeHttpRequests(authorize -> authorize
-				.antMatchers(HttpMethod.POST, "/*/signup").permitAll()
-				.antMatchers(HttpMethod.PATCH, "/*/users/**").hasRole("USER")
-				.antMatchers(HttpMethod.GET, "/*/users/**").hasRole("USER")
-				.antMatchers(HttpMethod.DELETE, "/*/users/**").hasRole("USER")
-				.anyRequest().permitAll()
-			);
+				.antMatchers(HttpMethod.POST, "/signup").permitAll()
+				.antMatchers(HttpMethod.PATCH, "/users/**").hasRole("USER")
+				.antMatchers(HttpMethod.GET, "/users/**").hasRole("USER")
+				.antMatchers(HttpMethod.DELETE, "/users/**").hasRole("USER")
+				// .antMatchers(HttpMethod.POST, "/questions/ask").hasRole("USER")
+				// .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+				// .antMatchers(HttpMethod.GET, "/questions").permitAll()
+				// .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
+				// .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+				// .antMatchers(HttpMethod.POST, "/**/answers").hasRole("USER")
+				// .antMatchers(HttpMethod.PATCH, "/**/answers/*").hasRole("USER")
+				// .antMatchers(HttpMethod.DELETE, "/**/answers/*").hasRole("USER")
+				// .antMatchers(HttpMethod.POST, "/**/comments").hasRole("USER")
+				// .antMatchers(HttpMethod.PATCH, "/**/comments/*").hasRole("USER")
+				// .antMatchers(HttpMethod.DELETE, "/**/comments/*").hasRole("USER")
+				.anyRequest().permitAll());
 			// .oauth2Login(withDefaults());
 
 		return http.build();
@@ -78,7 +88,7 @@ public class SecurityConfig {
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("*"));
-		configuration.setAllowedMethods(Arrays.asList("GET","POST", "PATCH", "DELETE"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 
@@ -90,7 +100,8 @@ public class SecurityConfig {
 		public void configure(HttpSecurity builder) throws Exception {
 			AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
 
-			JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
+			JwtAuthenticationFilter jwtAuthenticationFilter =
+				new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
 			jwtAuthenticationFilter.setFilterProcessesUrl("/login");
 			jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
 			jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
