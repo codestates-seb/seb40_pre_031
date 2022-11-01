@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
+// 질문 tag 부분을 묶는 div
+
 const TagBox = styled.div`
   width: 100%;
   display: flex;

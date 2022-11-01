@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// 질문 등록 버튼 atom
 const Button = styled.button`
   width: 154px;
   height: 38px;

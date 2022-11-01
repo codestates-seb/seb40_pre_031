@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// 질문 작성 헤더부분 (h1, 백그라운드 이미지 부분)
 const Header = styled.div`
   background-image: url(https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368);
   background-repeat: no-repeat;

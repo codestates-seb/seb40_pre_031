@@ -1,6 +1,8 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 
+// 질문 제목 부분을 묶는 div
+
 const TitleBox = styled.div`
   width: 100%;
   display: flex;

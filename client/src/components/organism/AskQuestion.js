@@ -16,6 +16,7 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
+// question foam div 로 질문 작성 내용 묶기
 const Questionfoam = styled.div`
   background: var(--white);
   border: 1px solid var(--black-200);
@@ -33,7 +34,7 @@ function AskQuestion() {
   const titleRef = { title: useRef(null), p: useRef(null) };
   const editorRef = useRef(null);
   const tagRef = useRef(null);
-  // const navigate = useNavigate();
+  // const navigate = useNavigate(); // 질문 등록 후 질문 리스트 페이지 연결  app.js 라우터 연결후 사용
 
   const editorOnChange = () => {
     const value = editorRef.current.getInstance().getMarkdown();
@@ -43,7 +44,7 @@ function AskQuestion() {
   const titleOnChange = () => {
     const value = titleRef.title.current.value;
     console.log(value.length);
-    if (value.length >= 35) {
+    if (value.length >= 35 || value.length < 1) {
       titleRef.p.current.classList.remove('hide');
       return;
     } else if (value.length < 36) {

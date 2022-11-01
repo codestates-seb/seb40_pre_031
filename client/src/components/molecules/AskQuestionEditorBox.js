@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import Write from './Editor';
 
+// 에디터를 포함하는 부분
 const Editorbox = styled.div`
   display: flex;
   flex-direction: column;
