@@ -7,11 +7,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
-    font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;;
-    font-size: 100%;
-  }
-
   li {
     list-style: none;
   }
@@ -267,45 +262,6 @@ const GlobalStyle = createGlobalStyle`
     --mp-query-border-color: var(--black-100);
     --mp-result-border: solid .5px var(--black-300);
     --mp-warning-color: var(--red-600);
-
-
-    --ff-sans: -apple-system,BlinkMacSystemFont,"Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
-    --ff-serif: Georgia,Cambria,"Times New Roman",Times,serif;
-    --ff-mono: ui-monospace,"Cascadia Mono","Segoe UI Mono","Liberation Mono",Menlo,Monaco,Consolas,monospace;
-    --theme-body-font-family: var(--ff-sans);
-    --fs-fine: 11px;
-    --fs-caption: 12px;
-    --fs-body1: 13px;
-    --fs-body2: 1.15384615rem;
-    --fs-body3: 1.30769231rem;
-    --fs-subheading: 1.46153846rem;
-    --fs-title: 1.61538462rem;
-    --fs-headline1: 2.07692308rem;
-    --fs-headline2: 2.61538461rem;
-    --fs-display1: 3.30769231rem;
-    --fs-display2: 4.23076923rem;
-    --fs-display3: 5.30769231rem;
-    --fs-display4: 7.61538461rem;
-    --fs-body2-relative: 1.15384615em;
-    --fs-body3-relative: 1.30769231em;
-    --fs-subheading-relative: 1.46153846em;
-    --fs-title-relative: 1.61538462em;
-    --fs-headline1-relative: 2.07692308em;
-    --fs-headline2-relative: 2.61538461em;
-    --fs-display1-relative: 3.30769231em;
-    --fs-display2-relative: 4.23076923em;
-    --fs-display3-relative: 5.30769231em;
-    --fs-display4-relative: 7.61538461em;
-    --fs-base: 13px;
-    --stacks-internals-lh-unit: 13;
-    --lh-xs: 1;
-    --lh-sm: calc((var(--stacks-internals-lh-unit) + 2) / var(--stacks-internals-lh-unit));
-    --lh-md: calc((var(--stacks-internals-lh-unit) + 4) / var(--stacks-internals-lh-unit));
-    --lh-lg: calc((var(--stacks-internals-lh-unit) + 8) / var(--stacks-internals-lh-unit));
-    --lh-xl: calc((var(--stacks-internals-lh-unit) + 12) / var(--stacks-internals-lh-unit));
-    --lh-xxl: 2;
-    --lh-base: var(--lh-md);
-    --lh-6: ((var(--stacks-internals-lh-unit) + 6) / var(--stacks-internals-lh-unit));
   }
 `;
 
