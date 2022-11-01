@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SearchInputIcon } from '../atoms/SvgComponents';
+import { SearchInputIcon } from '../atoms/SvgHeaderIcons';
 
 const SearchForm = styled.form`
   width: 650px;

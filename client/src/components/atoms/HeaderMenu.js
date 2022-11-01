@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineMenu } from 'react-icons/ai';
-import { MenuX } from '../atoms/SvgComponents';
+import { MenuX } from '../atoms/SvgHeaderIcons';
 import Leftnavlist from './../molecules/LeftNavList';
 
 const DropdownBox = styled.div`

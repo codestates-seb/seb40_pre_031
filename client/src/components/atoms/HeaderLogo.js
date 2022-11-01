@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { LogoIcon } from '../atoms/SvgComponents';
+import { LogoIcon } from '../atoms/SvgHeaderIcons';
 
 const HeaderLogoBox = styled.div`
   display: flex;
