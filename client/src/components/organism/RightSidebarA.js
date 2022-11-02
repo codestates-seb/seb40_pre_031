@@ -3,7 +3,7 @@ import { HiPencil } from 'react-icons/hi';
 import { BsChatRight } from 'react-icons/bs';
 import { FaStackOverflow } from 'react-icons/fa';
 
-//오른쪽 노란색 sidebar A
+//오른쪽 노란색 sidebar A 구현
 
 //제목 스타일
 const YellowSidebarBox = styled.div`
