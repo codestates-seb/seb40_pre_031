@@ -1,18 +1,17 @@
-import { SignupLogincontainerBox } from '../atoms/Signupcontainer.js';
-import { Input } from '../atoms/Signupinput';
+import { SignupLogincontainerBox } from '../atoms/SignupContainer.js';
+import { Input } from '../atoms/SignupInput';
 import useInput from '../../hooks/useInput.js';
-import { Socialbutton } from '../atoms/Socialbutton.js';
-import { SignupinfoPassword } from '../atoms/SignupinfoPassword.js';
+import { Socialbutton } from '../atoms/SocialButton.js';
+import { SignupinfoPassword } from '../atoms/SignupInfoPassword.js';
 import { useEffect } from 'react';
-import { login } from '../../apis/Loigin.js';
-import { loginAction } from '../../actions';
-import { useDispatch } from 'react-redux';
+// import { loginAction } from '../../actions';
+// import { useDispatch } from 'react-redux';
 
 //로그인 정보 작성하는곳
 const LoginForm = () => {
   const [email, bindEmail] = useInput('', true, 'text', 'Email');
   const [password, bindPassword] = useInput('', true, 'password', 'Password');
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const onClick = () => {
     password !== '' ? bindPassword.setPass(true) : bindPassword.setPass(false);
@@ -24,11 +23,11 @@ const LoginForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //서버와 통신
-    login(email, password)
-      .then((result) => {
-        dispatch(loginAction());
-      })
-      .catch((err) => console.log(err));
+    // login(email, password)
+    //   .then((result) => {
+    //     dispatch(loginAction());
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   useEffect(() => {

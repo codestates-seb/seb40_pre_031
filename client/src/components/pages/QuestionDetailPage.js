@@ -1,5 +1,8 @@
 import { QuestionDetail } from '../templates/QuestionDetail';
-import { QuestionDetailDivideLine } from '../atoms/QuestionDetailDivideLine';
+import {
+  QuestionDetailDivideLine,
+  QuestionDetailDivideTitle,
+} from '../atoms/QuestionDetailDivideLine';
 import { useEffect, useState } from 'react';
 import { questionDetailApi } from '../../api/apis';
 export const QuestionDetailPage = ({ question_id }) => {
@@ -15,6 +18,7 @@ export const QuestionDetailPage = ({ question_id }) => {
 
   return (
     <>
+      <QuestionDetailDivideTitle></QuestionDetailDivideTitle>
       <QuestionDetail></QuestionDetail>
       {/* comment 컴포넌트와 comment작성컴포넌트를 추가해야함. */}
       <QuestionDetailDivideLine></QuestionDetailDivideLine>

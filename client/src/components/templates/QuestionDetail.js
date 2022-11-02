@@ -12,7 +12,6 @@ const QuestionDetailBox = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  border: solid 1px green;
 `;
 
 export const QuestionDetail = () => {

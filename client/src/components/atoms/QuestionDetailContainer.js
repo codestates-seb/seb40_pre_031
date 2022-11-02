@@ -5,7 +5,6 @@ const QuestionDetailsideBox = styled.div`
   width: 52px;
   height: auto;
   margin: 0 16px 0 0;
-  border: solid 1px orange;
 `;
 
 //추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
@@ -13,7 +12,6 @@ const QuestionDetailSubsideBox = styled.div`
   width: 36px;
   heigth: 102px;
   display: flex;
-  border: solid 1px blue;
   flex-direction: column;
   .Arrow {
     cursor: pointer;
@@ -37,7 +35,6 @@ const QuestionDetailContentBox = styled.div`
   height: auto;
   padding: 20px;
   display: flex;
-  border: solid 1px red;
   .toastui-editor-contents {
     width: 640px;
   }
@@ -47,7 +44,6 @@ const QuestionDetailUserProfileBox = styled.div`
   width: 200px;
   height: 85px;
   display: flex;
-  border: solid 1px red;
   padding: 10px;
   flex-direction: column;
   color: var(--black-500);
@@ -73,10 +69,13 @@ const QuestionDetailUserFooterBox = styled.div`
   width: 640px;
   height: 100px;
   margin: 16px 0 16px 88px;
-  border: solid 1px red;
   display: flex;
   font-size: 13px;
   justify-content: space-between;
+  border-top: solid 1px var(--black-100);
+  border-bottom: solid 1px var(--black-200);
+  border-radius: 5px;
+
   .Editdiv {
     margin: 10px;
     color: var(--black-500);
