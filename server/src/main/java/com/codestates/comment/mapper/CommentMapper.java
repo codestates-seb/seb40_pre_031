@@ -3,6 +3,7 @@ package com.codestates.comment.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import com.codestates.comment.dto.CommentResponseDto;
 import com.codestates.comment.dto.ResponseCommentDto;
 import com.codestates.comment.entity.Comment;
 
@@ -13,4 +14,6 @@ public interface CommentMapper {
 	@Mapping(source = "answer.id", target = "answerId")
 	@Mapping(source = "user.displayName", target = "displayName")
 	ResponseCommentDto commentToResponseCommentDto(Comment comment);
+
+	CommentResponseDto commentToCommentResponseDto(Comment comment);
 }
