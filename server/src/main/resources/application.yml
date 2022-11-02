@@ -23,7 +23,6 @@ mail:
   address:
     admin: admin@gmail.com
 jwt:
-  key:
-    secret: ${JWT_SECRET_KEY}
+  secret-key: HelloBaskinRobbins31YouAreGood!!
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
