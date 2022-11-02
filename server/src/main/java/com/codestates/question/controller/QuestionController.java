@@ -21,10 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codestates.question.dto.QuestionPatchDto;
 import com.codestates.question.dto.QuestionPostDto;
 import com.codestates.question.dto.QuestionResponseDto;
+import com.codestates.question.dto.ResponseAllQuestionsDto;
+import com.codestates.question.dto.ResponseSpecificQuestionDto;
 import com.codestates.question.entity.Question;
 import com.codestates.question.mapper.QuestionMapper;
 import com.codestates.question.repository.QuestionRepository;
 import com.codestates.question.service.QuestionService;
+import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
@@ -34,12 +37,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Valid
 public class QuestionController {
-	/* DI */
 	private final QuestionService questionService;
 	private final QuestionRepository questionRepository;
 	private final QuestionMapper mapper;
 
-	/* 질문글 등록 */
 	@PostMapping("/ask")
 	public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
 		User user = new User();
@@ -53,7 +54,6 @@ public class QuestionController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
-	/* 질문글 수정 */
 	@PatchMapping("/{question_id}")
 	public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long questionId,
 		@Valid @RequestBody QuestionPatchDto questionPatchDto) {
@@ -67,27 +67,31 @@ public class QuestionController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	/* 특정 질문글 조회 */
 	@GetMapping("/{question_id}")
-	public ResponseEntity<QuestionResponseDto> getQuestion(@PathVariable("question_id") @Positive Long questionId) {
+	public ResponseEntity<ResponseSpecificQuestionDto> getQuestion(
+		@PathVariable("question_id") @Positive Long questionId) {
 		Question question = questionService.findQuestion(questionId);
-		QuestionResponseDto response = mapper.questionToQuestionResponseDto(question);
+
+		User user = new User();
+		user.setEmail(UUID.randomUUID() + "cheese@cat.com");
+		user.setPassword("123~");
+		user.setDisplayName("cheese");
+
+		VoteStatus voteStatus = questionService.checkUserVoteStatus(question, user);
+		ResponseSpecificQuestionDto response = mapper.questionToResponsePickOneDto(question, voteStatus);
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	/* 전체 질문글 조회 */
 	@GetMapping
-	public Page<QuestionResponseDto> getQuestions(Pageable pageable) {
-
+	public Page<ResponseAllQuestionsDto> getQuestions(Pageable pageable) {
 		Page<Question> pageQuestions = questionRepository.questionPage(pageable);
 
-		Page<QuestionResponseDto> response = pageQuestions.map(question ->
-			new QuestionResponseDto(question));
+		Page<ResponseAllQuestionsDto> response = pageQuestions.map(mapper::questionToResponseAllPagesDto);
+
 		return response;
 	}
 
-	/* 질문글 삭제 */
 	@DeleteMapping("/{question_id}")
 	public String deleteQuestion(@PathVariable("question_id") @Positive Long questionId) {
 		questionService.deleteQuestion(questionId);
