@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
@@ -70,5 +71,11 @@ public class QuestionService {
 		}
 
 		return optionalQuestionVote.get().getStatus();
+	}
+
+	@Transactional
+	public int updateView(Long id) {
+
+		return this.questionRepository.updateView(id);
 	}
 }
