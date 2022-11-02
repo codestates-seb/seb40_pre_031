@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
 import com.codestates.question.repository.QuestionRepository;
+import com.codestates.question.repository.QuestionVoteRepository;
 import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
 import com.codestates.user.repository.UserRepository;
@@ -21,6 +22,7 @@ public class QuestionService {
 	/* DI */
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
+	private final QuestionVoteRepository questionVoteRepository;
 	private final UserRepository userRepository;
 
 	/* 질문글 등록 */

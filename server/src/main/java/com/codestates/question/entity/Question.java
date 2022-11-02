@@ -38,10 +38,10 @@ public class Question extends BaseTime {
 	private String content;
 
 	@Column(nullable = false)
-	private Integer views = 0;
+	private Integer votes = 0;
 
 	@Column(nullable = false)
-	private Integer votes = 0;
+	private Integer views = 0;
 
 	private Long chosenAnswerId;
 
