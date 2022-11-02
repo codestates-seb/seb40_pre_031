@@ -4,7 +4,8 @@ import lombok.Getter;
 
 public enum ExceptionCode {
 	USER_EXIST(409, "User Exist"),
-	OUT_OF_CONTROL(403, "Forbidden");
+	OUT_OF_CONTROL(403, "Forbidden"),
+	LOGIN_ERROR(401, "로그인에 실패하였습니다.");
 	@Getter
 	private int status;
 	@Getter

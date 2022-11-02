@@ -12,6 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
+import com.codestates.exception.ExceptionCode;
 import com.codestates.response.ErrorResponse;
 import com.google.gson.Gson;
 
@@ -30,9 +31,10 @@ public class UserAuthenticationFailureHandler implements AuthenticationFailureHa
 
 	private void sendErrorResponse(HttpServletResponse response) throws IOException {
 		Gson gson = new Gson();
-		ErrorResponse errorResponse = ErrorResponse.of(HttpStatus.UNAUTHORIZED);
+		ErrorResponse errorResponse = ErrorResponse.of(ExceptionCode.LOGIN_ERROR);
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		response.setStatus(HttpStatus.UNAUTHORIZED.value());
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(gson.toJson(errorResponse, ErrorResponse.class));
 	}
 }

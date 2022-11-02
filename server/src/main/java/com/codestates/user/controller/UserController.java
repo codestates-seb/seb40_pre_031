@@ -48,8 +48,9 @@ public class UserController {
 	// 회원 조회 --> 마이 페이지
 	@GetMapping("/users/{user_id}")
 	public ResponseEntity getUser(@PathVariable("user_id") @Positive long userId) {
+		UserResponseDto responseDto = mapper.userToUserResponseDto(userService.findMember(userId));
 
-		return new ResponseEntity<>(userService.findMember(userId), HttpStatus.OK);
+		return new ResponseEntity<>(responseDto, HttpStatus.OK);
 	}
 
 	// 마이 페이지 --> 수정

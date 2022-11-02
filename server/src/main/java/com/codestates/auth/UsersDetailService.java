@@ -26,7 +26,7 @@ public class UsersDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<User> optionalUser = userRepository.findByEmail(username);
-		User findUser = optionalUser.orElseThrow(() -> new RuntimeException("NOT_FOUND"));
+		User findUser = optionalUser.orElseThrow(() -> new UsernameNotFoundException("사용자가 존재하지 않습니다."));
 
 		return new UsersDetail(findUser);
 	}
