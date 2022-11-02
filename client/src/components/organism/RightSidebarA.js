@@ -5,7 +5,7 @@ import { FaStackOverflow } from 'react-icons/fa';
 
 //오른쪽 노란색 sidebar A
 
-//제목
+//제목 스타일
 const YellowSidebarBox = styled.div`
   width: 300px;
   list-style: none;
@@ -17,7 +17,7 @@ const YellowSidebarBox = styled.div`
   border-radius: 3px;
 `;
 
-//내용
+//내용 스타일
 const TittleHeader = styled.li`
   background-color: var(--yellow-100);
   border-top: 1px solid hsl(47, 65%, 84%);
