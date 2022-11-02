@@ -9,7 +9,7 @@ import { FaStackOverflow } from 'react-icons/fa';
 const YellowSidebarBox = styled.div`
   width: 300px;
   list-style: none;
-  background-color: #fdf7e2;
+  background-color: var(--yellow-050);
   margin: 1.9rem 0 0 1.5rem;
   border: 1px solid hsl(47, 65%, 84%);
   padding-left: 0;
@@ -19,10 +19,10 @@ const YellowSidebarBox = styled.div`
 
 //내용
 const TittleHeader = styled.li`
-  background-color: #fbf3d5;
+  background-color: var(--yellow-100);
   border-top: 1px solid hsl(47, 65%, 84%);
   border-bottom: 1px solid hsl(47, 65%, 84%);
-  color: #525960;
+  color: var(--black-600);
   font-size: 12px;
   font-weight: 700;
   padding: 12px 15px;
@@ -34,8 +34,8 @@ const TittleItem = styled.li`
 `;
 
 const TextBox = styled.div`
-  background-color: #fdf7e2;
-  color: #232629;
+  background-color: var(--yellow-050);
+  color: var(--theme-footer-background-color);
   font-size: 13px;
   margin: 12px 0px;
   padding: 0px 0px;
