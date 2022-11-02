@@ -1,15 +1,16 @@
 package com.codestates.answer.dto;
 
-import javax.validation.constraints.Positive;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class AnswerPostDto {
-	@Positive
-	private Long userId;
-
 	private String content;
+
+	@JsonCreator
+	public AnswerPostDto(@JsonProperty("content") String content) {
+		this.content = content;
+	}
 }
