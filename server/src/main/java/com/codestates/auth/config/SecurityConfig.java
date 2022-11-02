@@ -28,17 +28,15 @@ import com.codestates.auth.handler.UserAuthenticationFailureHandler;
 import com.codestates.auth.handler.UserAuthenticationSuccessHandler;
 import com.codestates.auth.utils.CustomAuthorityUtils;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @EnableWebSecurity(debug = true)
+@RequiredArgsConstructor
 public class SecurityConfig {
 
 	private final JwtTokenizer jwtTokenizer;
 	private final CustomAuthorityUtils authorityUtils;
-
-	public SecurityConfig(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
-		this.jwtTokenizer = jwtTokenizer;
-		this.authorityUtils = authorityUtils;
-	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -74,8 +72,6 @@ public class SecurityConfig {
 				// .antMatchers(HttpMethod.PATCH, "/**/comments/*").hasRole("USER")
 				// .antMatchers(HttpMethod.DELETE, "/**/comments/*").hasRole("USER")
 				.anyRequest().permitAll());
-			// .oauth2Login(withDefaults());
-
 		return http.build();
 	}
 
