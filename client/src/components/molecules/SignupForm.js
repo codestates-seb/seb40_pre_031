@@ -1,14 +1,14 @@
 import {
   SignupLogincontainerBox,
   SignupRobotBox,
-} from '../atoms/Signupcontainer';
+} from '../atoms/SignupContainer';
 import {
   SignupinfoPassword,
   SignupinfoExplamation,
-} from '../atoms/SignupinfoPassword';
-import { Socialbutton } from '../atoms/Socialbutton';
+} from '../atoms/SignupInfoPassword';
+import { Socialbutton } from '../atoms/SocialButton';
 import { useEffect, useState, useRef } from 'react';
-import { Input } from '../atoms/Signupinput';
+import { Input } from '../atoms/SignupInput';
 import SignupRecaptcha from '../atoms/SignupRecaptcha';
 import useInput from '../../hooks/useInput';
 import { signup } from '../../apis/Signup.js';

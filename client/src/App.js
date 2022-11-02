@@ -1,14 +1,15 @@
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import GlobalStyle from './GlobalStyles';
-import Loginsubmit from './components/organism/Loginsubmit';
+// import Loginsubmit from './components/organism/Loginsubmit';
 // import SignupPage from './components/pages/SignupPage';
+import { QuestionDetail } from './components/organism/QuestionDetail';
 function App() {
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Loginsubmit></Loginsubmit>
+        <QuestionDetail></QuestionDetail>
       </ThemeProvider>
     </>
   );

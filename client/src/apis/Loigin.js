@@ -5,6 +5,6 @@ const login = (email, password) => {
     email,
     password,
   };
-  return axiosGet(`${process.env.REACT_APP_BASE_URL}/login`, { data });
+  return axiosGet('/login', { data });
 };
 export { login };

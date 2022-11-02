@@ -6,7 +6,7 @@ const signup = (name, email, password) => {
     email,
     password,
   };
-  return axiosPost(`${process.env.REACT_APP_BASE_URL}/signup`, { data });
+  return axiosPost('/signup', { data });
 };
 
 export { signup };

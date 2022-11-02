@@ -1,6 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-import Avartar from "../atoms/Avartar";
+import styled from 'styled-components';
+import Avartar from '../atoms/Avartar';
 
 const UserBox = styled.div`
   display: flex;
