@@ -19,13 +19,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class QuestionService {
-	/* DI */
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
-	private final QuestionVoteRepository questionVoteRepository;
 	private final UserRepository userRepository;
 
-	/* 질문글 등록 */
 	public Question createQuestion(Question question, User user) {
 		userRepository.save(user);
 
@@ -36,30 +33,25 @@ public class QuestionService {
 		return question;
 	}
 
-	/* 질문글 수정 */
 	public Question updateQuestion(Question question) {
 		Question verifiedQuestion = findVerifiedQuestion(question.getId());
 
-		/* 수정 */
 		Optional.ofNullable(question.getTitle()).ifPresent(verifiedQuestion::setTitle);
 		Optional.ofNullable(question.getContent()).ifPresent(verifiedQuestion::setContent);
 
 		return questionRepository.save(verifiedQuestion);
 	}
 
-	/* 특정 질문글 조회 */
 	public Question findQuestion(Long questionId) {
 
 		return findVerifiedQuestion(questionId);
 	}
 
-	/* 전체 질문글 조회 */
 	public Page<Question> findQuestions(int page, int size) {
 
 		return questionRepository.questionPage(PageRequest.of(page, size));
 	}
 
-	/* 질문글 삭제 */
 	public void deleteQuestion(Long questionId) {
 		Question findQuestion = findVerifiedQuestion(questionId);
 

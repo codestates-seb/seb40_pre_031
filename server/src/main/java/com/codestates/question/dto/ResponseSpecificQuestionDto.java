@@ -9,7 +9,6 @@ import com.codestates.status.VoteStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/* 특정 질문 응답 */
 @Getter
 @AllArgsConstructor
 public class ResponseSpecificQuestionDto {

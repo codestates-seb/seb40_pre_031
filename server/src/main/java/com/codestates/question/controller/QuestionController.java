@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codestates.question.dto.QuestionPatchDto;
 import com.codestates.question.dto.QuestionPostDto;
 import com.codestates.question.dto.QuestionResponseDto;
+import com.codestates.question.dto.ResponseAllQuestionsDto;
 import com.codestates.question.dto.ResponseSpecificQuestionDto;
 import com.codestates.question.entity.Question;
 import com.codestates.question.mapper.QuestionMapper;
@@ -36,12 +37,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Valid
 public class QuestionController {
-	/* DI */
 	private final QuestionService questionService;
 	private final QuestionRepository questionRepository;
 	private final QuestionMapper mapper;
 
-	/* 질문글 등록 */
 	@PostMapping("/ask")
 	public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
 		User user = new User();
@@ -55,7 +54,6 @@ public class QuestionController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
-	/* 질문글 수정 */
 	@PatchMapping("/{question_id}")
 	public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long questionId,
 		@Valid @RequestBody QuestionPatchDto questionPatchDto) {
@@ -69,7 +67,6 @@ public class QuestionController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	/* 특정 질문글 조회 */
 	@GetMapping("/{question_id}")
 	public ResponseEntity<ResponseSpecificQuestionDto> getQuestion(
 		@PathVariable("question_id") @Positive Long questionId) {
@@ -86,7 +83,6 @@ public class QuestionController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
-	/* 전체 질문글 조회 */
 	@GetMapping
 	public Page<ResponseAllQuestionsDto> getQuestions(Pageable pageable) {
 		Page<Question> pageQuestions = questionRepository.questionPage(pageable);
@@ -96,7 +92,6 @@ public class QuestionController {
 		return response;
 	}
 
-	/* 질문글 삭제 */
 	@DeleteMapping("/{question_id}")
 	public String deleteQuestion(@PathVariable("question_id") @Positive Long questionId) {
 		questionService.deleteQuestion(questionId);
