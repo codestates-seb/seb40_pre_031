@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class QuestionService {
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
+	private final QuestionVoteRepository questionVoteRepository;
 	private final UserRepository userRepository;
 
 	public Question createQuestion(Question question, User user) {

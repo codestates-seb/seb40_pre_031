@@ -112,8 +112,4 @@ public class User extends BaseTime {
 		this.password = password;
 		this.displayName = displayName;
 	}
-	public enum UserRole {
-		ROLE_USER,
-		ROLE_ADMIN
-	}
 }

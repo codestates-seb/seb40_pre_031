@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codestates.answer.service.AnswerService;
 import com.codestates.comment.dto.CommentPatchDto;
 import com.codestates.comment.dto.CommentPostDto;
+import com.codestates.comment.dto.CommentResponseDto;
 import com.codestates.comment.entity.Comment;
+import com.codestates.comment.mapper.CommentMapper;
 import com.codestates.comment.service.CommentService;
+import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,13 +31,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CommentController {
 	private final CommentService commentService;
+	private final AnswerService answerService;
+	private final UserService userService;
+	private final CommentMapper commentMapper;
 
 	@PostMapping("")
-	public ResponseEntity postComment(@Positive @PathVariable(name = "question_id") Long questionId,
-		@Positive @PathVariable(name = "answer_id") Long answerId,
+	public ResponseEntity postComment(@Positive @PathVariable(name = "answer_id") Long answerId,
 		@Valid @RequestBody CommentPostDto commentPostDto) {
-		Comment comment = new Comment();
-		comment.setContent(commentPostDto.getContent());
+		Comment comment = Comment.builder()
+			.content(commentPostDto.getContent())
+			.answer(answerService.findVerifiedAnswer(answerId))
+			.user(userService.findMember(1L))
+			.build();
 
 		commentService.createComment(comment);
 
@@ -43,7 +52,13 @@ public class CommentController {
 	@PatchMapping("/{comment_id}")
 	public ResponseEntity patchComment(@Positive @PathVariable(name = "comment_id") Long commentId,
 		@Valid @RequestBody CommentPatchDto commentPatchDto) {
-		Comment updated = commentService.updateComment(commentId, commentPatchDto.getContent());
+		Comment comment = Comment.builder()
+			.id(commentId)
+			.content(commentPatchDto.getContent())
+			.build();
+
+		CommentResponseDto updated = commentMapper.commentToCommentResponseDto(
+			commentService.updateComment(comment));
 
 		return ResponseEntity.ok().body(updated);
 	}
