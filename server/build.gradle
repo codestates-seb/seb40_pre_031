@@ -27,11 +27,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'com.google.code.gson:gson:2.9.0'
 
+	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+
 	implementation 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	implementation 'org.mapstruct:mapstruct:1.5.2.Final'
-	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+	implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
@@ -41,6 +44,7 @@ dependencies {
 	runtimeOnly	'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
 	runtimeOnly 'com.h2database:h2'
+	implementation 'mysql:mysql-connector-java'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
