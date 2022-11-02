@@ -23,11 +23,7 @@ public class QuestionService {
 	private final QuestionRepository questionRepository;
 	private final UserRepository userRepository;
 
-	public Question createQuestion(Question question, User user) {
-		userRepository.save(user);
-
-		question.setUser(user);
-
+	public Question createQuestion(Question question) {
 		questionRepository.save(question);
 
 		return question;
@@ -66,8 +62,6 @@ public class QuestionService {
 	}
 
 	public VoteStatus checkUserVoteStatus(Question question, User user) {
-		userRepository.save(user);
-
 		Optional<QuestionVote> optionalQuestionVote = questionVoteRepository.findByQuestionAndUser(question, user);
 
 		if (optionalQuestionVote.isEmpty()) {

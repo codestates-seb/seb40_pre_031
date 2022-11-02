@@ -29,6 +29,7 @@ import com.codestates.question.repository.QuestionRepository;
 import com.codestates.question.service.QuestionService;
 import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
+import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,16 +41,16 @@ public class QuestionController {
 	private final QuestionService questionService;
 	private final QuestionRepository questionRepository;
 	private final QuestionMapper mapper;
+	private final UserService userService;
 
 	@PostMapping("/ask")
 	public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
-		User user = new User();
-		user.setEmail(UUID.randomUUID() + "cheese@cat.com");
-		user.setPassword("123~");
-		user.setDisplayName("cheese");
+		User user = userService.findMember(questionPostDto.getUserId());
+		Question question = mapper.questionPostDtoToQuestion(questionPostDto);
+		question.setUser(user);
 
-		Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto), user);
-		QuestionResponseDto response = mapper.questionToQuestionResponseDto(question);
+		Question postedQuestion = questionService.createQuestion(question);
+		QuestionResponseDto response = mapper.questionToQuestionResponseDto(postedQuestion);
 
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
