@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import {
   QuestionDetailsideBox,
   QuestionDetailContentBox,
-  QuestionDetailSubsideBox,
 } from '../atoms/QuestionDetailContainer';
 import { QuestionDetailSidebar } from '../molecules/QuestionDetailSidebar';
 import { QuestionDetailUserFooter } from '../organism/QuestionDetailUserFooter';
@@ -21,9 +20,7 @@ export const QuestionDetail = () => {
     <QuestionDetailBox>
       <QuestionDetailContentBox>
         <QuestionDetailsideBox>
-          <QuestionDetailSubsideBox>
-            <QuestionDetailSidebar></QuestionDetailSidebar>
-          </QuestionDetailSubsideBox>
+          <QuestionDetailSidebar></QuestionDetailSidebar>
         </QuestionDetailsideBox>
         <QuestionViewer></QuestionViewer>
       </QuestionDetailContentBox>

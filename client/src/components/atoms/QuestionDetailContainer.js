@@ -8,13 +8,16 @@ const QuestionDetailsideBox = styled.div`
   border: solid 1px orange;
 `;
 
-//추천수, 화살표를담는 div
+//추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
 const QuestionDetailSubsideBox = styled.div`
   width: 36px;
   heigth: 102px;
   display: flex;
   border: solid 1px blue;
   flex-direction: column;
+  .Arrow {
+    cursor: pointer;
+  }
 `;
 
 //추천수
@@ -28,6 +31,7 @@ const QuestionDetailVoteBox = styled.div`
   justify-content: center;
 `;
 
+//코멘트부분을 제외한 본문,추천수를 포함하는 div
 const QuestionDetailContentBox = styled.div`
   width: 750px;
   height: auto;
@@ -79,12 +83,6 @@ const QuestionDetailUserFooterBox = styled.div`
   }
 `;
 
-const Temp = styled.div`
-  width: 640px;
-  height: 500px;
-  border: solid 1px red;
-`;
-
 export {
   QuestionDetailsideBox,
   QuestionDetailSubsideBox,
@@ -92,5 +90,4 @@ export {
   QuestionDetailVoteBox,
   QuestionDetailUserProfileBox,
   QuestionDetailUserFooterBox,
-  Temp,
 };

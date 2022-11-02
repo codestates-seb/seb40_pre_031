@@ -131,7 +131,7 @@ function IconStarVerified(props) {
   );
 }
 
-function ArrowUp(props) {
+function ArrowUp({ props }) {
   return (
     <svg
       width={36}
@@ -146,7 +146,7 @@ function ArrowUp(props) {
   );
 }
 
-function ArrowDown(props) {
+function ArrowDown({ props }) {
   return (
     <svg
       width={36}

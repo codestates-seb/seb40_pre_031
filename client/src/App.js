@@ -3,13 +3,13 @@ import theme from './theme';
 import GlobalStyle from './GlobalStyles';
 // import Loginsubmit from './components/organism/Loginsubmit';
 // import SignupPage from './components/pages/SignupPage';
-import { QuestionDetail } from './components/templates/QuestionDetail';
+import { QuestionDetailPage } from './components/pages/QuestionDetailPage';
 function App() {
   return (
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <QuestionDetail></QuestionDetail>
+        <QuestionDetailPage></QuestionDetailPage>
       </ThemeProvider>
     </>
   );
