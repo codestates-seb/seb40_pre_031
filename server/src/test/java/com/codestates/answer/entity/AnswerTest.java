@@ -1,7 +1,5 @@
 package com.codestates.answer.entity;
 
-import static org.assertj.core.api.Assertions.*;
-
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -24,17 +22,5 @@ class AnswerTest {
 	@Test
 	@DisplayName("Auditing 테스트")
 	void auditingTest() {
-		Answer answer = new Answer();
-		answer.setContent("테스트");
-
-		Answer savedAnswer = answerRepository.save(answer);
-
-		assertThat(savedAnswer.getCreatedAt())
-			.isNotNull();
-		assertThat(savedAnswer.getModifiedAt())
-			.isNotNull();
-
-		System.out.println("savedAnswer.getCreateAT() = " + savedAnswer.getCreatedAt());
-		System.out.println("savedAnswer.getModifiedAT() = " + savedAnswer.getModifiedAt());
 	}
 }
