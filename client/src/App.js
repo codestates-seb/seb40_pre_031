@@ -3,7 +3,7 @@ import theme from './theme';
 import GlobalStyle from './GlobalStyles';
 // import Loginsubmit from './components/organism/Loginsubmit';
 // import SignupPage from './components/pages/SignupPage';
-import { QuestionDetail } from './components/organism/QuestionDetail';
+import { QuestionDetail } from './components/templates/QuestionDetail';
 function App() {
   return (
     <>
