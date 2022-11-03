@@ -12,3 +12,17 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  sql:
+    init:
+      data-locations: classpath*:db/h2/data.sql
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+mail:
+  address:
+    admin: admin@gmail.com
+jwt:
+  secret-key: HelloBaskinRobbins31YouAreGood!!
+  access-token-expiration-minutes: 30
+  refresh-token-expiration-minutes: 420
