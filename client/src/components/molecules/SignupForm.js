@@ -5,7 +5,7 @@ import {
 import {
   SignupinfoPassword,
   SignupinfoExplamation,
-} from '../atoms/SignupInfoPassword';
+} from '../atoms/SignupInfoPassword.js';
 import { Socialbutton } from '../atoms/SocialButton';
 import { useEffect, useState, useRef } from 'react';
 import { Input } from '../atoms/SignupInput';
