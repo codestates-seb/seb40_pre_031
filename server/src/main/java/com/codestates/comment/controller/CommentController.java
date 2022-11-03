@@ -40,9 +40,9 @@ public class CommentController {
 		@Valid @RequestBody CommentPostDto commentPostDto) {
 		Comment comment = Comment.builder()
 			.content(commentPostDto.getContent())
-			.answer(answerService.findVerifiedAnswer(answerId))
-			.user(userService.findMember(1L))
 			.build();
+		comment.setAnswer(answerService.findVerifiedAnswer(answerId));
+		comment.setUser(userService.findMember(1L));
 
 		commentService.createComment(comment);
 
@@ -57,10 +57,10 @@ public class CommentController {
 			.content(commentPatchDto.getContent())
 			.build();
 
-		CommentResponseDto updated = commentMapper.commentToCommentResponseDto(
+		CommentResponseDto response = commentMapper.commentToCommentResponseDto(
 			commentService.updateComment(comment));
 
-		return ResponseEntity.ok().body(updated);
+		return ResponseEntity.ok().body(response);
 	}
 
 	@DeleteMapping("{comment_id}")

@@ -37,9 +37,9 @@ public class AnswerController {
 		@Valid @RequestBody AnswerPostDto answerPostDto) {
 		Answer answer = Answer.builder()
 			.content(answerPostDto.getContent())
-			.question(questionService.findQuestion(questionId))
-			.user(userService.findMember(1L))
 			.build();
+		answer.setQuestion(questionService.findQuestion(questionId));
+		answer.setUser(userService.findMember(1L));
 
 		answerService.createAnswer(answer);
 

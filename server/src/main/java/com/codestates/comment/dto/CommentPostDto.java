@@ -1,17 +1,16 @@
 package com.codestates.comment.dto;
 
-import javax.validation.constraints.Positive;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CommentPostDto {
-	@Positive
-	private Long userId;
-
 	private String content;
+
+	@JsonCreator
+	public CommentPostDto(@JsonProperty("content") String content) {
+		this.content = content;
+	}
 }

@@ -14,8 +14,8 @@ import lombok.AllArgsConstructor;
 public class CommentService {
 	private final CommentRepository commentRepository;
 
-	public void createComment(Comment comment) {
-		commentRepository.save(comment);
+	public Comment createComment(Comment comment) {
+		return commentRepository.save(comment);
 	}
 
 	public Comment updateComment(Comment comment) {
