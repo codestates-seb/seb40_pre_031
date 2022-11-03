@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import LeftNavHead from '../atoms/LeftNavHead';
 import LeftNavItem from '../atoms/LeftNavItem';

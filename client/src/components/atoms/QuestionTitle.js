@@ -1,14 +1,13 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Title = styled.a`
-  color:var(--theme-post-title-color);
-  `;
+  color: var(--theme-post-title-color);
+`;
 
 const QuestionTitle = () => {
   return (
     <Title>
-      Angular 10: PrimeNG p-calendar dates get erased on 'Tab' key press
+      Angular 10: PrimeNG p-calendar dates get erased on Tab key press
     </Title>
   );
 };

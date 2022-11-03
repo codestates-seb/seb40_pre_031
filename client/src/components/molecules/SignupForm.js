@@ -12,6 +12,7 @@ import { Input } from '../atoms/SignupInput';
 import SignupRecaptcha from '../atoms/SignupRecaptcha';
 import useInput from '../../hooks/useInput';
 import { authApi } from '../../api/apis';
+
 const color = ['gray', 'black'];
 
 // 회원가입 작성하는 곳
@@ -99,5 +100,4 @@ const Signinput = () => {
     </SignupLogincontainerBox>
   );
 };
-
 export default Signinput;

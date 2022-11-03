@@ -23,7 +23,7 @@ const QuestionSummaryContent = () => {
       <QuestionTitle />
       <QuestionContent>
         I have a p-dialog modal with Date fields (using p-calendar). When I
-        enter dates into them manually and press key, the dates get erased.
+        enter dates into them manually and press Tab key, the dates get erased.
         Please let me
       </QuestionContent>
       <QuestionUser />
