@@ -1,7 +1,5 @@
 package com.codestates.question.controller;
 
-import java.util.UUID;
-
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
@@ -72,14 +70,12 @@ public class QuestionController {
 	public ResponseEntity<ResponseSpecificQuestionDto> getQuestion(
 		@PathVariable("question_id") @Positive Long questionId) {
 		Question question = questionService.findQuestion(questionId);
-
-		User user = new User();
-		user.setEmail(UUID.randomUUID() + "cheese@cat.com");
-		user.setPassword("123~");
-		user.setDisplayName("cheese");
+		User user = userService.findMember(1L);
 
 		VoteStatus voteStatus = questionService.checkUserVoteStatus(question, user);
 		ResponseSpecificQuestionDto response = mapper.questionToResponsePickOneDto(question, voteStatus);
+
+		questionService.updateView(questionId);
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
