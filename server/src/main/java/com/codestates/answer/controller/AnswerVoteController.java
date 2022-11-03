@@ -28,7 +28,6 @@ public class AnswerVoteController {
 	@PostMapping("/up")
 	public ResponseEntity postUpVote(@Positive @PathVariable(name = "answer_id") Long answerId) {
 		AnswerVote answerVote = buildVote(answerId, 1L, VoteStatus.UP);
-
 		answerVoteService.updateStatusOrCreateVoteIfNotExist(answerVote);
 
 		return ResponseEntity.ok().build();
@@ -37,7 +36,6 @@ public class AnswerVoteController {
 	@DeleteMapping("/up")
 	public ResponseEntity deleteUpVote(@Positive @PathVariable(name = "answer_id") Long answerId) {
 		AnswerVote answerVote = buildVote(answerId, 1L, VoteStatus.UP);
-
 		answerVoteService.deleteAnswerVote(answerVote);
 
 		return ResponseEntity.ok().build();
@@ -46,7 +44,6 @@ public class AnswerVoteController {
 	@PostMapping("/down")
 	public ResponseEntity postDownVote(@Positive @PathVariable(name = "answer_id") Long answerId) {
 		AnswerVote answerVote = buildVote(answerId, 1L, VoteStatus.DOWN);
-
 		answerVoteService.updateStatusOrCreateVoteIfNotExist(answerVote);
 
 		return ResponseEntity.ok().build();
@@ -55,7 +52,6 @@ public class AnswerVoteController {
 	@DeleteMapping("/down")
 	public ResponseEntity deleteDownVote(@Positive @PathVariable(name = "answer_id") Long answerId) {
 		AnswerVote answerVote = buildVote(answerId, 1L, VoteStatus.DOWN);
-
 		answerVoteService.deleteAnswerVote(answerVote);
 
 		return ResponseEntity.ok().build();
