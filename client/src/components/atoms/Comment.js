@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Commentitem = styled.div`
+const Commentitem = styled.li`
   width: 641px;
   height: 32px;
   padding: 6px;

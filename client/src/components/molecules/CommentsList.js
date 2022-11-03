@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Comment from '../atoms/Comment';
-const CommentsBox = styled.div`
+const CommentsBox = styled.ul`
   box-sizing: border-box;
   margin-top: 5px;
   margin-bottom: 5px;
