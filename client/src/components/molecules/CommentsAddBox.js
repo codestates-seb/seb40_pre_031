@@ -4,6 +4,7 @@ import AddCommentButton from '../atoms/AddCommentButton';
 
 const CommentFoam = styled.div`
   display: flex;
+  margin-top: 20px;
 `;
 const CommentPost = styled.div`
   display: flex;

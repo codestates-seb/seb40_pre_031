@@ -5,9 +5,9 @@ import CommentsList from '../molecules/CommentsList';
 
 const CommentsBox = styled.div`
   background: var(--white);
-  margin: 20px 0;
-  width: 727px;
-  padding-left: 52px;
+  width: 730px;
+  padding-left: 88px;
+  padding-bottom: 20px;
   border-top: 1px solid var(--black-075);
   border-bottom: 1px solid var(--black-075);
 `;

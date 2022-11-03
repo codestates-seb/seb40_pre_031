@@ -7,6 +7,8 @@ const PostAnswer = styled.div`
   background: var(--white);
   display: flex;
   flex-direction: column;
+  padding-left: 88px;
+  margin-bottom: 20px;
   width: 727px;
   height: 100%;
   gap: 4px;
