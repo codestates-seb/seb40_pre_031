@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import styled from 'styled-components';
 import AddCommentButton from '../atoms/AddCommentButton';
 
@@ -8,10 +9,6 @@ const CommentPost = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
-  button {
-    width: 100px;
-    height: ;
-  }
 `;
 const CommentText = styled.div`
   width: 500px;
@@ -21,18 +18,19 @@ const CommentText = styled.div`
     height: 100%;
   }
 `;
-function CommentsAddBox() {
+const CommentsAddBox = forwardRef(({ onClick }, ref) => {
   return (
     <CommentFoam>
       <CommentPost>
         <CommentText>
-          <textarea></textarea>
+          <textarea ref={ref}></textarea>
         </CommentText>
-        {/* <button>Add Comment</button> */}
-        <AddCommentButton />
+        <AddCommentButton onClick={onClick} />
       </CommentPost>
     </CommentFoam>
   );
-}
+});
+
+CommentsAddBox.displayName = 'CommentsAddbox';
 
 export default CommentsAddBox;

@@ -7,6 +7,7 @@ const Commentitem = styled.div`
   font-size: 13px;
   display: flex;
   gap: 5px;
+  border-bottom: 1px solid var(--black-075);
   div {
     span {
       color: var(--blue);
@@ -17,14 +18,14 @@ const Commentitem = styled.div`
   }
 `;
 
-function Comment() {
+function Comment({ content, id, time }) {
   return (
     <Commentitem>
-      <span>what is error/question her?</span>
+      <span>{content}</span>
       <div>
-        - <span>userName</span>
+        - <span>{id}</span>
       </div>
-      <span className="time">Time</span>
+      <span className="time">{time}</span>
     </Commentitem>
   );
 }
