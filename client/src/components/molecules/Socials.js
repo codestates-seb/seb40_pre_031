@@ -1,4 +1,4 @@
-import { Socialbutton } from '../atoms/Socialbutton';
+import { Socialbutton } from '../atoms/SocialButton';
 import { SiNaver } from 'react-icons/si';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';

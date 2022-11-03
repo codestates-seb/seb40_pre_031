@@ -9,11 +9,17 @@ const SignupLogincontainerBox = styled.form`
   margin: 20px 0 24px 0;
   border-radius: 5px;
   background-color: white;
+<<<<<<< HEAD
+  box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
+    0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
 `;
 const SignupRobotBox = styled.div`
-  width: 268px;
+  weight: 268px;
   height: 160px;
   background-color: rgb(241 242 243);
+  border-radius: 5px;
+  padding: 10px 0 0 55px;
+  border: ${({ ischecked }) => (ischecked ? null : 'solid 1px red')};
 `;
 const SignupinfoBox = styled.div`
   width: 410px;

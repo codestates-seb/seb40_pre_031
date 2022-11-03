@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Signupinfo from '../organism/Signupinfo';
-import Signupsubmit from '../organism/Signupsubmit';
+import Signupinfo from '../organism/SignupInfo';
+import Signupsubmit from '../organism/SignupSubmit';
 
 //회원가입 페이지
 

@@ -1,6 +1,6 @@
 import LoginForm from '../molecules/LoginForm';
 import { LoginStackoverflow } from '../atoms/SvgComponents';
-import { SignupinfoPassword } from '../atoms/SignupinfoPassword';
+import { SignupinfoPassword } from '../atoms/SignupInfoPassword';
 import Socials from '../molecules/Socials';
 import styled from 'styled-components';
 
@@ -26,10 +26,7 @@ const Loginsubmit = () => {
       <Socials />
       <LoginForm />
       <SignupinfoPassword margin="rightmedium">
-        Don’t have an account?
-        {/* a 링크에 href 달아주시면 됩니당 */}
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a>Sign up</a>
+        Don’t have an account? <a href=" ">Sign up</a>
       </SignupinfoPassword>
     </LoginsubmitBox>
   );
