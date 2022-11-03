@@ -4,14 +4,15 @@ import useInput from '../../hooks/useInput.js';
 import { Socialbutton } from '../atoms/SocialButton.js';
 import { SignupinfoPassword } from '../atoms/SignupInfoPassword.js';
 import { useEffect } from 'react';
-// import { loginAction } from '../../actions';
-// import { useDispatch } from 'react-redux';
+import { authApi } from '../../api/apis.js';
+import { loginAction } from '../../actions';
+import { useDispatch } from 'react-redux';
 
 //로그인 정보 작성하는곳
 const LoginForm = () => {
   const [email, bindEmail] = useInput('', true, 'text', 'Email');
   const [password, bindPassword] = useInput('', true, 'password', 'Password');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onClick = () => {
     password !== '' ? bindPassword.setPass(true) : bindPassword.setPass(false);
@@ -22,12 +23,11 @@ const LoginForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    //서버와 통신
-    // login(email, password)
-    //   .then((result) => {
-    //     dispatch(loginAction());
-    //   })
-    //   .catch((err) => console.log(err));
+
+    //로그인요청
+    authApi
+      .getLogin(email, password)
+      .then((res) => dispatch(loginAction(res.data)));
   };
 
   useEffect(() => {

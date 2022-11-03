@@ -1,6 +1,6 @@
 import LoginForm from '../molecules/LoginForm';
 import { LoginStackoverflow } from '../atoms/SvgComponents';
-import { SignupinfoPassword } from '../atoms/SignupinfoPassword';
+import { SignupinfoPassword } from '../atoms/SignupInfoPassword';
 import Socials from '../molecules/Socials';
 import styled from 'styled-components';
 

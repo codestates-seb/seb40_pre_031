@@ -30,7 +30,23 @@ customAxios.interceptors.response.use(
 
 export default customAxios;
 
-export const authApi = {};
+export const authApi = {
+  postSignUp: async (name, email, password) => {
+    const body = { name, email, password };
+    console.log(body);
+    const result = await customAxios.post(`/signup`, body);
+    return result;
+  },
+  getLogin: async (email, password) => {
+    const body = { email, password };
+    // const result = await customAxios.get('/login',body);
+    const result = await customAxios.get(
+      `/signup?email=${email}&password=${password}`,
+      body
+    );
+    return result;
+  },
+};
 
 export const questionApi = {};
 

@@ -11,8 +11,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Input } from '../atoms/SignupInput';
 import SignupRecaptcha from '../atoms/SignupRecaptcha';
 import useInput from '../../hooks/useInput';
-import { signup } from '../../apis/Signup.js';
-
+import { authApi } from '../../api/apis';
 const color = ['gray', 'black'];
 
 // 회원가입 작성하는 곳
@@ -39,7 +38,6 @@ const Signinput = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    //서버와통신
 
     if (
       name &&
@@ -49,12 +47,10 @@ const Signinput = () => {
     ) {
       setIschecked('no');
       captchaRef.current.reset();
+      //서버와통신
+      authApi.postSignUp(name, email, password);
 
-      signup(name, email, password)
-        .then((result) => console.log(result))
-        .catch((err) => console.log(err));
-
-      // 아이디 이메일 중복이면 처리해야함.
+      // 아이디 이메일 중복이면 처리해야함. -> useSelector와 useEffect활용해서 하면 될듯
     }
   };
   useEffect(() => {
