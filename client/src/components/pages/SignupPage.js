@@ -11,6 +11,8 @@ const SignupPageForm = styled.div`
   @media screen and (max-width: 815px) {
     flex-direction: column;
   }
+  background-color: var(--black-050);
+  padding: 40px 0 60px 0;
 `;
 
 const SignupPage = () => {
