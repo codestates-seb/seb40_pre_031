@@ -40,9 +40,9 @@ public class CommentController {
 		@Valid @RequestBody CommentPostDto commentPostDto) {
 		Comment comment = Comment.builder()
 			.content(commentPostDto.getContent())
-			.answer(answerService.findVerifiedAnswer(answerId))
-			.user(userService.findMember(1L))
 			.build();
+		comment.setAnswer(answerService.findVerifiedAnswer(answerId));
+		comment.setUser(userService.findMember(1L));
 
 		commentService.createComment(comment);
 
