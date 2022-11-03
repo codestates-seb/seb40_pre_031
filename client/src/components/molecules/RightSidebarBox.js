@@ -45,7 +45,7 @@ const RightSidebarBox = () => {
 
   return (
     <>
-      {/* 1. Google */}
+      {/* 박스1 Google */}
       <SidebarJoinBox>
         <div>
           <BoxHeader>
@@ -68,7 +68,7 @@ const RightSidebarBox = () => {
         </div>
       </SidebarJoinBox>
 
-      {/* 2. Intel */}
+      {/* 박스2 Intel */}
       <SidebarJoinBox>
         <div>
           <BoxHeader>
@@ -92,7 +92,7 @@ const RightSidebarBox = () => {
         </div>
       </SidebarJoinBox>
 
-      {/* 3. Twilio */}
+      {/* 박스3 Twilio */}
       <SidebarJoinBox>
         <div>
           <BoxHeader>

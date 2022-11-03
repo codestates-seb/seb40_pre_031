@@ -47,7 +47,9 @@ const ButtonB = styled.div`
 `;
 
 const RightSidebarBtn = () => {
+  //Join 버튼을 눌렀을 때와 누르지 않았을 때 달라지는 스타일
   const [BtnChanged, setBtnChanged] = useState(false);
+  //Join 버튼을 눌렀을 때와 누르지 않았을 때 달라지는 글자
   const [IsJoined, setIsJoined] = useState(false);
 
   return (
