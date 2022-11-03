@@ -57,7 +57,8 @@ public class UserService {
 			throw new BusinessLogicException(ExceptionCode.OUT_OF_CONTROL);
 		} else {
 			// 수정하기
-			Optional.ofNullable(user.getPassword()).ifPresent(password -> findUser.setPassword(password));
+			Optional.ofNullable(user.getPassword()).ifPresent(password ->
+				findUser.setPassword(passwordEncoder.encode(password)));
 			Optional.ofNullable(user.getDisplayName()).ifPresent(displayName -> findUser.setDisplayName(displayName));
 
 			// 상태 수정 -> ACTIVE, DORMANT 둘 중 하나여야 함.
