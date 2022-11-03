@@ -9,7 +9,6 @@ const SignupLogincontainerBox = styled.form`
   margin: 20px 0 24px 0;
   border-radius: 5px;
   background-color: white;
-<<<<<<< HEAD
   box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
     0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
 `;
