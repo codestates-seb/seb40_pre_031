@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SignupinputBox } from './Signupcontainer';
+import { SignupinputBox } from './SignupContainer';
 import { SignupExclamation } from './SvgComponents';
 
 // input 과 label을 묶어 만든 컴포넌트

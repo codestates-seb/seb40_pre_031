@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
     --blue: hsl(206,100%,40%);
     --powder: hsl(205,46%,92%);
     --red: hsl(358,62%,52%);
+    --black-010: hsl(180,8%,97%)
     --black-025: hsl(210,8%,97.5%);
     --black-050: hsl(210,8%,95%);
     --black-075: hsl(210,8%,90%);
@@ -66,6 +67,7 @@ const GlobalStyle = createGlobalStyle`
     --blue-400: hsl(206,85%,57.5%);
     --blue-500: hsl(206,100%,52%);
     --blue-600: hsl(206,100%,40%);
+    --blue-650: hsl(208,100%,97%);
     --blue-700: hsl(209,100%,37.5%);
     --blue-800: hsl(209,100%,32%);
     --blue-900: hsl(209,100%,26%);
