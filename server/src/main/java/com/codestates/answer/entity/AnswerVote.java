@@ -14,6 +14,7 @@ import com.codestates.global.auditing.BaseTime;
 import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,6 +41,13 @@ public class AnswerVote extends BaseTime {
 	@ManyToOne
 	@JoinColumn(name = "answer_id")
 	private Answer answer;
+
+	@Builder
+	public AnswerVote(VoteStatus status, User user, Answer answer) {
+		this.status = status;
+		this.user = user;
+		this.answer = answer;
+	}
 
 	public void setUser(User user) {
 		this.user = user;

@@ -14,15 +14,15 @@ import lombok.RequiredArgsConstructor;
 public class AnswerService {
 	private final AnswerRepository answerRepository;
 
-	public void createAnswer(Answer answer) {
-		answerRepository.save(answer);
+	public Answer createAnswer(Answer answer) {
+		return answerRepository.save(answer);
 	}
 
-	public void updateAnswer(Answer answer) {
+	public Answer updateAnswer(Answer answer) {
 		Answer found = findVerifiedAnswer(answer.getId());
 		found.setContent(answer.getContent());
 
-		answerRepository.save(found);
+		return answerRepository.save(found);
 	}
 
 	public void deleteAnswer(Long answerId) {

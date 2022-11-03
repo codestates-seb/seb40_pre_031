@@ -2,13 +2,12 @@ package com.codestates.answer.service;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import com.codestates.answer.entity.Answer;
 import com.codestates.answer.entity.AnswerVote;
 import com.codestates.answer.repository.AnswerVoteRepository;
 import com.codestates.status.VoteStatus;
-import com.codestates.user.entity.User;
 import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,31 +16,33 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AnswerVoteService {
 	private final AnswerVoteRepository answerVoteRepository;
-	private final AnswerService answerService;
-	private final UserService userService;
 
-	public void updateStatusOrCreateVoteIfNotExist(Long answerId, Long userId, VoteStatus voteStatus) {
-		Optional<AnswerVote> found = answerVoteRepository.findByAnswerIdAndUserId(answerId, userId);
-		found.ifPresentOrElse(
-			answerVote -> answerVote.setStatus(voteStatus),
-			() -> createAnswerVote(answerId, userId, voteStatus)
+	public void updateStatusOrCreateVoteIfNotExist(AnswerVote answerVote) {
+		Optional<AnswerVote> foundOrNull = findOneByExample(answerVote);
+
+		foundOrNull.ifPresentOrElse(
+			found -> updateAnswerVoteStatus(found, answerVote.getStatus()),
+			() -> createAnswerVote(answerVote)
 		);
 	}
 
-	public void createAnswerVote(Long answerId, Long userId, VoteStatus voteStatus) {
-		Answer answer = answerService.findVerifiedAnswer(answerId);
-		User user = userService.findMember(userId);
-
-		AnswerVote answerVote = new AnswerVote();
-		answerVote.setStatus(voteStatus);
-		answerVote.setUser(user);
-		answerVote.setAnswer(answer);
-
+	public void createAnswerVote(AnswerVote answerVote) {
 		answerVoteRepository.save(answerVote);
 	}
 
-	public void deleteAnswerVote(Long answerId, Long userId) {
-		Optional<AnswerVote> answerVote = answerVoteRepository.findByAnswerIdAndUserId(answerId, userId);
-		answerVote.ifPresent(answerVoteRepository::delete);
+	public void updateAnswerVoteStatus(AnswerVote answerVote, VoteStatus status) {
+		answerVote.setStatus(status);
+		answerVoteRepository.save(answerVote);
+	}
+
+	public void deleteAnswerVote(AnswerVote answerVote) {
+		Optional<AnswerVote> foundOrNull = findOneByExample(answerVote);
+		foundOrNull.ifPresent(answerVoteRepository::delete);
+	}
+
+	public Optional<AnswerVote> findOneByExample(AnswerVote answerVote) {
+		return answerVoteRepository.findOne(
+			Example.of(answerVote)
+		);
 	}
 }
