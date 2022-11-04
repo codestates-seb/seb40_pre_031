@@ -37,9 +37,7 @@ export const QuestionDetailPage = ({ question_id }) => {
         {/* comment 컴포넌트와 comment작성컴포넌트를 추가해야함. */}
         {/* 맨아래 답변 컴포넌트도 추가해야함 */}
         <QuestionComments></QuestionComments>
-        <div>
-          <PostAnswerBox></PostAnswerBox>
-        </div>
+        <PostAnswerBox></PostAnswerBox>
       </div>
     </QuestionDetailPage>
   );
