@@ -5,13 +5,13 @@ const Container = styled.div`
   align-items: center;
   background: var(--white);
   display: flex;
-  height: 100%;
-  top: 0px;
+  height: 100vh;
+  top: 54px;
   position: sticky;
-  margin-top: 5px;
-  padding-top: 24px;
+  margin-top: 3px;
   width: 164px;
   z-index: 10;
+  border-right: 1px solid var(--black-075);
 `;
 // 왼쪽 사이드바를 재활용하기 위한 Organism
 

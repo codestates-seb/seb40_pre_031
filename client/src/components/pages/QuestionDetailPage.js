@@ -57,9 +57,8 @@ const QuestionDetailPage = ({ question_id }) => {
               </>
             ))
           : null}
-        <div>
           <PostAnswerBox></PostAnswerBox>
-        </div>
+
       </div>
     </QuestionDetailPage>
   ) : null;
