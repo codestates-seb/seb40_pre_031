@@ -21,6 +21,7 @@ const HeaderBox = styled.div`
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
   position: sticky; //항상 헤더 상단 고정
   padding: 0px 50px;
+  z-index: 99;
 `;
 
 const AboutUrl = 'https://stackoverflow.co/';
