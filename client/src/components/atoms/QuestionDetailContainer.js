@@ -53,13 +53,15 @@ const QuestionDetailUserProfileBox = styled.div`
   .UserProfile {
     font-size: 15px;
     display: flex;
+    text-align: center;
     margin-top: 10px;
     color: var(--theme-link-color);
     div {
       width: 32px;
       height: 32px;
-      border: solid 1px red;
       margin-right: 10px;
+      border-radius: 3px;
+      background-color: orange;
     }
   }
 `;
