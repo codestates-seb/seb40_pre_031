@@ -1,0 +1,279 @@
+{
+  "questions": [
+    {
+      "questionId": 1,
+      "userId": 1,
+      "title": "Transform scala to Spark",
+      "content": "I have to transform the code below into spark, But I dont understand what exactly Seq perform in this code ?\nval tempFactDF = unionTempDF.join(fact.select(\"x\",\"y\",\"d\",&...",
+      "votes": 0,
+      "answers": 1,
+      "views": 6,
+      "displayName": "Hema Jayachandran",
+      "createdAt": "6 secs ago",
+      "answerList": [
+        {
+          "questionId": 1,
+          "answerId": 1,
+          "answerContent": "From Hours of research if finally found that. this is an issue due to jcenter is down.\nAccording to [official documentation][1] the jcenter depricated and Bintray/JCenter users should start migrating to a new hosting solution.\nthe solution for this is to remove jcenter from build file and replace it with\nmavenCentral() // <- add it\n\nfor react-native users jcenter() may be exists in some depedency that you installed recently. to check for jcenter open your project in android-studio to check all build.gradle files easliy.\nAnother solution for this is that disconnect your system from internet and build your project. after you lanuc your project reconnect your system to internet.\n[1]: https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/",
+          "answerVotes": 10,
+          "answerDisplayName": "Engr.Aftab Ufaq",
+          "commentList": [
+            {
+              "commentId": 1,
+              "answerId": 1,
+              "useId": 1,
+              "commentContent": "Facing similar issue, didn't work for me.",
+              "commentDisplayName": "Bello Damilola",
+              "commentCreatedAt": "Oct 31 at 13:43"
+            },
+            {
+              "commentId": 2,
+              "answerId": 1,
+              "useId": 2,
+              "commentContent": "please check the answer i have edited. its worked fine for me after replacing in all the dependencies.",
+              "commentDisplayName": "Engr.Aftab Ufaq",
+              "commentCreatedAt": "Oct 31 at 13:57"
+            }
+          ]
+        },
+        {
+          "questionId": 1,
+          "answerId": 2,
+          "answerContent": "jcenter is down so until it comes online a temporary solution is just to disconnect from the internet and build your project, once the build is complete and the app launches you can connect back.",
+          "answerVotes": 9,
+          "answerDisplayName": "Vishal",
+          "commentList": [
+            {
+              "commentId": 3,
+              "answerId": 2,
+              "useId": 3,
+              "commentContent": "Yes true, I had to replace it in all dependencies. Thanks.",
+              "commentDisplayName": "Bello Damilola",
+              "commentCreatedAt": "yesterday"
+            },
+            {
+              "commentId": 4,
+              "answerId": 2,
+              "useId": 4,
+              "commentContent": "Still doesn't work",
+              "commentDisplayName": "M D P",
+              "commentCreatedAt": "yesterday"
+            }
+          ]
+        },
+        {
+          "questionId": 1,
+          "answerId": 3,
+          "answerContent": "The problem comes from the shutdown of jcenter. Event if you remove the repository for your app, you'll get errors if some of your declare jcenter().\nThe best way would be to have PRs merged and version update of those dependencies, but that might take a while.\nIn the meantime you can add the following in your android/build.gradle :\nallprojects {\n    repositories {\n        all { ArtifactRepository repo ->\n            if (repo instanceof MavenArtifactRepository) {\n                if (repo.url.toString().startsWith('https://jcenter.bintray.com/')) {\n                    remove repo\n                    add(mavenCentral())\n                }\n            }\n        }\n...\n\nThis fixed all my builds.",
+          "answerVotes": 6,
+          "answerDisplayName": "PhilippeAuriach",
+          "commentList": [
+            {
+              "commentId": 5,
+              "answerId": 3,
+              "useId": 5,
+              "commentContent": "i think u have miss some thing. open ur project in android studio and check all the bulild files",
+              "commentDisplayName": "Engr.Aftab Ufaq",
+              "commentCreatedAt": "Oct 31 at 13:36"
+            },
+            {
+              "commentId": 6,
+              "answerId": 3,
+              "useId": 6,
+              "commentContent": "need to check if this works",
+              "commentDisplayName": "ghostCoder",
+              "commentCreatedAt": "yesterday"
+            },
+            {
+              "commentId": 7,
+              "answerId": 3,
+              "useId": 7,
+              "commentContent": "@ghostCoder it worked for me.",
+              "commentDisplayName": "Vishal",
+              "commentCreatedAt": "yesterday"
+            }
+          ]
+        },
+        {
+          "questionId": 1,
+          "answerId": 4,
+          "answerContent": "The solution from @PhilippeAuriach is fixing it for react-native !\nI Added this :\nallprojects {\nrepositories {\n    all { ArtifactRepository repo ->\n        if (repo instanceof MavenArtifactRepository) {\n            if (repo.url.toString().startsWith('https://jcenter.bintray.com/')) {\n                remove repo\n                add(mavenCentral())\n            }\n        }\n    }\n\nTo my android/build.gradle and worked fine after hours of research !\n(Thanks @PhilippeAuriach)",
+          "answerVotes": 5,
+          "answerDisplayName": "Salah Youmir",
+          "commentList": [
+            {
+              "commentId": 8,
+              "answerId": 4,
+              "useId": 8,
+              "commentContent": "are you sure this belongs to android/app/build.gradle and not android/build.gradle?",
+              "commentDisplayName": "Fi Li Ppo",
+              "commentCreatedAt": "yesterday"
+            },
+            {
+              "commentId": 9,
+              "answerId": 4,
+              "useId": 9,
+              "commentContent": "you're right sorry ! updated",
+              "commentDisplayName": "PhilippeAuriach",
+              "commentCreatedAt": "yesterday"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "questionId": 2,
+      "userId": 2,
+      "title": "Getting LinkedIn access token through http request on node.js server",
+      "content": "I am following the Authorization Code Flow (3-legged OAuth) documentation and I am now at step 3 where I need to use the authorization code in order to recieve an access token from LinkedIn. In the ...",
+      "votes": 2,
+      "answers": 1,
+      "views": 123,
+      "displayName": "Braque adendran",
+      "createdAt": "7 secs ago"
+    },
+    {
+      "questionId": 3,
+      "userId": 3,
+      "title": "Removing leading 0 from third column",
+      "content": "I'm trying to remove the first 0 from the third column in my CSV file\ntel.csv -\n test,01test,01234567890\n test,01test,09876054321\n\nI have been trying to use the following with no luck -\ncat tel.csv | ...",
+      "votes": 0,
+      "answers": 2,
+      "views": 20,
+      "displayName": "markp-fuso",
+      "createdAt": "11 secs ago"
+    },
+    {
+      "questionId": 4,
+      "userId": 4,
+      "title": "Coldfusion 2021 loads white pages for cfm files",
+      "content": "Here's some small info about the server:\nWindows Server 2019\nColdfusion 2021\nIIS 10\n<!--- Dump out the server scope. --->\n<cfdump var=\"#SERVER#\" />\n\n<!--- Store the ColdFusion ...",
+      "votes": 1,
+      "answers": 1,
+      "views": 26,
+      "displayName": "Daemach",
+      "createdAt": "12 secs ago"
+    },
+    {
+      "questionId": 5,
+      "userId": 5,
+      "title": "How to disable TLS V1.0 and TLS V1.1 in AWS DocumentDB?",
+      "content": "I'm Trying to configure TLS for an AWS DocumentDB Cluster tuning some parameters.\nIn the parameters reference I found that TLS can be enabled or Disabled, but I couldn't find something similar to the ...",
+      "votes": -1,
+      "answers": 0,
+      "views": 8,
+      "displayName": "Marko E",
+      "createdAt": "13 secs ago"
+    },
+    {
+      "questionId": 6,
+      "userId": 6,
+      "title": "Copy html to clipboard (Angular)",
+      "content": "Is there a way to copy html to clipboard in Angular?\n\nI'm using ngx-clipboard, and trying to format the copied text (i.e., use bold, bullets)\n\n.ts\n\nconstructor(private _clipboardService: ...",
+      "votes": 5,
+      "answers": 5,
+      "views": "2k",
+      "displayName": "Jean.R",
+      "createdAt": "18 secs ago"
+    },
+    {
+      "questionId": 7,
+      "userId": 7,
+      "title": "How can i get all information from <tr> in which django checkbox is active",
+      "content": "I have such a table on my website that is filled with data:\n     <table\n    id=\"table\"\n    data-height=\"540\"\n    class=\"table table-dark\">\n        <thead>\n    ...",
+      "votes": 0,
+      "answers": 0,
+      "views": 5,
+      "displayName": "Ivan Mishakivskiy",
+      "createdAt": "18 secs ago"
+    },
+    {
+      "questionId": 8,
+      "userId": 8,
+      "title": "Need help getting input to return and print if empty from a form",
+      "content": "I'm trying to get my code to print in the console display if my user ID contains the right parameters, and my first and last name inputs to print invalid first or last name if left empty, but it keeps ...",
+      "votes": 0,
+      "answers": 0,
+      "views": 11,
+      "displayName": "adiga",
+      "createdAt": "23 secs ago"
+    },
+    {
+      "questionId": 9,
+      "userId": 9,
+      "title": "Problems using ClickHouse",
+      "content": "We are revamping our existing system, which uses MYSQL DB to deal with the following type of data.\ntransaction and order related data\ncustomers information\nproducts information\nWe need to query on ...",
+      "votes": 0,
+      "answers": 2,
+      "views": "2k",
+      "displayName": "peregrine",
+      "createdAt": "24 secs ago"
+    },
+    {
+      "questionId": 10,
+      "userId": 10,
+      "title": "Tailwind font-weight doesn't work when using custom font",
+      "content": "I am using Tailwind v3.2.0 in a Vue3 project.\nI changed the font family in the tailwind's configuration file :\n  theme: {\n    extend: {\n      fontFamily: {\n        sans: ['Poppins', ...defaultTheme....",
+      "votes": 0,
+      "answers": 0,
+      "views": 2,
+      "displayName": "Matt",
+      "createdAt": "27 secs ago"
+    },
+    {
+      "questionId": 11,
+      "userId": 11,
+      "title": "Strapi database error SyntaxError: Unexpected token '.' targetAttribute?.target === uid",
+      "content": "I've update my Strapi version from 4.3.6 to 4.4.5 and got this error when I start appliation with production environment with command npm run start\nThis error originated either by throwing inside of ...",
+      "votes": 0,
+      "answers": 0,
+      "views": 3,
+      "displayName": "Kirill Novikov",
+      "createdAt": "38 secs ago"
+    },
+    {
+      "questionId": 12,
+      "userId": 12,
+      "title": "RuntimeError: 0D or 1D target tensor expected, multi-target not supported, trying to train an MLP with pytorch",
+      "content": "Im getting RuntimeError: 0D or 1D target tensor expected, multi-target not supported\nIm trying to train a multiclass classifier but I dont know where to change the dimentions\n\nmodel_hyperparameters = {...",
+      "votes": 0,
+      "answers": 0,
+      "views": 2,
+      "displayName": "Meche Marquez",
+      "createdAt": "39 secs ago"
+    },
+    {
+      "questionId": 13,
+      "userId": 13,
+      "title": "Passing an image as an argument to a function in python",
+      "content": "How can I create a function that takes an image file (not image filename) in python. Simply, like the following:\n\nFaceController.py\n\nimport cv2\nfrom Computer_Vision import Face_Detector as FD\ndef ...",
+      "votes": 3,
+      "answers": 2,
+      "views": "9k",
+      "displayName": "Vince Hall",
+      "createdAt": "40 secs ago"
+    },
+    {
+      "questionId": 14,
+      "userId": 14,
+      "title": "Dropdown List turning black when selecting an option",
+      "content": "I'm using Wordpress and i built a form with a little script who changes the content of a dropdownlist when the user click on one of the 3 radio buttons availables.\nI downloaded a plug-in who permits ...",
+      "votes": 0,
+      "answers": 0,
+      "views": 2,
+      "displayName": "nono72i",
+      "createdAt": "42 secs ago"
+    },
+    {
+      "questionId": 15,
+      "userId": 15,
+      "title": "How to merge two dataframe and assign NaN to missing values",
+      "content": "I have two dataframe namely df and df2. Both has around 30M rows so its pretty large.\nThe df1 has 4 rows:\nA     B    C     where df2 has two rows A D.\nThe column A is mostly same but is unordered and ...",
+      "votes": 0,
+      "answers": 0,
+      "views": 9,
+      "displayName": "Ivette Gonzalez",
+      "createdAt": "49 secs ago"
+    }
+  ]
+}
