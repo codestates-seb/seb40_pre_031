@@ -1,6 +1,24 @@
 import styled from 'styled-components';
 import Avartar from '../atoms/Avartar';
 
+const QuestionSummaryContent = ({ title, content, displayname, createdAt }) => {
+  return (
+    <QuestionSummaryContenLayout>
+      <h3>
+        <Title>{title}</Title>
+      </h3>
+      <QuestionContent>{content}</QuestionContent>
+      <UserBox>
+        <Avartar />
+        <Username>{displayname}</Username>
+        <span>{createdAt}</span>
+      </UserBox>
+    </QuestionSummaryContenLayout>
+  );
+};
+
+export default QuestionSummaryContent;
+
 const QuestionSummaryContenLayout = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,21 +68,3 @@ const Username = styled.a`
   font-size: 12px;
   margin: 0 5px;
 `;
-
-const QuestionSummaryContent = ({ title, content, displayname, createdAt }) => {
-  return (
-    <QuestionSummaryContenLayout>
-      <h3>
-        <Title>{title}</Title>
-      </h3>
-      <QuestionContent>{content}</QuestionContent>
-      <UserBox>
-        <Avartar />
-        <Username>{displayname}</Username>
-        <span>{createdAt}</span>
-      </UserBox>
-    </QuestionSummaryContenLayout>
-  );
-};
-
-export default QuestionSummaryContent;

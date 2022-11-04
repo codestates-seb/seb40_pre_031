@@ -11,6 +11,7 @@ const QuestionSummary = ({ votes, answers, views }) => {
 };
 
 export default QuestionSummary;
+
 const SummaryLayout = styled.div`
   display: flex;
   flex-direction: column;

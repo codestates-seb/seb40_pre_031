@@ -2,12 +2,6 @@ import styled from 'styled-components';
 import QuestionSummary from '../molecules/QuestionSummary';
 import QuestionSummaryContent from '../molecules/QuestionSummaryContent';
 
-const QuestionListLayout = styled.div`
-  display: flex;
-  padding: 12px;
-  border-bottom: 1px solid var(--bc-light);
-`;
-
 const QuestionList = ({ question }) => {
   return (
     <QuestionListLayout>
@@ -27,3 +21,9 @@ const QuestionList = ({ question }) => {
 };
 
 export default QuestionList;
+
+const QuestionListLayout = styled.div`
+  display: flex;
+  padding: 12px;
+  border-bottom: 1px solid var(--bc-light);
+`;
