@@ -129,7 +129,7 @@ java -version
 - https://www.azul.com/downloads/?version=java-11-lts&os=windows&architecture=x86-64-bit&package=jdk#download-openjdk
 
 ---
-## 6. H2 데이터베이스 접근방법
+## 5. H2 데이터베이스 접근방법
 
 1️⃣ 서버 애플리케이션 실행
 - jar 파일을 실행시켜주세요!
