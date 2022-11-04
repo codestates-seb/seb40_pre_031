@@ -78,7 +78,9 @@ kill -9 7383
 http://localhost:8080/
 ```
 - 해당 URL에 해당 기능 엔드포인트를 입력하시면 됩니다.
-- 엔드포인트 안내가 필요하다면 [여기](https://documenter.getpostman.com/view/22571048/2s8YKAo4oY#9d1b72f3-8a59-442d-b416-8de3825b7dfa) 를 클릭해주세요.
+- 엔드 포인트가 헷갈리면 아래를 참조해주세요.
+- [포스트맨 문서](https://documenter.getpostman.com/view/22571048/2s8YKAo4oY#9d1b72f3-8a59-442d-b416-8de3825b7dfa) 
+- [노션 페이지](https://www.notion.so/codestates/Docs-fb46178c2c7f4e9d83bfbfd187a4dd60)
 
 ---
 ## 3. 로그인 사용 안내
