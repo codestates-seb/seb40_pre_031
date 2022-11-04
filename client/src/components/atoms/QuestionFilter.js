@@ -1,4 +1,35 @@
 import styled from 'styled-components';
+import { Filter } from './SvgQuestionIcons';
+
+function QuestionFilter() {
+  return (
+    <>
+      <MenuLayout>
+        <a href="/questions?tab=Newest" className="newest">
+          Newest
+        </a>
+        <a href="/questions?tab=Active" className="active">
+          Active
+        </a>
+        <a href="/questions?tab=Bountied" className="bountied">
+          Bountied
+        </a>
+        <a href="/questions?tab=Unanswered" className="unanswered">
+          Unanswered
+        </a>
+        <a href="/questions?tab=More" className="more">
+          More
+        </a>
+      </MenuLayout>
+      <FilterBox>
+        <Filter />
+        Filter
+      </FilterBox>
+    </>
+  );
+}
+
+export default QuestionFilter;
 
 const MenuLayout = styled.div`
   display: flex;
@@ -68,43 +99,3 @@ const FilterBox = styled.button`
     margin-right: 3px;
   }
 `;
-
-function QuestionFilter(props) {
-  return (
-    <>
-      <MenuLayout>
-        <a href="/questions?tab=Newest" className="newest">
-          Newest
-        </a>
-        <a href="/questions?tab=Active" className="active">
-          Active
-        </a>
-        <a href="/questions?tab=Bountied" className="bountied">
-          Bountied
-        </a>
-        <a href="/questions?tab=Unanswered" className="unanswered">
-          Unanswered
-        </a>
-        <a href="/questions?tab=More" className="more">
-          More
-        </a>
-      </MenuLayout>
-      <FilterBox>
-        <svg
-          width={18}
-          height={18}
-          aria-hidden="true"
-          className="svg-icon iconFilter"
-          viewBox="0 0 18 18"
-          fill="var(--theme-button-filled-color)"
-          {...props}
-        >
-          <path d="M2 4h14v2H2V4Zm2 4h10v2H4V8Zm8 4H6v2h6v-2Z" />
-        </svg>
-        Filter
-      </FilterBox>
-    </>
-  );
-}
-
-export default QuestionFilter;
