@@ -13,8 +13,7 @@ import PostAnswerBox from '../molecules/PostAnswerBox';
 const QuestionDetailPage = ({ question_id }) => {
   const [question, setQuestion] = useState(null);
   const [answers, setAnswer] = useState(null);
-  console.log(question);
-  console.log(answers);
+
   useEffect(() => {
     questionDetailApi
       .getQuestionDetail(question_id)
@@ -28,7 +27,7 @@ const QuestionDetailPage = ({ question_id }) => {
 
   const QuestionDetailPage = styled.div`
     display: flex;
-    background-color: rgba(252, 252, 252);
+    background-color: rgba(254, 253, 254);
     padding: 0 0 0 18vw;
     @media screen and (max-width: 1060px) {
       padding: 0px;
@@ -56,7 +55,6 @@ const QuestionDetailPage = ({ question_id }) => {
               </>
             ))
           : null}
-
         <div>
           <PostAnswerBox></PostAnswerBox>
         </div>
