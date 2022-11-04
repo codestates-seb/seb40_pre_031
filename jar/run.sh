@@ -7,7 +7,7 @@ case $1 in
 		echo "Starting $SERVICE_NAME ..."
 		if [ ! -f $PID_PATH_NAME ] 
 		then
-			nohup java -jar $PATH_TO_JAR >> /dev/null &
+			nohup java -jar $PATH_TO_JAR --spring.profiles.active=dev > /dev/null 2>&1 &
 			echo $! > $PID_PATH_NAME
 			echo "$SERVICE_NAME started ..."
 		else
@@ -35,7 +35,7 @@ case $1 in
 			echo "$SERVICE_NAME stopped ..."
 			rm $PID_PATH_NAME
 			echo "$SERVICE_NAME starting ..."
-			nohup java -jar $PATH_TO_JAR >> /dev/null &
+			nohup java -jar $PATH_TO_JAR --spring.profiles.active=dev > /dev/null 2>&1 &
 			echo $! > $PID_PATH_NAME
 			echo "$SERVICE_NAME started ..."
 		else
