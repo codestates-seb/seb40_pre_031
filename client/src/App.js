@@ -7,7 +7,7 @@ import QuestionAsk from './components/pages/QuestionAskPage';
 import LoginPage from './components/pages/LoginPage';
 import SignUp from './components/pages/SignupPage';
 import Footer from './components/templates/FooterTemplate';
-
+import QuestionDetailPage from './components/pages/QuestionDetailPage';
 function App() {
   return (
     <>
@@ -20,6 +20,10 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/questions" element={<Question />} />
           <Route path="/questionask" element={<QuestionAsk />} />
+          <Route
+            path="/QuestionDetailPage"
+            element={<QuestionDetailPage question_id={'9'} />}
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

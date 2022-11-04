@@ -9,38 +9,60 @@ import LeftNav from '../organism/LeftNav';
 import styled from 'styled-components';
 import QuestionComments from '../organism/QuestionComments';
 import PostAnswerBox from '../molecules/PostAnswerBox';
-export const QuestionDetailPage = ({ question_id }) => {
-  const [questionData, setQuestionData] = useState(null);
-  console.log(questionData);
 
+const QuestionDetailPage = ({ question_id }) => {
+  const [question, setQuestion] = useState(null);
+  const [answers, setAnswer] = useState(null);
+  console.log(question);
+  console.log(answers);
   useEffect(() => {
     questionDetailApi
       .getQuestionDetail(question_id)
-      .then((res) => setQuestionData(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        const { answerList, ...tempQuestion } = res.data;
+        setQuestion(tempQuestion);
+        setAnswer(answerList);
+      })
+      .catch(() => console.log('에러~'));
   }, []);
 
   const QuestionDetailPage = styled.div`
     display: flex;
+    background-color: rgba(252, 252, 252);
+    padding: 0 0 0 18vw;
+    @media screen and (max-width: 1060px) {
+      padding: 0px;
+    }
   `;
 
-  return (
+  return question ? (
     <QuestionDetailPage>
       <LeftNav />
       <div>
-        <QuestionDetailDivideTitle></QuestionDetailDivideTitle>
-        <QuestionDetail></QuestionDetail>
+        <QuestionDetailDivideTitle
+          title={question.title}
+        ></QuestionDetailDivideTitle>
+        <QuestionDetail data={question}></QuestionDetail>
         {/* comment 컴포넌트와 comment작성컴포넌트를 추가해야함. */}
         <QuestionDetailDivideLine></QuestionDetailDivideLine>
         {/* 받은 답변 만큼 아래를 map을 돌려서 추가해야함 */}
-        <QuestionDetail></QuestionDetail>
-        {/* comment 컴포넌트와 comment작성컴포넌트를 추가해야함. */}
-        {/* 맨아래 답변 컴포넌트도 추가해야함 */}
-        <QuestionComments></QuestionComments>
+        {answers
+          ? answers.map((answer) => (
+              <>
+                <QuestionDetail data={answer}></QuestionDetail>
+                <QuestionComments
+                  commentList={answer.commentList}
+                ></QuestionComments>
+              </>
+            ))
+          : null}
+
         <div>
           <PostAnswerBox></PostAnswerBox>
         </div>
       </div>
     </QuestionDetailPage>
-  );
+  ) : null;
 };
+
+export default QuestionDetailPage;

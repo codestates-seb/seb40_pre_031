@@ -90,7 +90,8 @@ export const commentApi = {
 
 export const questionDetailApi = {
   getQuestionDetail: async (question_id) => {
-    const data = await customAxios.get(`/questions/${question_id}`);
+    // const data = await customAxios.get(`/questions/${question_id}`);
+    const data = await customAxios.get(`/questions?questionId=${question_id}`);
     return data;
   },
 };
