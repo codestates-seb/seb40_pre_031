@@ -8,7 +8,7 @@ const Container = styled.div`
   height: 100vh;
   top: 0px;
   position: sticky;
-  margin-top: 5px;
+  margin-top: 3px;
   width: 164px;
   z-index: 10;
   border-right: 1px solid var(--black-075);
