@@ -57,6 +57,10 @@ public class Question extends BaseTime {
 
 	public void setUser(User user) {
 		this.user = user;
+
+		if (!user.getQuestionList().contains(this)) {
+			user.getQuestionList().add(this);
+		}
 	}
 
 	public void addAnswer(Answer answer) {
