@@ -37,15 +37,17 @@ function PostAnswerBox() {
     console.log(data);
   };
   return (
-    <PostAnswer>
-      <h2>Your Answer</h2>
-      <AnswerEditorFoam>
-        <AnswerWrite ref={editorRef} />
-      </AnswerEditorFoam>
-      <ButtonBox>
-        <PostAnswerButton onClick={buttonOnClick} />
-      </ButtonBox>
-    </PostAnswer>
+    <div>
+      <PostAnswer>
+        <h2>Your Answer</h2>
+        <AnswerEditorFoam>
+          <AnswerWrite ref={editorRef} />
+        </AnswerEditorFoam>
+        <ButtonBox>
+          <PostAnswerButton onClick={buttonOnClick} />
+        </ButtonBox>
+      </PostAnswer>
+    </div>
   );
 }
 
