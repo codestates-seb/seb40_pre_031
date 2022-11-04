@@ -8,11 +8,20 @@ const QuestionListLayout = styled.div`
   border-bottom: 1px solid var(--bc-light);
 `;
 
-const QuestionList = () => {
+const QuestionList = (props) => {
   return (
     <QuestionListLayout>
-      <QuestionSummary />
-      <QuestionSummaryContent />
+      <QuestionSummary
+        votes={props.question.votes}
+        answers={props.question.answers}
+        views={props.question.views}
+      />
+      <QuestionSummaryContent
+        title={props.question.title}
+        content={props.question.content}
+        displayname={props.question.displayName}
+        createdAt={props.question.createdAt}
+      />
     </QuestionListLayout>
   );
 };
