@@ -3,7 +3,8 @@ import { LoginStackoverflow } from '../atoms/SvgComponents';
 import { SignupinfoPassword } from '../atoms/SignupInfoPassword';
 import Socials from '../molecules/Socials';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 //소셜로그인과 로그인 정보 입력후 제출하는 곳
 
@@ -23,7 +24,12 @@ const LoginsubmitBox = styled.div`
 `;
 
 const Loginsubmit = () => {
-  return (
+  const isLogined = useSelector((store) => store.authReducer.userStatus);
+  console.log(isLogined);
+
+  return isLogined ? (
+    <Navigate to="/questions"></Navigate>
+  ) : (
     <LoginsubmitBox>
       <LoginStackoverflow className="LoginStackoverflow" />
       <Socials />

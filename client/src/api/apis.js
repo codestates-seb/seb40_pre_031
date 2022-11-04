@@ -89,8 +89,24 @@ export const commentApi = {
 };
 
 export const questionDetailApi = {
+  //질문 상세 조회
   getQuestionDetail: async (question_id) => {
-    const data = await customAxios.get(`/questions/${question_id}`);
+    // const data = await customAxios.get(`/questions/${question_id}`);
+    const data = await customAxios.get(`/questions?questionId=${question_id}`);
+    return data;
+  },
+  //답변 추천 비추천
+  postVote: async (question_id, answer_id, std) => {
+    const data = await customAxios.post(
+      `/questions/${question_id}/answers/${answer_id}/votes/${std}`
+    );
+    return data;
+  },
+  //답변 추천 비추천 취소
+  deleteVote: async (question_id, answer_id, std) => {
+    const data = await customAxios.delete(
+      `/questions/${question_id}/answers/${answer_id}/votes/${std}`
+    );
     return data;
   },
 };

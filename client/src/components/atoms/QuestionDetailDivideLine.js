@@ -1,16 +1,17 @@
 import styled from 'styled-components';
 import QuestionAskButton from './QuestionAskButton';
+import { TimeCheck } from '../../actions';
 const QuestionDetailDivideLineBox = styled.div`
   width: 750px;
   height: 50px;
   margin: 20px 0 5px 0;
   padding: 20px;
-  h2 {
+  h3 {
     margin: 0 0 15px 0;
     font-weight: 400;
   }
   hr {
-    border: solid 1px var(--black-100);
+    border: solid 1px var(--black-050);
   }
 `;
 
@@ -27,30 +28,37 @@ const QuestionDetailDivideTitleBox = styled.div`
     margin: 0 0 15px 0;
     font-weight: 400;
   }
+  h6 {
+    margin: 0 0 10px 1px;
+    color: var(--black-500);
+  }
   hr {
     border: solid 1px var(--black-100);
+    margin: 0 0 104px 0;
   }
   @media screen and (max-width: 1060px) {
-    width: 100%;
+    width: 78vw;
   }
 `;
 
-export const QuestionDetailDivideLine = () => {
+export const QuestionDetailDivideLine = ({ count }) => {
   return (
     <QuestionDetailDivideLineBox>
-      <h2>1 Answers</h2>
+      <h3>{count} Answers</h3>
       <hr></hr>
     </QuestionDetailDivideLineBox>
   );
 };
 
-export const QuestionDetailDivideTitle = () => {
+//질문 제목
+export const QuestionDetailDivideTitle = ({ title, date }) => {
   return (
     <QuestionDetailDivideTitleBox>
       <div>
-        <h1>제목이 위치함</h1>
+        <h1>{title}</h1>
         <QuestionAskButton />
       </div>
+      <h6>Asked {TimeCheck(date)}</h6>
       <hr></hr>
     </QuestionDetailDivideTitleBox>
   );
