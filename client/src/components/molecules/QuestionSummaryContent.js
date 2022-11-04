@@ -4,6 +4,8 @@ import Avartar from '../atoms/Avartar';
 const QuestionSummaryContenLayout = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  max-width: 100%;
 
   h3 {
     vertical-align: baseline;
@@ -35,6 +37,7 @@ const UserBox = styled.div`
   align-items: center;
   margin-top: 20px;
   margin-left: auto;
+  flex-wrap: wrap;
 
   span {
     color: var(--black-500);
