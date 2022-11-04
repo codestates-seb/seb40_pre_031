@@ -35,10 +35,10 @@ const QuestionDetailDivideTitleBox = styled.div`
   }
 `;
 
-export const QuestionDetailDivideLine = () => {
+export const QuestionDetailDivideLine = ({ count }) => {
   return (
     <QuestionDetailDivideLineBox>
-      <h3>1 Answers</h3>
+      <h3>{count} Answers</h3>
       <hr></hr>
     </QuestionDetailDivideLineBox>
   );

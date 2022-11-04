@@ -43,7 +43,9 @@ const QuestionDetailPage = ({ question_id }) => {
         ></QuestionDetailDivideTitle>
         <QuestionDetail data={question}></QuestionDetail>
         {/* comment 컴포넌트와 comment작성컴포넌트를 추가해야함. */}
-        <QuestionDetailDivideLine></QuestionDetailDivideLine>
+        <QuestionDetailDivideLine
+          count={answers.length}
+        ></QuestionDetailDivideLine>
         {/* 받은 답변 만큼 아래를 map을 돌려서 추가해야함 */}
         {answers
           ? answers.map((answer) => (
