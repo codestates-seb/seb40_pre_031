@@ -95,4 +95,12 @@ public class QuestionController {
 
 		return "success to delete!";
 	}
+
+	@PostMapping("/{question_id}/answers/{answer_id}/chosen")
+	public String postChosenAnswer(@PathVariable("question_id") @Positive Long questionId,
+		@PathVariable("answer_id") @Positive Long chosenAnswerId) {
+		questionService.chosenAnswer(questionId, chosenAnswerId);
+
+		return "success to marked!";
+	}
 }
