@@ -6,7 +6,7 @@ const Container = styled.div`
   background: var(--white);
   display: flex;
   height: 100vh;
-  top: 60px;
+  top: 54px;
   position: sticky;
   margin-top: 3px;
   width: 164px;
