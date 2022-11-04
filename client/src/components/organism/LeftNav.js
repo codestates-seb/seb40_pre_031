@@ -8,6 +8,7 @@ const Container = styled.div`
   height: 100%;
   top: 0px;
   position: sticky;
+  margin-top: 5px;
   padding-top: 24px;
   width: 164px;
   z-index: 10;
