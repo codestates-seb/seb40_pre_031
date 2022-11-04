@@ -24,10 +24,11 @@ const LoginForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    //로그인요청
+    //서버에 로그인요청
     authApi
       .getLogin(email, password)
-      .then((res) => dispatch(loginAction(res.data)));
+      .then(() => dispatch(loginAction()))
+      .catch(() => alert('Email과 비밀번호를 확인해주세요'));
   };
 
   useEffect(() => {
@@ -40,14 +41,12 @@ const LoginForm = () => {
       <Input bind={bindEmail}></Input>
       {bindEmail.pass ? null : (
         <SignupinfoPassword margin={'small'} color="var(--red-500)">
-          {' '}
           The email is not a valid email address.
         </SignupinfoPassword>
       )}
       <Input bind={bindPassword}></Input>
       {bindPassword.pass ? null : (
         <SignupinfoPassword margin={'small'} color="var(--red-500)">
-          {' '}
           Password cannot be empty.
         </SignupinfoPassword>
       )}
