@@ -91,6 +91,7 @@ http://localhost:8080/
 http://localhost:8080/signup
 ```
 2️⃣ HttpMethod는 'POST'입니다.
+
 3️⃣ 로그인 안내
 ``` json
 {
