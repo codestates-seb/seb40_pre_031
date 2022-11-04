@@ -31,7 +31,7 @@ public class UsersDetailService implements UserDetailsService {
 		return new UsersDetail(findUser);
 	}
 
-	private final class UsersDetail extends User implements UserDetails {
+	public final class UsersDetail extends User implements UserDetails {
 		UsersDetail(User user) {
 			setId(user.getId());
 			setEmail(user.getEmail());
