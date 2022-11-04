@@ -15,7 +15,6 @@ const QuestionLists = () => {
       .getQuestion()
       .then((res) => {
         setQuestions(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
