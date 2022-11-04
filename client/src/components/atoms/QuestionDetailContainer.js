@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const QuestionDetailsideBox = styled.div`
   width: 52px;
   height: auto;
-  margin: 0 16px 0 0;
 `;
 
 //추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
@@ -34,6 +33,7 @@ const QuestionDetailContentBox = styled.div`
   width: 750px;
   height: auto;
   padding: 20px;
+  margin-top: 30px;
   display: flex;
   .toastui-editor-contents {
     width: 640px;

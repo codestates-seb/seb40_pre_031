@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import QuestionAskButton from './QuestionAskButton';
+import { TimeCheck } from '../../actions';
 const QuestionDetailDivideLineBox = styled.div`
   width: 750px;
   height: 50px;
@@ -27,8 +28,13 @@ const QuestionDetailDivideTitleBox = styled.div`
     margin: 0 0 15px 0;
     font-weight: 400;
   }
+  h6 {
+    margin: 0 0 10px 1px;
+    color: var(--black-500);
+  }
   hr {
     border: solid 1px var(--black-100);
+    margin: 0 0 104px 0;
   }
   @media screen and (max-width: 1060px) {
     width: 78vw;
@@ -45,13 +51,14 @@ export const QuestionDetailDivideLine = ({ count }) => {
 };
 
 //질문 제목
-export const QuestionDetailDivideTitle = ({ title }) => {
+export const QuestionDetailDivideTitle = ({ title, date }) => {
   return (
     <QuestionDetailDivideTitleBox>
       <div>
         <h1>{title}</h1>
         <QuestionAskButton />
       </div>
+      <h6>Asked {TimeCheck(date)}</h6>
       <hr></hr>
     </QuestionDetailDivideTitleBox>
   );

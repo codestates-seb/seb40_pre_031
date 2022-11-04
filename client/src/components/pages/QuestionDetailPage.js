@@ -40,6 +40,7 @@ const QuestionDetailPage = ({ question_id }) => {
       <div>
         <QuestionDetailDivideTitle
           title={question.title}
+          date={question.createdAt}
         ></QuestionDetailDivideTitle>
         <QuestionDetail data={question}></QuestionDetail>
         {/* comment 컴포넌트와 comment작성컴포넌트를 추가해야함. */}
@@ -50,7 +51,10 @@ const QuestionDetailPage = ({ question_id }) => {
         {answers
           ? answers.map((answer) => (
               <>
-                <QuestionDetail data={answer}></QuestionDetail>
+                <QuestionDetail
+                  key={answer.answerId}
+                  data={answer}
+                ></QuestionDetail>
                 <QuestionComments
                   commentList={answer.commentList}
                 ></QuestionComments>
