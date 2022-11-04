@@ -7,6 +7,7 @@ import QuestionAsk from './components/pages/QuestionAskPage';
 import Loginsubmit from './components/organism/Loginsubmit';
 import SignUp from './components/pages/SignupPage';
 import Footer from './components/templates/FooterTemplate';
+import Main from './components/pages/HomePage';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Main />} />
           <Route path="/login" element={<Loginsubmit />} />
           <Route path="/leftnav" element={<LeftNav />} />
           <Route path="/signup" element={<SignUp />} />
