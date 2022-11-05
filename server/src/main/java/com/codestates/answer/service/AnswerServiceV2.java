@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AnswerService {
+public class AnswerServiceV2 {
 	private final AnswerRepository answerRepository;
 
 	public Answer createAnswer(Answer answer) {
@@ -19,16 +19,11 @@ public class AnswerService {
 	}
 
 	public Answer updateAnswer(Answer answer) {
-		Answer found = findVerifiedAnswer(answer.getId());
-		found.updateContent(answer.getContent());
-
-		return answerRepository.save(found);
+		return answerRepository.save(answer);
 	}
 
-	public void deleteAnswer(Long answerId) {
-		Answer found = findVerifiedAnswer(answerId);
-
-		answerRepository.delete(found);
+	public void deleteAnswer(Answer answer) {
+		answerRepository.delete(answer);
 	}
 
 	public Answer findVerifiedAnswer(Long answerId) {
@@ -36,5 +31,11 @@ public class AnswerService {
 
 		return found.orElseThrow(() ->
 			new RuntimeException("ANSWER_NOT_FOUND"));
+	}
+
+	public void checkAnswerAuthor(Long authorId, Long loginId) {
+		if (authorId != loginId) {
+			throw new RuntimeException("NO_PERMISSION_TO_EDIT_THIS_ANSWER");
+		}
 	}
 }

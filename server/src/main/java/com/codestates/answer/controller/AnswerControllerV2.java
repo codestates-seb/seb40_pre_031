@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codestates.answer.dto.AnswerPatchDto;
 import com.codestates.answer.dto.AnswerPostDto;
 import com.codestates.answer.entity.Answer;
-import com.codestates.answer.service.AnswerService;
+import com.codestates.answer.service.AnswerServiceV2;
 import com.codestates.auth.UsersDetailService;
 import com.codestates.question.service.QuestionService;
 import com.codestates.user.service.UserService;
@@ -30,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @Validated
 @RequiredArgsConstructor
 public class AnswerControllerV2 {
-	private final AnswerService answerService;
+	private final AnswerServiceV2 answerService;
 	private final QuestionService questionService;
 	private final UserService userService;
 
@@ -38,9 +38,11 @@ public class AnswerControllerV2 {
 	public ResponseEntity postAnswer(@Positive @PathVariable(name = "question_id") Long questionId,
 		@AuthenticationPrincipal UsersDetailService.UsersDetail usersDetail,
 		@Valid @RequestBody AnswerPostDto answerPostDto) {
-		Answer answer = buildPostAnswer(questionId,
+		Answer answer = buildPostAnswer(
+			questionId,
 			usersDetail.getId(),
-			answerPostDto.getContent());
+			answerPostDto.getContent()
+		);
 
 		answerService.createAnswer(answer);
 
@@ -49,8 +51,13 @@ public class AnswerControllerV2 {
 
 	@PatchMapping("{answer_id}")
 	public ResponseEntity patchAnswer(@Positive @PathVariable(name = "answer_id") Long answerId,
+		@AuthenticationPrincipal UsersDetailService.UsersDetail usersDetail,
 		@Valid @RequestBody AnswerPatchDto answerPatchDto) {
-		Answer answer = buildPatchAnswer(answerId, answerPatchDto.getContent());
+		Answer answer = buildPatchAnswer(
+			answerId,
+			usersDetail.getId(),
+			answerPatchDto.getContent()
+		);
 
 		answerService.updateAnswer(answer);
 
@@ -58,8 +65,14 @@ public class AnswerControllerV2 {
 	}
 
 	@DeleteMapping("{answer_id}")
-	public ResponseEntity deleteAnswer(@Positive @PathVariable(name = "answer_id") Long answerId) {
-		answerService.deleteAnswer(answerId);
+	public ResponseEntity deleteAnswer(@Positive @PathVariable(name = "answer_id") Long answerId,
+		@AuthenticationPrincipal UsersDetailService.UsersDetail usersDetail) {
+		Answer answer = buildDeleteAnswer(
+			answerId,
+			usersDetail.getId()
+		);
+
+		answerService.deleteAnswer(answer);
 
 		return ResponseEntity.noContent().build();
 	}
@@ -74,10 +87,24 @@ public class AnswerControllerV2 {
 		return answer;
 	}
 
-	private Answer buildPatchAnswer(Long answerId, String content) {
-		return Answer.builder()
-			.id(answerId)
-			.content(content)
-			.build();
+	private Answer buildPatchAnswer(Long answerId, Long userId, String content) {
+		Answer answer = answerService.findVerifiedAnswer(answerId);
+		answerService.checkAnswerAuthor(
+			answer.getUser().getId(),
+			userId
+		);
+		answer.updateContent(content);
+
+		return answer;
+	}
+
+	private Answer buildDeleteAnswer(Long answerId, Long userId) {
+		Answer answer = answerService.findVerifiedAnswer(answerId);
+		answerService.checkAnswerAuthor(
+			answer.getUser().getId(),
+			userId
+		);
+
+		return answer;
 	}
 }

@@ -24,12 +24,10 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
-@Setter
 public class Answer extends BaseTime {
 
 	@Id
@@ -64,6 +62,10 @@ public class Answer extends BaseTime {
 		this.content = content;
 		this.user = user;
 		this.question = question;
+	}
+
+	public void updateContent(String content) {
+		this.content = content;
 	}
 
 	public void setUser(User user) {
