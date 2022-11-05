@@ -48,7 +48,38 @@ export const authApi = {
   },
 };
 
-export const questionApi = {};
+export const questionApi = {
+  // 메인 페이지 질문 데이터 불러오기
+  getQuestion: () =>
+    customAxios.get(
+      `/questions`
+      // , {
+      //   params: {
+      //     page: '전역 상태에서 page',
+      //     size: '전역 상태에서 size',
+      //   },
+      // }
+    ),
+  // 게시물 작성
+  postQuestion: () =>
+    customAxios.post(`/questions/ask`, {
+      title: 'test title',
+      content: 'content',
+    }),
+
+  // 질문 상세
+  questionDetail: (question_id) => customAxios.get(`/questions/${question_id}`),
+
+  // 질문 수정
+  questionEdit: (question_id) =>
+    customAxios.put(`/questions/${question_id}`, {
+      title: 'Test title',
+      content: '이걸로 수정할게요',
+    }),
+  // 질문 삭제
+  questionDelete: (question_id) =>
+    customAxios.delete(`/questions/${question_id}`),
+};
 
 export const answerApi = {
   getAnswer: (question_id) =>

@@ -8,13 +8,15 @@ import LoginPage from './components/pages/LoginPage';
 import SignUp from './components/pages/SignupPage';
 import Footer from './components/templates/FooterTemplate';
 import QuestionDetailPage from './components/pages/QuestionDetailPage';
+import Home from './components/pages/HomePage';
+
 function App() {
   return (
     <>
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/leftnav" element={<LeftNav />} />
           <Route path="/signup" element={<SignUp />} />
