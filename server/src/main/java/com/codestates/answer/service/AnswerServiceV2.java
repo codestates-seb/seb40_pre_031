@@ -34,7 +34,7 @@ public class AnswerServiceV2 {
 	}
 
 	public void checkAnswerAuthor(Long authorId, Long loginId) {
-		if (authorId != loginId) {
+		if (authorId.equals(loginId)) {
 			throw new RuntimeException("NO_PERMISSION_TO_EDIT_THIS_ANSWER");
 		}
 	}

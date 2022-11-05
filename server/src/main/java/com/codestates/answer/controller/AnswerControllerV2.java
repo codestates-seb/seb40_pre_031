@@ -77,32 +77,32 @@ public class AnswerControllerV2 {
 		return ResponseEntity.noContent().build();
 	}
 
-	private Answer buildPostAnswer(Long questionId, Long userId, String content) {
+	private Answer buildPostAnswer(Long questionId, Long loginId, String content) {
 		Answer answer = Answer.builder()
 			.content(content)
 			.build();
 		answer.setQuestion(questionService.findQuestion(questionId));
-		answer.setUser(userService.findMember(userId));
+		answer.setUser(userService.findMember(loginId));
 
 		return answer;
 	}
 
-	private Answer buildPatchAnswer(Long answerId, Long userId, String content) {
+	private Answer buildPatchAnswer(Long answerId, Long loginId, String content) {
 		Answer answer = answerService.findVerifiedAnswer(answerId);
 		answerService.checkAnswerAuthor(
 			answer.getUser().getId(),
-			userId
+			loginId
 		);
 		answer.updateContent(content);
 
 		return answer;
 	}
 
-	private Answer buildDeleteAnswer(Long answerId, Long userId) {
+	private Answer buildDeleteAnswer(Long answerId, Long loginId) {
 		Answer answer = answerService.findVerifiedAnswer(answerId);
 		answerService.checkAnswerAuthor(
 			answer.getUser().getId(),
-			userId
+			loginId
 		);
 
 		return answer;

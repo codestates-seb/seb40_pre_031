@@ -81,12 +81,12 @@ public class CommentControllerV2 {
 		return ResponseEntity.noContent().build();
 	}
 
-	private Comment buildPostComment(Long answerId, Long userId, String content) {
+	private Comment buildPostComment(Long answerId, Long loginId, String content) {
 		Comment comment = Comment.builder()
 			.content(content)
 			.build();
 		comment.setAnswer(answerService.findVerifiedAnswer(answerId));
-		comment.setUser(userService.findMember(userId));
+		comment.setUser(userService.findMember(loginId));
 
 		return comment;
 	}
