@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.stereotype.Component;
 
 import com.codestates.auth.LoginResponse;
 import com.codestates.auth.UsersDetailService;
@@ -27,8 +26,8 @@ public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		log.info("# 인증 성공");
 
 		Gson gson = new Gson();
-		UsersDetailService.UsersDetail usersDetail = (UsersDetailService.UsersDetail)authentication.getPrincipal();
-    
+		UsersDetailService.UsersDetail usersDetail = (UsersDetailService.UsersDetail) authentication.getPrincipal();
+
 		LoginResponse loginResponse = new LoginResponse(usersDetail.getId(), usersDetail.getDisplayName());
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		response.setStatus(HttpStatus.OK.value());
