@@ -12,7 +12,7 @@ const QuestionLists = () => {
     questionApi
       .getQuestion()
       .then((res) => {
-        setQuestions(res.data);
+        setQuestions(res.data.content);
       })
       .catch((err) => console.log(err));
   }, []);
