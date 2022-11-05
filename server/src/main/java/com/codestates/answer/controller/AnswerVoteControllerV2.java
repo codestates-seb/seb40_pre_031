@@ -30,9 +30,11 @@ public class AnswerVoteControllerV2 {
 	@PostMapping("/up")
 	public ResponseEntity postUpVote(@Positive @PathVariable(name = "answer_id") Long answerId,
 		@AuthenticationPrincipal UsersDetailService.UsersDetail usersDetail) {
-		AnswerVote answerVote = buildVote(answerId,
+		AnswerVote answerVote = buildVote(
+			answerId,
 			usersDetail.getId(),
-			VoteStatus.UP);
+			VoteStatus.UP
+		);
 
 		answerVoteService.updateStatusOrCreateVoteIfNotExist(answerVote);
 
@@ -42,9 +44,11 @@ public class AnswerVoteControllerV2 {
 	@DeleteMapping("/up")
 	public ResponseEntity deleteUpVote(@Positive @PathVariable(name = "answer_id") Long answerId,
 		@AuthenticationPrincipal UsersDetailService.UsersDetail usersDetail) {
-		AnswerVote answerVote = buildVote(answerId,
+		AnswerVote answerVote = buildVote(
+			answerId,
 			usersDetail.getId(),
-			VoteStatus.UP);
+			VoteStatus.UP
+		);
 
 		answerVoteService.deleteAnswerVote(answerVote);
 
@@ -54,9 +58,11 @@ public class AnswerVoteControllerV2 {
 	@PostMapping("/down")
 	public ResponseEntity postDownVote(@Positive @PathVariable(name = "answer_id") Long answerId,
 		@AuthenticationPrincipal UsersDetailService.UsersDetail usersDetail) {
-		AnswerVote answerVote = buildVote(answerId,
+		AnswerVote answerVote = buildVote(
+			answerId,
 			usersDetail.getId(),
-			VoteStatus.DOWN);
+			VoteStatus.DOWN
+		);
 
 		answerVoteService.updateStatusOrCreateVoteIfNotExist(answerVote);
 
@@ -66,21 +72,23 @@ public class AnswerVoteControllerV2 {
 	@DeleteMapping("/down")
 	public ResponseEntity deleteDownVote(@Positive @PathVariable(name = "answer_id") Long answerId,
 		@AuthenticationPrincipal UsersDetailService.UsersDetail usersDetail) {
-		AnswerVote answerVote = buildVote(answerId,
+		AnswerVote answerVote = buildVote(
+			answerId,
 			usersDetail.getId(),
-			VoteStatus.DOWN);
+			VoteStatus.DOWN
+		);
 
 		answerVoteService.deleteAnswerVote(answerVote);
 
 		return ResponseEntity.ok().build();
 	}
 
-	private AnswerVote buildVote(Long answerId, Long userId, VoteStatus status) {
+	private AnswerVote buildVote(Long answerId, Long loginId, VoteStatus status) {
 		AnswerVote answerVote = AnswerVote.builder()
 			.status(status)
 			.build();
 		answerVote.setAnswer(answerService.findVerifiedAnswer(answerId));
-		answerVote.setUser(userService.findMember(userId));
+		answerVote.setUser(userService.findMember(loginId));
 
 		return answerVote;
 	}
