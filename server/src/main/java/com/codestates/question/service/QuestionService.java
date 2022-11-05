@@ -2,11 +2,11 @@ package com.codestates.question.service;
 
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codestates.answer.entity.Answer;
+import com.codestates.answer.repository.AnswerRepository;
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
 import com.codestates.question.repository.QuestionRepository;
@@ -19,10 +19,11 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class QuestionService {
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
-	private final UserRepository userRepository;
+	private final AnswerRepository answerRepository;
 
 	public Question createQuestion(Question question) {
 		questionRepository.save(question);
@@ -39,14 +40,10 @@ public class QuestionService {
 		return questionRepository.save(verifiedQuestion);
 	}
 
+	@Transactional(readOnly = true)
 	public Question findQuestion(Long questionId) {
 
 		return findVerifiedQuestion(questionId);
-	}
-
-	public Page<Question> findQuestions(int page, int size) {
-
-		return questionRepository.questionPage(PageRequest.of(page, size));
 	}
 
 	public void deleteQuestion(Long questionId) {
@@ -55,6 +52,7 @@ public class QuestionService {
 		questionRepository.deleteById(questionId);
 	}
 
+	@Transactional(readOnly = true)
 	private Question findVerifiedQuestion(Long questionId) {
 		Optional<Question> getQuestion = questionRepository.findById(questionId);
 
@@ -73,9 +71,19 @@ public class QuestionService {
 		return optionalQuestionVote.get().getStatus();
 	}
 
-	@Transactional
 	public int updateView(Long id) {
 
 		return this.questionRepository.updateView(id);
+	}
+
+	public void chosenAnswer(Long questionId, Long chosenAnswerId) {
+		Answer answer = answerRepository.findById(chosenAnswerId)
+			.orElseThrow(() -> new RuntimeException("ANSWER_NOT_FOUND"));
+
+		if (!answer.getQuestion().getId().equals(questionId)) {
+			throw new RuntimeException("WRONG_ID");
+		}
+
+		answer.getQuestion().setChosenAnswerId(chosenAnswerId);
 	}
 }
