@@ -2,11 +2,11 @@ package com.codestates.question.service;
 
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.codestates.answer.entity.Answer;
+import com.codestates.answer.repository.AnswerRepository;
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
 import com.codestates.question.repository.QuestionRepository;
@@ -19,9 +19,11 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class QuestionService {
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
+	private final AnswerRepository answerRepository;
 	private final UserRepository userRepository;
 
 	public Question createQuestion(Question question) {
@@ -68,9 +70,19 @@ public class QuestionService {
 		return optionalQuestionVote.get().getStatus();
 	}
 
-	@Transactional
 	public int updateView(Long id) {
 
 		return this.questionRepository.updateView(id);
+	}
+
+	public void chosenAnswer(Long questionId, Long chosenAnswerId) {
+		Answer answer = answerRepository.findById(chosenAnswerId)
+			.orElseThrow(() -> new RuntimeException("ANSWER_NOT_FOUND"));
+
+		if (!answer.getQuestion().getId().equals(questionId)) {
+			throw new RuntimeException("WRONG_ID");
+		}
+
+		answer.getQuestion().setChosenAnswerId(chosenAnswerId);
 	}
 }
