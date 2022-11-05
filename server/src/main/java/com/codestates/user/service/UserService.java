@@ -60,6 +60,8 @@ public class UserService {
 			Optional.ofNullable(user.getPassword()).ifPresent(password ->
 				findUser.setPassword(passwordEncoder.encode(password)));
 			Optional.ofNullable(user.getDisplayName()).ifPresent(displayName -> findUser.setDisplayName(displayName));
+			Optional.ofNullable(user.getAvatarColor()).ifPresent(avatarColor ->
+				findUser.setAvatarColor(avatarColor.toLowerCase()));
 
 			// 상태 수정 -> ACTIVE, DORMANT 둘 중 하나여야 함.
 			Optional.ofNullable(user.getUserStatus()).ifPresent(userStatus -> findUser.setUserStatus(userStatus));

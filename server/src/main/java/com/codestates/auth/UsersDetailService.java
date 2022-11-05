@@ -34,8 +34,10 @@ public class UsersDetailService implements UserDetailsService {
 	public final class UsersDetail extends User implements UserDetails {
 		UsersDetail(User user) {
 			setId(user.getId());
+			setDisplayName(user.getDisplayName());
 			setEmail(user.getEmail());
 			setPassword(user.getPassword());
+			setAvatarColor(user.getAvatarColor());
 			setRoles(user.getRoles());
 		}
 

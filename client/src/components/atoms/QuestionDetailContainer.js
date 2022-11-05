@@ -70,7 +70,7 @@ const QuestionDetailUserProfileBox = styled.div`
 const QuestionDetailUserFooterBox = styled.div`
   width: 640px;
   height: 100px;
-  margin: 16px 0 16px 88px;
+  margin: 16px 0 16px 73px;
   display: flex;
   font-size: 13px;
   justify-content: space-between;
