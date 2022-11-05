@@ -15,7 +15,11 @@ const List = styled.ul`
   height: 100%;
   margin: 0;
   padding: 0;
+  padding-top: 29px;
   font-size: 13px;
+  background: var(--white);
+  border: 1px solid var(--black-075);
+  border-top: none;
 `;
 
 // Item li 를 이용해 Navlink인 Leftnavitem와 Icon을 함께 묶기

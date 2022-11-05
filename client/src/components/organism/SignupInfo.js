@@ -3,7 +3,7 @@ import {
   SignupinfoBox,
   SignupsubinfoBox,
   SignupResponsiveBox,
-} from '../atoms/Signupcontainer';
+} from '../atoms/SignupContainer';
 import {
   SignupUpandDown,
   Signupquestion,

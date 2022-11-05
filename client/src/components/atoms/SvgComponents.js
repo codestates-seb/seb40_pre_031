@@ -131,6 +131,36 @@ function IconStarVerified(props) {
   );
 }
 
+function ArrowUp({ props }) {
+  return (
+    <svg
+      width={36}
+      height={36}
+      aria-hidden="true"
+      className="svg-icon iconArrowUpLg"
+      viewBox="0 0 36 36"
+      {...props}
+    >
+      <path d="M2 25h32L18 9 2 25Z" />
+    </svg>
+  );
+}
+
+function ArrowDown({ props }) {
+  return (
+    <svg
+      width={36}
+      height={36}
+      aria-hidden="true"
+      className="svg-icon iconArrowDownLg"
+      viewBox="0 0 36 36"
+      {...props}
+    >
+      <path d="M2 11h32L18 27 2 11Z" />
+    </svg>
+  );
+}
+
 export {
   SignupUpandDown,
   Signupquestion,
@@ -140,4 +170,6 @@ export {
   LoginStackoverflow,
   IconGlobe,
   IconStarVerified,
+  ArrowDown,
+  ArrowUp,
 };

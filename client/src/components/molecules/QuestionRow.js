@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import QuestionAskButton from '../atoms/QuestionAskButton';
 
+const QuestionHead = () => {
+  return (
+    <QuestionHeadLayout>
+      <h1>All Questions</h1>
+      <QuestionAskButton />
+    </QuestionHeadLayout>
+  );
+};
+export default QuestionHead;
+
 const QuestionHeadLayout = styled.div`
   display: flex;
   align-items: center;
@@ -12,14 +22,3 @@ const QuestionHeadLayout = styled.div`
     font-weight: 400;
   }
 `;
-
-const QuestionHead = () => {
-  return (
-    <QuestionHeadLayout>
-      <h1>All Questions</h1>
-      <QuestionAskButton />
-    </QuestionHeadLayout>
-  );
-};
-
-export default QuestionHead;
