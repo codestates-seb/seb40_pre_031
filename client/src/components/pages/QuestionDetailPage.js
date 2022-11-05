@@ -66,11 +66,13 @@ const QuestionDetailPage = ({ question_id }) => {
                     ></QuestionDetail>
                     <QuestionComments
                       commentList={answer.commentList}
+                      questionid={question_id}
+                      answerid={answer.answerId}
                     ></QuestionComments>
                   </>
                 ))
               : null}
-            <PostAnswerBox></PostAnswerBox>
+            <PostAnswerBox questionid={question_id}></PostAnswerBox>
           </div>
           <RightSideBar />
         </div>
