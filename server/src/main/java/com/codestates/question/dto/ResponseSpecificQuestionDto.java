@@ -20,6 +20,7 @@ public class ResponseSpecificQuestionDto {
 	private int votes;
 	private VoteStatus status;
 	private String displayName;
+	private String avatarColor;
 	private List<ResponseAnswerDto> answerList;
 	private LocalDateTime createdAt;
 	private LocalDateTime modifiedAt;
