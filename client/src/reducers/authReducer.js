@@ -5,12 +5,11 @@ const initState = {
 };
 
 const authReducer = (state = { ...initState }, action) => {
-  console.log(action);
   switch (action.type) {
     case LOG_IN:
       return { ...action.payload };
     case LOG_OUT:
-      return false;
+      return { ...action.payload };
     default:
       return state;
   }

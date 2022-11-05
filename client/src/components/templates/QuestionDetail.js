@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import {
   QuestionDetailsideBox,
   QuestionDetailContentBox,
@@ -7,23 +6,24 @@ import { QuestionDetailSidebar } from '../molecules/QuestionDetailSidebar';
 import { QuestionDetailUserFooter } from '../organism/QuestionDetailUserFooter';
 import QuestionViewer from '../atoms/QuestionViewer';
 
-const QuestionDetailBox = styled.div`
-  width: 750px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const QuestionDetail = () => {
-  return (
-    <QuestionDetailBox>
+//본문내용과 추천수를 포함하는 컴포넌트
+export const QuestionDetail = ({ data }) => {
+  data.voteStatus = data.voteStatus || data.status;
+  return data ? (
+    <>
       <QuestionDetailContentBox>
         <QuestionDetailsideBox>
-          <QuestionDetailSidebar></QuestionDetailSidebar>
+          <QuestionDetailSidebar
+            vote={data.votes}
+            voteStatus={data.voteStatus}
+          ></QuestionDetailSidebar>
         </QuestionDetailsideBox>
-        <QuestionViewer></QuestionViewer>
+        <QuestionViewer content={data.content}></QuestionViewer>
       </QuestionDetailContentBox>
-      <QuestionDetailUserFooter></QuestionDetailUserFooter>
-    </QuestionDetailBox>
-  );
+      <QuestionDetailUserFooter
+        date={data.createdAt}
+        displayName={data.displayName}
+      ></QuestionDetailUserFooter>
+    </>
+  ) : null;
 };

@@ -4,17 +4,19 @@ import {
 } from '../atoms/QuestionDetailContainer';
 import { ArrowDown, ArrowUp } from '../atoms/SvgComponents';
 import { useClick } from '../../hooks/useClick';
+import { useState } from 'react';
 
 //추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
-export const QuestionDetailSidebar = () => {
-  //상태 초기값 받아와서 useClick 수정해야함.
-  const [upbind] = useClick('var(--black-200)');
-  const [downbind] = useClick('var(--orange)');
+export const QuestionDetailSidebar = ({ vote, voteStatus }) => {
+  const [votes, setVotes] = useState(vote);
+  const [status, setStatus] = useState(voteStatus); //추천상태
+  const [upbind] = useClick('UP', votes, setVotes, status, setStatus);
+  const [downbind] = useClick('DOWN', votes, setVotes, status, setStatus);
 
   return (
     <QuestionDetailSubsideBox>
       <ArrowUp props={upbind}></ArrowUp>
-      <QuestionDetailVoteBox>2</QuestionDetailVoteBox>
+      <QuestionDetailVoteBox>{votes}</QuestionDetailVoteBox>
       <ArrowDown props={downbind}></ArrowDown>
     </QuestionDetailSubsideBox>
   );

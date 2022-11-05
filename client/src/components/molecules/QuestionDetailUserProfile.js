@@ -1,11 +1,11 @@
 import { QuestionDetailUserProfileBox } from '../atoms/QuestionDetailContainer';
-export const QuestionDetailUserProfile = () => {
+export const QuestionDetailUserProfile = ({ date, displayName }) => {
   return (
     <QuestionDetailUserProfileBox>
-      <div>asked Jan 8, 2013 at 17:06</div>
+      <div>asked {date}</div>
       <div className="UserProfile">
-        <div>img</div>
-        Felix Kling
+        <div></div>
+        {displayName}
       </div>
     </QuestionDetailUserProfileBox>
   );
