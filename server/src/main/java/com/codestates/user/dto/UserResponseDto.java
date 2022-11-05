@@ -11,5 +11,6 @@ public class UserResponseDto {
 	private long id;
 	private String email;
 	private String displayName;
+	private String avatarColor;
 	private UserStatus userStatus;
 }
