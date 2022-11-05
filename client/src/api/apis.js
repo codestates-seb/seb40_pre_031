@@ -50,25 +50,27 @@ export const authApi = {
 
 export const questionApi = {
   // 메인 페이지 질문 데이터 불러오기
-  getQuestion: () =>
-    customAxios.get(
-      `/questions`
-      // , {
-      //   params: {
-      //     page: '전역 상태에서 page',
-      //     size: '전역 상태에서 size',
-      //   },
-      // }
-    ),
+  getQuestion: async () => {
+    const data = await customAxios.get(`/questions`);
+    return data.data.content;
+  },
+
+  getQuestionPage: async (page, size) => {
+    const params = {
+      page: page,
+      size: size,
+    };
+    const data = await customAxios.get(`/questions`, { params });
+
+    return data.data.content;
+  },
+
   // 게시물 작성
-  postQuestion: () =>
+  postQuestionList: () =>
     customAxios.post(`/questions/ask`, {
       title: 'test title',
       content: 'content',
     }),
-
-  // 질문 상세
-  questionDetail: (question_id) => customAxios.get(`/questions/${question_id}`),
 
   // 질문 수정
   questionEdit: (question_id) =>
