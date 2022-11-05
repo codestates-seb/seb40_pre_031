@@ -39,20 +39,15 @@ public class QuestionService {
 		return questionRepository.save(verifiedQuestion);
 	}
 
-	public Question findQuestion(Long questionId) {
-
-		return findVerifiedQuestion(questionId);
-	}
-
-	public Page<Question> findQuestions(int page, int size) {
-
-		return questionRepository.questionPage(PageRequest.of(page, size));
-	}
-
 	public void deleteQuestion(Long questionId) {
 		Question findQuestion = findVerifiedQuestion(questionId);
 
 		questionRepository.deleteById(questionId);
+	}
+
+	public Question findQuestion(Long questionId) {
+
+		return findVerifiedQuestion(questionId);
 	}
 
 	private Question findVerifiedQuestion(Long questionId) {
