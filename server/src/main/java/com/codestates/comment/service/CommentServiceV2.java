@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class CommentService {
+public class CommentServiceV2 {
 	private final CommentRepository commentRepository;
 
 	public Comment createComment(Comment comment) {
@@ -25,10 +25,8 @@ public class CommentService {
 		return commentRepository.save(found);
 	}
 
-	public void deleteComment(Long commentId) {
-		Comment found = findVerifiedComment(commentId);
-
-		commentRepository.delete(found);
+	public void deleteComment(Comment comment) {
+		commentRepository.delete(comment);
 	}
 
 	public Comment findVerifiedComment(Long commentId) {
@@ -36,5 +34,11 @@ public class CommentService {
 
 		return found.orElseThrow(() ->
 			new RuntimeException("COMMENT_NOT_FOUND"));
+	}
+
+	public void checkCommentAuthor(Long authorId, Long loginId) {
+		if (authorId.equals(loginId)) {
+			throw new RuntimeException("NO_PERMISSION_TO_EDIT_THIS_COMMENT");
+		}
 	}
 }
