@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import HeaderInfo from './HeaderInfo';
+import authReducer from './../../reducers/authReducer';
 
+// 로그인 전: Login버튼, Signup버튼 & 로그인 후: Hello {user.name}, 햄버거정보버튼
 const LinkButton = styled.button`
   height: 35px;
   margin-right: 5px;
@@ -43,7 +46,7 @@ const InfoBox = styled.div`
 
 //로그인 전 or 후, 상태에 따라 달라지는 Header
 const HeaderButton = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const isLogin = useSelector((store) => store.authReducer.userStatus);
 
   return (
     <>
@@ -60,7 +63,7 @@ const HeaderButton = () => {
       ) : (
         <>
           <div>
-            Hello! <span>Name</span>
+            Hello! <span>userName</span>
           </div>
           <InfoBox>
             <HeaderInfo />

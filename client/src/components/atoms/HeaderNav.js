@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
+//링크로 연결된 About, Products ForTeams 스타일
 const LinkItem = styled.li`
   position: relative;
   display: flex;
   white-space: nowrap;
   text-decoration: none;
-  color: #525960; //--black-600
+  color: var(--black-600);
   font-size: 14px;
   padding: 6px 10px;
   cursor: pointer;

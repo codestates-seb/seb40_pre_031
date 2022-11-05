@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogoIcon } from '../atoms/SvgHeaderIcons';
 
+//Stackoverflow 로고 눌렀을 때, "/"로 연결
 const HeaderLogoBox = styled.div`
   display: flex;
   align-items: center;
