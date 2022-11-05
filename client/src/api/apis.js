@@ -48,16 +48,24 @@ export const authApi = {
   },
 };
 
-export const questionApi = {};
+export const questionApi = {
+  postQuestion: async (title, content) => {
+    const body = { title, content };
+    console.log(body);
+    const result = await customAxios.post(`/questions/ask`, body);
+    return result;
+  },
+};
 
 export const answerApi = {
   getAnswer: (question_id) =>
     customAxios.get(`/questions/${question_id}/answers`),
-  postAnswer: (question_id) =>
-    customAxios.post(`/questions/${question_id}/answers`, {
-      users_id: 'id',
-      content: 'content',
-    }),
+  postAnswer: async (question_id, userId, content) => {
+    const body = { userId, content };
+    const result = customAxios.post(`/questions/${question_id}/answers`, body);
+    console.log(body);
+    return result;
+  },
   putAnswer: (question_id, answer_id) =>
     customAxios.put(`/questions/${question_id}/answers/${answer_id}`, {
       content: 'content',
@@ -69,14 +77,15 @@ export const answerApi = {
 export const commentApi = {
   getComment: (question_id, answer_id) =>
     customAxios.get(`/questions/${question_id}/answers/${answer_id}/comments`),
-  postComment: (question_id, answer_id) =>
-    customAxios.post(
+  postComment: async (question_id, answer_id, userId, content) => {
+    const body = { userId, content };
+    const result = customAxios.post(
       `/questions/${question_id}/answers/${answer_id}/comments`,
-      {
-        users_id: 'id',
-        content: 'content',
-      }
-    ),
+      body
+    );
+    console.log(body);
+    return result;
+  },
   putComment: (question_id, answer_id, comment_id) =>
     customAxios.put(
       `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`,
