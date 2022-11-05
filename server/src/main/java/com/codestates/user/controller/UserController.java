@@ -6,6 +6,7 @@ import javax.validation.constraints.Positive;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,10 +22,15 @@ import com.codestates.user.dto.UserResponseDto;
 import com.codestates.user.entity.User;
 import com.codestates.user.mapper.UserMapper;
 import com.codestates.user.service.UserService;
+import com.google.gson.Gson;
 
+import lombok.extern.slf4j.Slf4j;
+
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/")
 @Validated
+@Slf4j
 public class UserController {
 	private final UserService userService;
 	private final UserMapper mapper;
@@ -39,6 +45,8 @@ public class UserController {
 	// 회원 가입
 	@PostMapping("/signup")
 	public ResponseEntity postUser(@Valid @RequestBody UserPostDto userPostDto) {
+		Gson gson = new Gson();
+		System.out.println(gson.toJson(userPostDto));
 		User user = userService.createUser(mapper.userPostDtoToUser(userPostDto));
 		UserResponseDto response = mapper.userToUserResponseDto(user);
 

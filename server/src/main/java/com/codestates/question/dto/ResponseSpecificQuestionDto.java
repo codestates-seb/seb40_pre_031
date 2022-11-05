@@ -19,6 +19,7 @@ public class ResponseSpecificQuestionDto {
 	private int views;
 	private int votes;
 	private VoteStatus status;
+	private Long chosenAnswerId;
 	private String displayName;
 	private String avatarColor;
 	private List<ResponseAnswerDto> answerList;
