@@ -18,7 +18,6 @@ const List = styled.ul`
   padding-top: 29px;
   font-size: 13px;
   background: var(--white);
-  border: 1px solid var(--black-075);
   border-top: none;
 `;
 
