@@ -1,27 +1,28 @@
 import {
   SignupLogincontainerBox,
   SignupRobotBox,
-} from '../atoms/Signupcontainer';
+} from '../atoms/SignupContainer';
 import {
   SignupinfoPassword,
   SignupinfoExplamation,
-} from '../atoms/SignupinfoPassword';
-import { Socialbutton } from '../atoms/Socialbutton';
-// 아래는 useState가 사용되었지만 불리지 않아 생기는 에러를 없애기 위한 주석입니다
-// eslint-disable-next-line no-unused-vars
-import { useEffect, useState } from 'react';
-import { Input } from '../atoms/Signupinput';
+} from '../atoms/SignupInfoPassword.js';
+import { Socialbutton } from '../atoms/SocialButton';
+import { useEffect, useState, useRef } from 'react';
+import { Input } from '../atoms/SignupInput';
+import SignupRecaptcha from '../atoms/SignupRecaptcha';
 import useInput from '../../hooks/useInput';
+import { authApi } from '../../api/apis';
 
 const color = ['gray', 'black'];
 
 // 회원가입 작성하는 곳
 const Signinput = () => {
-  // 아래는 id 사용되었지만 불리지 않아 생기는 에러를 없애기 위한 주석입니다
-  // eslint-disable-next-line no-unused-vars
-  const [id, idBind] = useInput('', true, 'text', 'Display name');
+  //input의 value, 유효성 통과여부, input의 type, input과 label의 id
+  const [name, nameBind] = useInput('', true, 'text', 'Display name');
   const [password, passwordBind] = useInput('', true, 'password', 'Password');
   const [email, emailBind] = useInput('', true, 'text', 'Email');
+  const captchaRef = useRef(null);
+  const [ischecked, setIschecked] = useState('no');
 
   //Sign up 버튼 눌렀을시 작동
   const onClick = () => {
@@ -32,19 +33,35 @@ const Signinput = () => {
 
     regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{3,4}');
     regex.test(email) ? emailBind.setPass(true) : emailBind.setPass(false);
+
+    if (ischecked === 'no') setIschecked(false);
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      name &&
+      passwordBind.pass === true &&
+      emailBind.pass === true &&
+      ischecked
+    ) {
+      setIschecked('no');
+      captchaRef.current.reset();
+      //서버와통신
+      authApi.postSignUp(name, email, password);
+
+      // 아이디 이메일 중복이면 처리해야함. -> useSelector와 useEffect활용해서 하면 될듯
+    }
+  };
   useEffect(() => {
     passwordBind.setPass(true);
     emailBind.setPass(true);
   }, [email, password]);
 
   return (
-    <SignupLogincontainerBox
-      height="610px"
-      onSubmit={(e) => e.preventDefault()}
-    >
-      <Input bind={idBind}></Input>
+    <SignupLogincontainerBox height="610px" onSubmit={onSubmit}>
+      <Input bind={nameBind}></Input>
       <Input bind={emailBind}></Input>
       {emailBind.pass ? null : (
         <SignupinfoExplamation>
@@ -55,13 +72,18 @@ const Signinput = () => {
       <Input bind={passwordBind}></Input>
       <SignupinfoPassword
         margin="small"
-        color={passwordBind.pass ? color[0] : 'rgb(229 62 66)'}
+        color={passwordBind.pass ? color[0] : 'var(--red-500)'}
       >
         Passwords must contain at least eight characters, including at least 1
         letter and 1 number.
       </SignupinfoPassword>
 
-      <SignupRobotBox />
+      <SignupRobotBox ischecked={ischecked}>
+        <SignupRecaptcha
+          setIschecked={setIschecked}
+          captchaRef={captchaRef}
+        ></SignupRecaptcha>
+      </SignupRobotBox>
 
       <SignupinfoPassword margin="medium" color={color[1]}>
         <input type="checkBox"></input>Opt-in to receive occasional product
@@ -78,5 +100,4 @@ const Signinput = () => {
     </SignupLogincontainerBox>
   );
 };
-
 export default Signinput;

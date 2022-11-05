@@ -1,0 +1,74 @@
+{
+  "questions" : {
+    "questionId": 9,
+    "usersId": "testUser",
+    "title": "test title",
+    "content": "# 제목1\n\n**뷰어 테스트 해보기**\n*이탤릭 문서*\n~~ㅈㅏ바스크립트~~\n\n***\n> 블록테스트\n\n```html\n<h1>Test<h1>\n<div>title</div>\n<p>합참 \"북한, 강원 고성 일대서 동해 완충구역에 100여 발 포격\"\n출처 : SBS 뉴스 \n원본 링크 :</p>\n\n```\n\n코드 질문합니다",
+    "views": 2,
+    "votes": 0,
+    "status": "NONE",
+    "displayName" : "kdy",
+    "createdAt": "2022-10-27 12:00:00",
+    "modifiedAt": "2022-10-27 12:03:37",
+    
+
+    "answerList": [
+      {
+        "answerId": 1,
+        "questionId": 1,
+        "usersId": "answerUser1",
+        "content": "마자요 겁나 어려움. 폴더 구조 다시 생각해봐야 할 것 같아요. 우리 팀에 더 맞는 방법 있을지도1",
+        "votes": 1,
+        "voteStatus": "UP",
+        "displayName" : "cheese",
+        "createdAt": "2022-10-27 12:04:00",
+        "modifiedAt": "2022-10-27 12:04:08",
+        "commentList": [
+          {
+            "commentId": 1,
+            "answerId": 1,
+            "usersId": "commentUser1",
+            "displayName" : "dgegrd1",
+            "content": "어떤 방법이 좋을까요?2",
+            "createdAt": "2022-10-28 12:06:00"
+          }
+        ]
+      },
+      {
+        "answerId": 2,
+        "usersId": "answerUser2",
+        "questionId": 1,
+        "content": "마자요 겁나 어려움. 폴더 구조 다시 생각해봐야 할 것 같아요. 우리 팀에 더 맞는 방법 있을지도2",
+        "displayName" : "cheese2",
+        "votes": 0,
+        "voteStatus": "DOWN",
+        "createdAt": "2022-10-27 12:04:00",
+        "modifiedAt": "2022-10-27 12:04:08",
+        "commentList": [
+          {
+            "commentId": 2,
+            "answerId": 2,
+            "usersId": "commentUser",
+            "displayName" : "asdasd1",
+            "content": "어떤 방법이 좋을까요?",
+            "createdAt": "2022-10-27 12:06:00"
+          },{
+            "commentId": 3,
+            "answerId": 3,
+            "usersId": "commentUser",
+            "displayName" : "aukyu",
+            "content": "어떤 방법이 좋을까요?4",
+            "createdAt": "2022-10-27 12:06:00"
+          },{
+            "commentId": 4,
+            "answerId": 4,
+            "usersId": "commentUser",
+            "displayName" : "ajyj",
+            "content": "어떤 방법이 좋을까요?5",
+            "createdAt": "2022-10-27 12:06:00"
+          }
+        ]
+      }    
+    ]
+  }
+}

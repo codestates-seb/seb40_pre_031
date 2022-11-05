@@ -30,7 +30,23 @@ customAxios.interceptors.response.use(
 
 export default customAxios;
 
-export const authApi = {};
+export const authApi = {
+  postSignUp: async (name, email, password) => {
+    const body = { name, email, password };
+    console.log(body);
+    const result = await customAxios.post(`/signup`, body);
+    return result;
+  },
+  getLogin: async (email, password) => {
+    const body = { email, password };
+    // const result = await customAxios.get('/login',body);
+    const result = await customAxios.get(
+      `/signup?email=${email}&password=${password}`,
+      body
+    );
+    return result;
+  },
+};
 
 export const questionApi = {
   // 메인 페이지 질문 데이터 불러오기
@@ -101,4 +117,27 @@ export const commentApi = {
     customAxios.delete(
       `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`
     ),
+};
+
+export const questionDetailApi = {
+  //질문 상세 조회
+  getQuestionDetail: async (question_id) => {
+    // const data = await customAxios.get(`/questions/${question_id}`);
+    const data = await customAxios.get(`/questions?questionId=${question_id}`);
+    return data;
+  },
+  //답변 추천 비추천
+  postVote: async (question_id, answer_id, std) => {
+    const data = await customAxios.post(
+      `/questions/${question_id}/answers/${answer_id}/votes/${std}`
+    );
+    return data;
+  },
+  //답변 추천 비추천 취소
+  deleteVote: async (question_id, answer_id, std) => {
+    const data = await customAxios.delete(
+      `/questions/${question_id}/answers/${answer_id}/votes/${std}`
+    );
+    return data;
+  },
 };
