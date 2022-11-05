@@ -1,3 +1,5 @@
+# 로컬 작업 버전
+
 spring:
   h2:
     console:
@@ -14,7 +16,7 @@ spring:
         format_sql: true
   sql:
     init:
-      data-locations: classpath*:db/h2/data.sql
+      data-locations: classpath*:db/h2/import.sql
   data:
     web:
       pageable:
