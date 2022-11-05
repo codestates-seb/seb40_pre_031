@@ -9,8 +9,12 @@ import LeftNav from '../organism/LeftNav';
 import styled from 'styled-components';
 import QuestionComments from '../organism/QuestionComments';
 import PostAnswerBox from '../molecules/PostAnswerBox';
+import { useLocation } from 'react-router-dom';
 
-const QuestionDetailPage = ({ question_id }) => {
+const QuestionDetailPage = () => {
+  const location = useLocation();
+  let question_id = location.state.question_id;
+  console.log(question_id);
   const [question, setQuestion] = useState(null);
   const [answers, setAnswer] = useState(null);
 
