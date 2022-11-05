@@ -161,6 +161,51 @@ function ArrowDown({ props }) {
   );
 }
 
+function IconPencil(props) {
+  return (
+    <svg
+      width={18}
+      height={18}
+      aria-hidden="true"
+      className="va-text-bottom o50 svg-icon iconPencilSm"
+      viewBox="0 0 14 14"
+      {...props}
+    >
+      <path d="m11.1 1.71 1.13 1.12c.2.2.2.51 0 .71L11.1 4.7 9.21 2.86l1.17-1.15c.2-.2.51-.2.71 0ZM2 10.12l6.37-6.43 1.88 1.88L3.88 12H2v-1.88Z" />
+    </svg>
+  );
+}
+
+function IconClear(props) {
+  return (
+    <svg
+      width={18}
+      height={18}
+      aria-hidden="true"
+      className="svg-icon iconClear"
+      viewBox="0 0 18 18"
+      {...props}
+    >
+      <path d="M15 4.41 13.59 3 9 7.59 4.41 3 3 4.41 7.59 9 3 13.59 4.41 15 9 10.41 13.59 15 15 13.59 10.41 9 15 4.41Z" />
+    </svg>
+  );
+}
+
+function IconCheck(props) {
+  return (
+    <svg
+      width={18}
+      height={18}
+      aria-hidden="true"
+      className="svg-icon iconCheckmarkLg"
+      viewBox="0 0 36 36"
+      {...props}
+    >
+      <path d="m6 14 8 8L30 6v8L14 30l-8-8v-8Z" />
+    </svg>
+  );
+}
+
 export {
   SignupUpandDown,
   Signupquestion,
@@ -172,4 +217,7 @@ export {
   IconStarVerified,
   ArrowDown,
   ArrowUp,
+  IconPencil,
+  IconClear,
+  IconCheck,
 };
