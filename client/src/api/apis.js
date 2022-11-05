@@ -64,28 +64,9 @@ export const questionApi = {
 
     return data.data.content;
   },
-
-  // 게시물 작성
-  postQuestionList: () =>
-    customAxios.post(`/questions/ask`, {
-      title: 'test title',
-      content: 'content',
-    }),
-
-  // 질문 수정
-  questionEdit: (question_id) =>
-    customAxios.put(`/questions/${question_id}`, {
-      title: 'Test title',
-      content: '이걸로 수정할게요',
-    }),
-  // 질문 삭제
-  questionDelete: (question_id) =>
-    customAxios.delete(`/questions/${question_id}`),
 };
 
 export const answerApi = {
-  getAnswer: (question_id) =>
-    customAxios.get(`/questions/${question_id}/answers`),
   postAnswer: (question_id) =>
     customAxios.post(`/questions/${question_id}/answers`, {
       users_id: 'id',
@@ -100,8 +81,6 @@ export const answerApi = {
 };
 
 export const commentApi = {
-  getComment: (question_id, answer_id) =>
-    customAxios.get(`/questions/${question_id}/answers/${answer_id}/comments`),
   postComment: (question_id, answer_id) =>
     customAxios.post(
       `/questions/${question_id}/answers/${answer_id}/comments`,
