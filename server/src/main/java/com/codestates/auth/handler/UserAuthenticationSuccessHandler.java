@@ -26,6 +26,7 @@ public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		log.info("# 인증 성공");
 
 		Gson gson = new Gson();
+
 		UsersDetailService.UsersDetail usersDetail = (UsersDetailService.UsersDetail) authentication.getPrincipal();
 
 		LoginResponse loginResponse = new LoginResponse(usersDetail.getId(), usersDetail.getDisplayName());

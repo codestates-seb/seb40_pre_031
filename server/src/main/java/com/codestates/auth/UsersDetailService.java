@@ -37,6 +37,7 @@ public class UsersDetailService implements UserDetailsService {
 			setDisplayName(user.getDisplayName());
 			setEmail(user.getEmail());
 			setPassword(user.getPassword());
+			setAvatarColor(user.getAvatarColor());
 			setRoles(user.getRoles());
 		}
 

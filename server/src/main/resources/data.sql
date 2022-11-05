@@ -1,17 +1,17 @@
 --! StackOverFlow Dummy Data --!
 
 ----! 유저 데이터 !--
-INSERT INTO users(created_at, modified_at, display_name, email, password, user_status) VALUES
-('2022-11-03 15:46:42.966525','2022-11-03 15:46:42.966525','김안녕1','hello1@naver.com','{bcrypt}$2a$10$bdYJWXa3PamqDlYUQ9cLbea97/qQBY8ES4bTxcYJr0foitA3tsPcO','USER_ACTIVE'),
-('2022-11-03 15:47:47.100315','2022-11-03 15:47:47.100315','김안녕2','hello2@naver.com','{bcrypt}$2a$10$8CW/HMziPl/5wHrZJfGRCueeEVSzBIXW6EsvvXPAVPaXxq1SbhuPC','USER_ACTIVE'),
-('2022-11-03 15:48:07.441170','2022-11-03 15:48:07.441170','김안녕3','hello3@naver.com','{bcrypt}$2a$10$CnmNw4qmE2.U1HcLVcBPUuPFzaS6zgSG8zk.QnUCSbmJ/Y9dnwjKW','USER_ACTIVE'),
-('2022-11-03 15:48:16.341997','2022-11-03 15:48:16.341997','김안녕4','hello4@naver.com','{bcrypt}$2a$10$2Q97Oo.tfE.U9AU.AO30ieUkDNvaHMRPrbsHLSeEcDIdkTHDVoigm','USER_ACTIVE'),
-('2022-11-03 15:48:24.276501','2022-11-03 15:48:24.276501','김안녕5','hello5@naver.com','{bcrypt}$2a$10$yTjCEMRLdTRaoGkuPbiRQO7CmQaWn8GYOuNzI/BmJSY8vxXfEr86y','USER_ACTIVE'),
-('2022-11-03 15:48:31.517108','2022-11-03 15:48:31.517108','김안녕6','hello6@naver.com','{bcrypt}$2a$10$ePWz4fUrB5HGDs04.Jq7yu8pJYPN6kt8kWWNauF1RQmfMOt0RmtcS','USER_ACTIVE'),
-('2022-11-03 15:48:39.520934','2022-11-03 15:48:39.520934','김안녕7','hello7@naver.com','{bcrypt}$2a$10$rhkOiABIXIuz5UzcHGUIoe2daKQZDV3pTJoc9z4/9Vtt8lO3MQByy','USER_ACTIVE'),
-('2022-11-03 15:48:46.390662','2022-11-03 15:48:46.390662','김안녕8','hello8@naver.com','{bcrypt}$2a$10$hyMgQUDaTc0YDbPyzFT3BeFPnmv3ebBqB9X04VBoMemewcCKgM8KC','USER_ACTIVE'),
-('2022-11-03 15:48:53.416234','2022-11-03 15:48:53.416234','김안녕9','hello9@naver.com','{bcrypt}$2a$10$5YwMN1D0H4GwHlyNOXC10.4E.PRgseQNv6lfZbSX0.wwt/gyM8MKa','USER_ACTIVE'),
-('2022-11-03 15:49:01.388679','2022-11-03 15:49:01.388679','김안녕10','hello10@naver.com','{bcrypt}$2a$10$vNqLhp55b/37a17RrRZx9uWZQSQgL1z9zWaf5i9RJ4L5fBrhMkc3.','USER_ACTIVE');
+INSERT INTO users(created_at, modified_at, avatar_color, display_name, email, password, user_status) VALUES
+('2022-11-03 15:46:42.966525','2022-11-03 15:46:42.966525','#ffffff','김안녕1','hello1@naver.com','{bcrypt}$2a$10$bdYJWXa3PamqDlYUQ9cLbea97/qQBY8ES4bTxcYJr0foitA3tsPcO','USER_ACTIVE'),
+('2022-11-03 15:47:47.100315','2022-11-03 15:47:47.100315','#ff0000', '김안녕2','hello2@naver.com','{bcrypt}$2a$10$8CW/HMziPl/5wHrZJfGRCueeEVSzBIXW6EsvvXPAVPaXxq1SbhuPC','USER_ACTIVE'),
+('2022-11-03 15:48:07.441170','2022-11-03 15:48:07.441170','#0000ff','김안녕3','hello3@naver.com','{bcrypt}$2a$10$CnmNw4qmE2.U1HcLVcBPUuPFzaS6zgSG8zk.QnUCSbmJ/Y9dnwjKW','USER_ACTIVE'),
+('2022-11-03 15:48:16.341997','2022-11-03 15:48:16.341997','#00ffff', '김안녕4','hello4@naver.com','{bcrypt}$2a$10$2Q97Oo.tfE.U9AU.AO30ieUkDNvaHMRPrbsHLSeEcDIdkTHDVoigm','USER_ACTIVE'),
+('2022-11-03 15:48:24.276501','2022-11-03 15:48:24.276501','#808080', '김안녕5','hello5@naver.com','{bcrypt}$2a$10$yTjCEMRLdTRaoGkuPbiRQO7CmQaWn8GYOuNzI/BmJSY8vxXfEr86y','USER_ACTIVE'),
+('2022-11-03 15:48:31.517108','2022-11-03 15:48:31.517108','#ffdead', '김안녕6','hello6@naver.com','{bcrypt}$2a$10$ePWz4fUrB5HGDs04.Jq7yu8pJYPN6kt8kWWNauF1RQmfMOt0RmtcS','USER_ACTIVE'),
+('2022-11-03 15:48:39.520934','2022-11-03 15:48:39.520934','#26fcf9', '김안녕7','hello7@naver.com','{bcrypt}$2a$10$rhkOiABIXIuz5UzcHGUIoe2daKQZDV3pTJoc9z4/9Vtt8lO3MQByy','USER_ACTIVE'),
+('2022-11-03 15:48:46.390662','2022-11-03 15:48:46.390662','#8e38bb', '김안녕8','hello8@naver.com','{bcrypt}$2a$10$hyMgQUDaTc0YDbPyzFT3BeFPnmv3ebBqB9X04VBoMemewcCKgM8KC','USER_ACTIVE'),
+('2022-11-03 15:48:53.416234','2022-11-03 15:48:53.416234','#000000', '김안녕9','hello9@naver.com','{bcrypt}$2a$10$5YwMN1D0H4GwHlyNOXC10.4E.PRgseQNv6lfZbSX0.wwt/gyM8MKa','USER_ACTIVE'),
+('2022-11-03 15:49:01.388679','2022-11-03 15:49:01.388679','#ff00ff', '김안녕10','hello10@naver.com','{bcrypt}$2a$10$vNqLhp55b/37a17RrRZx9uWZQSQgL1z9zWaf5i9RJ4L5fBrhMkc3.','USER_ACTIVE');
 
 --! 유저 권한 데이터 !--
 INSERT INTO users_roles(users_user_id, roles) VALUES
