@@ -122,3 +122,47 @@ export const questionDetailApi = {
     return data;
   },
 };
+
+export const myApi = {
+  // 마이페이지
+  getUser: async (user_id) => {
+    const data = await customAxios.get(`/user/${user_id}`);
+    return data.data;
+  },
+
+  patchName: async (user_id, displayName) => {
+    const data = { displayName };
+    const result = await customAxios.patch(
+      `/questions/${user_id}`,
+      JSON.stringify(data)
+    );
+
+    return result.data;
+  },
+
+  patchPassword: async (user_id, password) => {
+    const data = { password };
+    const result = await customAxios.patch(
+      `/questions/${user_id}`,
+      JSON.stringify(data)
+    );
+
+    return result.data;
+  },
+
+  patchColor: async (user_id, avartarColor) => {
+    const data = { avartarColor };
+    const result = await customAxios.patch(
+      `/questions/${user_id}`,
+      JSON.stringify(data)
+    );
+
+    return result.data;
+  },
+
+  deleteUser: async (user_id) => {
+    const result = await customAxios.patch(`/questions/${user_id}`);
+
+    return result.data;
+  },
+};
