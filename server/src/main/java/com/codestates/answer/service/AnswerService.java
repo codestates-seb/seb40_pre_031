@@ -5,7 +5,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.codestates.answer.entity.Answer;
+import com.codestates.answer.entity.AnswerVote;
 import com.codestates.answer.repository.AnswerRepository;
+import com.codestates.status.VoteStatus;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,5 +38,18 @@ public class AnswerService {
 
 		return found.orElseThrow(() ->
 			new RuntimeException("ANSWER_NOT_FOUND"));
+	}
+
+	public VoteStatus getUserAnswerVoteStatus(Long answerId, Long userId) {
+		Answer answer = findVerifiedAnswer(answerId);
+
+		for(AnswerVote answerVote : answer.getAnswerVoteList()) {
+			if(answerVote.getUser().getId().equals(userId)) {
+
+				return answerVote.getStatus();
+			}
+		}
+
+		return null;
 	}
 }
