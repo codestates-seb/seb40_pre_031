@@ -27,7 +27,7 @@ public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHa
 
 		Gson gson = new Gson();
 
-		UsersDetailService.UsersDetail usersDetail = (UsersDetailService.UsersDetail)authentication.getPrincipal();
+		UsersDetailService.UsersDetail usersDetail = (UsersDetailService.UsersDetail) authentication.getPrincipal();
 
 		LoginResponse loginResponse = new LoginResponse(usersDetail.getId(), usersDetail.getDisplayName());
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
