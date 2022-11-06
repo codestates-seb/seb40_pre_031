@@ -4,7 +4,12 @@ import axios from 'axios';
 const customAxios = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 1000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
+
+customAxios.defaults.withCredentials = true;
 
 customAxios.interceptors.request.use(
   function (config) {
@@ -62,7 +67,7 @@ export const questionApi = {
     };
     const data = await customAxios.get(`/questions`, { params });
 
-    return data.data.content;
+    return data.data;
   },
 };
 
@@ -80,25 +85,7 @@ export const answerApi = {
     customAxios.delete(`/questions/${question_id}/answers/${answer_id}`),
 };
 
-export const commentApi = {
-  postComment: (question_id, answer_id) =>
-    customAxios.post(
-      `/questions/${question_id}/answers/${answer_id}/comments`,
-      body
-    );
-    console.log(body);
-    return result;
-  },
-  putComment: (question_id, answer_id, comment_id) =>
-    customAxios.put(
-      `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`,
-      { content: 'content' }
-    ),
-  deleteComment: (question_id, answer_id, comment_id) =>
-    customAxios.delete(
-      `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`
-    ),
-};
+export const commentApi = {};
 
 export const questionDetailApi = {
   //질문 상세 조회
@@ -126,14 +113,14 @@ export const questionDetailApi = {
 export const myApi = {
   // 마이페이지
   getUser: async (user_id) => {
-    const data = await customAxios.get(`/user/${user_id}`);
-    return data.data;
+    const result = await customAxios.get(`/users/${user_id}`);
+    return result.data;
   },
 
   patchName: async (user_id, displayName) => {
     const data = { displayName };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
 
@@ -143,7 +130,7 @@ export const myApi = {
   patchPassword: async (user_id, password) => {
     const data = { password };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
 
@@ -153,7 +140,7 @@ export const myApi = {
   patchColor: async (user_id, avartarColor) => {
     const data = { avartarColor };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
 
