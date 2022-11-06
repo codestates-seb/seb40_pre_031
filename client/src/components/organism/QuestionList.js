@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import QuestionSummary from '../molecules/QuestionSummary';
 import QuestionSummaryContent from '../molecules/QuestionSummaryContent';
+import { TimeCheck } from '../../actions/index';
 
 const QuestionList = ({ question }) => {
-  console.log(question);
   return (
     <QuestionListLayout>
       <QuestionSummary
@@ -17,7 +17,7 @@ const QuestionList = ({ question }) => {
         title={question.title}
         content={question.content}
         displayname={question.displayName}
-        createdAt={question.createdAt}
+        createdAt={TimeCheck(question.createdAt)}
       />
     </QuestionListLayout>
   );
