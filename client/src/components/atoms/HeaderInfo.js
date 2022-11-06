@@ -77,7 +77,7 @@ const HeaderInfo = () => {
                   <a href="https://stackoverflow.com/help">Help</a>
                 </ListText>
               </DropdownItem>
-              {/* 로그아웃을 누르면, 로그아웃 action을 가져와 .then 에 넣기 */}
+              {/* 로그아웃 버튼 */}
               <DropdownItem
                 onClick={onLogout}
                 style={{
