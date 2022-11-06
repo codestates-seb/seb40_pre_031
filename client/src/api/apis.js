@@ -42,14 +42,9 @@ export const authApi = {
     const result = await customAxios.post(`/signup`, body);
     return result;
   },
-  getLogin: async (email, password) => {
-    const body = { email, password };
-    // const result = await customAxios.get('/login',body);
-    const result = await customAxios.get(
-      `/signup?email=${email}&password=${password}`,
-      body
-    );
-    return result;
+  getLogin: (username, password) => {
+    const body = { username, password };
+    return customAxios.post('/login', JSON.stringify(body));
   },
 };
 
@@ -69,30 +64,82 @@ export const questionApi = {
 
     return data.data;
   },
+  // 질문 작성
+  postQuestion: async (title, content) => {
+    const body = { title, content };
+    console.log(body);
+    const result = await customAxios.post(
+      `/questions/ask`,
+      JSON.stringify(body)
+    );
+    return result;
+  },
+  // 질문 작성
+  postQuestion: async (title, content) => {
+    const body = { title, content };
+    console.log(body);
+    const result = await customAxios.post(
+      `/questions/ask`,
+      JSON.stringify(body)
+    );
+    return result;
+  },
 };
 
 export const answerApi = {
-  postAnswer: (question_id) =>
-    customAxios.post(`/questions/${question_id}/answers`, {
-      users_id: 'id',
-      content: 'content',
-    }),
-  putAnswer: (question_id, answer_id) =>
-    customAxios.put(`/questions/${question_id}/answers/${answer_id}`, {
-      content: 'content',
-    }),
+  postAnswer: async (question_id, content) => {
+    const body = { content };
+    const result = customAxios.post(
+      `/questions/${question_id}/answers`,
+      JSON.stringify(body)
+    );
+    console.log(body);
+    return result;
+  },
+  patchAnswer: (question_id, answer_id, content) => {
+    const body = { content };
+    const result = customAxios.patch(
+      `/questions/${question_id}/answers/${answer_id}`,
+      body
+    );
+    return result;
+  },
   deleteAnswer: (question_id, answer_id) =>
     customAxios.delete(`/questions/${question_id}/answers/${answer_id}`),
 };
 
-export const commentApi = {};
+export const commentApi = {
+  //  댓글 작성
+  postComment: async (question_id, answer_id, userId, content) => {
+    const body = { userId, content };
+    const result = customAxios.post(
+      `/questions/${question_id}/answers/${answer_id}/comments`,
+      JSON.stringify(body)
+    );
+    return result;
+  },
+  // 댓글 수정
+  patchComment: (question_id, answer_id, comment_id, content) => {
+    const body = { content };
+    const result = customAxios.patch(
+      `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`,
+      body
+    );
+    return result;
+  },
+  // 댓글 삭제
+  deleteComment: (question_id, answer_id, comment_id) => {
+    const result = customAxios.delete(
+      `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`
+    );
+    return result;
+  },
+};
 
 export const questionDetailApi = {
   //질문 상세 조회
-  getQuestionDetail: async (question_id) => {
-    // const data = await customAxios.get(`/questions/${question_id}`);
-    const data = await customAxios.get(`/questions?questionId=${question_id}`);
-    return data;
+  getQuestionDetail: (question_id) => {
+    return customAxios.get(`/questions/${question_id}`);
   },
   //답변 추천 비추천
   postVote: async (question_id, answer_id, std) => {

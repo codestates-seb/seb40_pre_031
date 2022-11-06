@@ -22,7 +22,7 @@ function App() {
           <Route path="/leftnav" element={<LeftNav />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/questions" element={<Question />} />
-          <Route path="/questionask" element={<QuestionAsk />} />
+          <Route path="/questions/ask" element={<QuestionAsk />} />
           <Route
             path="/QuestionDetailPage"
             element={<QuestionDetailPage question_id={'9'} />}

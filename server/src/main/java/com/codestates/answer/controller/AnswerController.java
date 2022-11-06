@@ -24,7 +24,7 @@ import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true", maxAge = 5000L)
 @RestController
 @RequestMapping("/questions/{question_id}/answers/")
 @Validated

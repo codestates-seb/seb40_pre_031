@@ -26,7 +26,7 @@ const QuestionDetailPage = () => {
         setQuestion(tempQuestion);
         setAnswer(answerList);
       })
-      .catch(() => console.log('에러~'));
+      .catch((err) => console.log(err));
   }, []);
 
   const QuestionDetailPage = styled.div`

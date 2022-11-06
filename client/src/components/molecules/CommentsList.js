@@ -7,13 +7,17 @@ const CommentsBox = styled.ul`
   margin-bottom: 5px;
 `;
 
-function CommentsList({ commentsList }) {
+function CommentsList({ commentsList, questionid, answerid }) {
   return (
     <CommentsBox>
       {commentsList
         ? commentsList.map((comment) => (
             <Comment
               key={comment.commentId}
+              questionid={questionid}
+              answerid={answerid}
+              userId={comment.userId}
+              commentid={comment.commentId}
               content={comment.content}
               id={comment.displayName}
               time={TimeCheck(comment.createdAt)}
