@@ -3,26 +3,88 @@ import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { ChromePicker } from 'react-color';
 import { Edit } from './SvgMyIcons';
+import { myApi } from '../../api/apis';
 
 const MyEditCard = () => {
   const [color, setColor] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const [user, setUser] = useState(0);
+
+  useEffect(() => {
+    myApi
+      .getUser(10)
+      .then((res) => {
+        setUser(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleNameChange = useCallback(
+    (name) => {
+      setName(name);
+    },
+    [name]
+  );
+
+  const handlePasswordChange = useCallback(
+    (password) => {
+      setPassword(password);
+    },
+    [password]
+  );
+
   const handleColorChange = useCallback(
-    // 온체인지 이벤트를 담당할 함수다.
     (color) => {
-      // 바뀌는 컬러값을 매개변수로 받아서
-      setColor(color); // setColor 안에 넣어줘서 color 를 변경해줄거다.
+      setColor(color);
     },
     [color]
-  ); // 단 컬러 데이터가 바뀔때마다 이 함수는 갱신된다.
+  );
+
+  const handleName = () => {
+    myApi
+      .patchName(10, name)
+      .then((res) => {
+        setUser(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handlePassword = () => {
+    myApi
+      .patchPassword(10, password)
+      .then((res) => {
+        setUser(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleColor = () => {
+    myApi
+      .patchColor(10, color)
+      .then((res) => {
+        setUser(res);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <CardLayout>
       <CardBox>
         <Edit /> <h2>Edit Display Name</h2>
+        <input
+          value={name}
+          onChange={(e) => handleNameChange(e.target.value)}
+        />
+        <button onClick={handleName}>수정</button>
       </CardBox>
       <CardBox>
         <Edit /> <h2>Edit Password</h2>
+        <input
+          value={password}
+          onChange={(e) => handlePasswordChange(e.target.value)}
+        />
+        <button onClick={handlePassword}>수정</button>
       </CardBox>
       <CardBox>
         <Edit /> <h2>Edit Color</h2>
@@ -30,6 +92,7 @@ const MyEditCard = () => {
           value={color}
           onChange={(e) => handleColorChange(e.target.value)}
         />
+        <button onClick={handleColor}>수정</button>
         <ChromePicker
           color={color}
           onChange={(color) => handleColorChange(color.hex)}

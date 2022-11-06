@@ -2,26 +2,21 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { myApi } from '../../api/apis';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Avartar from '../atoms/Avartar';
 import MyEditCard from '../atoms/MyEditCard';
 import LeftNav from '../organism/LeftNav';
 
 const MyPage = () => {
+  const { userId } = useSelector((state) => ({
+    userId: state.authReducer.userId,
+  }));
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     myApi
       .getUser(10)
-      .then((res) => {
-        setUsers(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  // console.log(users);
-  useEffect(() => {
-    myApi
-      .patchName(10, '김안녕34')
       .then((res) => {
         setUsers(res);
       })
@@ -34,8 +29,8 @@ const MyPage = () => {
       <LeftNav></LeftNav>
       <div className="my">
         <div className="name">
-          <Avartar />
-          <h1>이름</h1>
+          <Avartar color={users.avatarColor} />
+          <h1>{users.displayName}</h1>
         </div>
         <MyEditCard />
       </div>
