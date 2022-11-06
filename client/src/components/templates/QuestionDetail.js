@@ -84,6 +84,7 @@ export const QuestionDetail = ({ data }) => {
         date={data.createdAt}
         displayName={data.displayName}
         id={data.userId}
+        avatarColor={data.avatarColor}
         onClick={editOnClick}
         deleteOnClick={deleteOnClick}
       ></QuestionDetailUserFooter>
