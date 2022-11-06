@@ -7,7 +7,12 @@ const customAxios = axios.create({
     'Content-Type': 'application/json',
   },
   timeout: 1000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
+
+customAxios.defaults.withCredentials = true;
 
 customAxios.interceptors.request.use(
   function (config) {
@@ -58,7 +63,7 @@ export const questionApi = {
     };
     const data = await customAxios.get(`/questions`, { params });
 
-    return data.data.content;
+    return data.data;
   },
   // 질문 작성
   postQuestion: async (title, content) => {
@@ -146,14 +151,14 @@ export const questionDetailApi = {
 export const myApi = {
   // 마이페이지
   getUser: async (user_id) => {
-    const data = await customAxios.get(`/user/${user_id}`);
-    return data.data;
+    const result = await customAxios.get(`/users/${user_id}`);
+    return result.data;
   },
 
   patchName: async (user_id, displayName) => {
     const data = { displayName };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
 
@@ -163,20 +168,19 @@ export const myApi = {
   patchPassword: async (user_id, password) => {
     const data = { password };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
 
     return result.data;
   },
 
-  patchColor: async (user_id, avartarColor) => {
-    const data = { avartarColor };
+  patchColor: async (user_id, avatarColor) => {
+    const data = { avatarColor };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
-
     return result.data;
   },
 

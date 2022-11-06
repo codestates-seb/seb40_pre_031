@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
-const AvartarImage = styled.img`
+const AvartarImage = styled.div`
   width: 16px;
   height: 16px;
   display: block;
   border: none;
-  background-color: var(--orange);
+  background: ${(props) => props.color};
 `;
 
-const Avartar = () => {
-  return <AvartarImage />;
+const Avartar = ({ color }) => {
+  console.log(color);
+  return <AvartarImage color={color} />;
 };
 
 export default Avartar;
