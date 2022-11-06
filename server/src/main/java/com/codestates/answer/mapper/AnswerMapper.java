@@ -13,5 +13,6 @@ public interface AnswerMapper {
 	@Mapping(source = "user.id", target = "userId")
 	@Mapping(source = "question.id", target = "questionId")
 	@Mapping(source = "user.displayName", target = "displayName")
+	@Mapping(source = "user.avatarColor", target = "avatarColor")
 	ResponseAnswerDto answerToResponseAnswerDto(Answer answer);
 }

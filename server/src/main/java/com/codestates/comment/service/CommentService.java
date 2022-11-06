@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.codestates.comment.entity.Comment;
 import com.codestates.comment.repository.CommentRepository;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 
 import lombok.AllArgsConstructor;
 
@@ -35,6 +37,6 @@ public class CommentService {
 		Optional<Comment> found = commentRepository.findById(commentId);
 
 		return found.orElseThrow(() ->
-			new RuntimeException("COMMENT_NOT_FOUND"));
+			new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
 	}
 }

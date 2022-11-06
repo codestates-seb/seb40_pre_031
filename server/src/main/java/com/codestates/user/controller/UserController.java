@@ -1,11 +1,14 @@
 package com.codestates.user.controller;
 
+import java.util.logging.Logger;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -22,9 +25,13 @@ import com.codestates.user.entity.User;
 import com.codestates.user.mapper.UserMapper;
 import com.codestates.user.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+// @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true", maxAge = 5000L)
 @RestController
 @RequestMapping("/")
 @Validated
+@Slf4j
 public class UserController {
 	private final UserService userService;
 	private final UserMapper mapper;
@@ -39,6 +46,9 @@ public class UserController {
 	// 회원 가입
 	@PostMapping("/signup")
 	public ResponseEntity postUser(@Valid @RequestBody UserPostDto userPostDto) {
+		log.info("이메일 : {}", userPostDto.getEmail());
+		log.info("이름 : {}", userPostDto.getDisplayName());
+		log.info("비밀번호 : {}", userPostDto.getPassword());
 		User user = userService.createUser(mapper.userPostDtoToUser(userPostDto));
 		UserResponseDto response = mapper.userToUserResponseDto(user);
 

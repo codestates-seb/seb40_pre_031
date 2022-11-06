@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.codestates.answer.entity.Answer;
 import com.codestates.answer.repository.AnswerRepository;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,12 +32,12 @@ public class AnswerServiceV2 {
 		Optional<Answer> found = answerRepository.findById(answerId);
 
 		return found.orElseThrow(() ->
-			new RuntimeException("ANSWER_NOT_FOUND"));
+			new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 	}
 
 	public void checkAnswerAuthor(Long authorId, Long loginId) {
 		if (authorId.equals(loginId)) {
-			throw new RuntimeException("NO_PERMISSION_TO_EDIT_THIS_ANSWER");
+			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
 		}
 	}
 }

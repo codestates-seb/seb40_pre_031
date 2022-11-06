@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { IconClear, IconPencil, IconCheck } from './SvgComponents';
-// import { commentApi } from '../../api/apis';
+import { commentApi } from '../../api/apis';
 
 const Commentitem = styled.li`
   width: 641px;
@@ -41,23 +42,41 @@ const Commentitem = styled.li`
   }
 `;
 
-function Comment({ content, id, time }) {
+function Comment({
+  content,
+  id,
+  time,
+  userId,
+  questionid,
+  answerid,
+  commentid,
+}) {
   const [edit, setEdit] = useState(false);
   const [text, setText] = useState('');
-  const displayName = 'aukyu';
-  const canEdit = displayName === id;
+  const user = useSelector((state) => state.authReducer.userId);
+  const commentId = commentid;
+  const questionId = questionid;
+  const answerId = answerid;
+  const canEdit = user === userId;
   const editOnClick = () => {
     console.log('edit');
     setEdit(!edit);
   };
   const deleteOnClick = () => {
+    console.log(commentId);
     if (window.confirm('삭제하시겠습니까?')) {
       console.log('delete');
+      commentApi
+        .deleteComment(questionId, answerId, commentId)
+        .then((res) => console.log(res));
     }
   };
   const putOnClick = () => {
     if (window.confirm('수정하시겠습니까?')) {
       console.log(text);
+      commentApi
+        .patchComment(questionId, answerId, commentId, text)
+        .then((res) => console.log(res));
       setEdit(!edit);
     }
   };

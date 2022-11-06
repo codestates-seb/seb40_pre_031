@@ -45,7 +45,7 @@ public class User extends BaseTime {
 	@Column(length = 50, nullable = false)
 	private String displayName;
 
-	@Column
+	@Column(nullable = false)
 	private String avatarColor = "#ffffff";
 
 	@Enumerated(EnumType.STRING)
