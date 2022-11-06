@@ -3,6 +3,9 @@ import axios from 'axios';
 
 const customAxios = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
   timeout: 1000,
 });
 
@@ -31,11 +34,9 @@ customAxios.interceptors.response.use(
 export default customAxios;
 
 export const authApi = {
-  postSignUp: async (name, email, password) => {
-    const body = { name, email, password };
-    console.log(body);
-    const result = await customAxios.post(`/signup`, body);
-    return result;
+  postSignUp: (displayName, email, password) => {
+    const body = { displayName, email, password };
+    return customAxios.post(`/signup`, JSON.stringify(body));
   },
   getLogin: (username, password) => {
     const body = { username, password };
