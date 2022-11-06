@@ -37,19 +37,10 @@ function PostAnswerBox({ questionid }) {
       content: editorRef.current.getInstance().getMarkdown(),
       questionId: questionId,
     };
-    // answerApi.postAnswer(questionid, data.content);
-    // console.log(data);
-    fetch(`http://localhost:8080/questions/${questionId}/answers`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        content: data.content,
-      }),
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    answerApi.postAnswer(questionId, data.content).then((res) => {
+      console.log(res);
+      location.reload();
+    });
   };
   return (
     <div>

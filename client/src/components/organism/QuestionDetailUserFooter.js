@@ -12,7 +12,11 @@ export const QuestionDetailUserFooter = (props) => {
     <QuestionDetailUserFooterBox>
       <div className="Editdiv">
         {canEdit && <button onClick={props.onClick}>Edit</button>}
-        {canEdit && <button>Delete</button>}
+        {canEdit && (
+          <button className="delete" onClick={props.deleteOnClick}>
+            Delete
+          </button>
+        )}
       </div>
       <QuestionDetailUserProfile {...props}></QuestionDetailUserProfile>
     </QuestionDetailUserFooterBox>

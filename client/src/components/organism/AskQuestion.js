@@ -7,6 +7,7 @@ import AskQuestionHeader from '../molecules/AskQuestionHeader';
 import AskQuestionTagBox from '../molecules/AskQuestionTagBox';
 import AskQuestionTitleBox from '../molecules/AskQuestionTitleBox';
 import { questionApi } from '../../api/apis';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   background: var(--black-050);
@@ -34,7 +35,8 @@ function AskQuestion() {
   const titleRef = { title: useRef(null), p: useRef(null) };
   const editorRef = useRef(null);
   const tagRef = useRef(null);
-  // const navigate = useNavigate(); // 질문 등록 후 질문 리스트 페이지 연결  app.js 라우터 연결후 사용
+  const navigate = useNavigate(); // 질문 등록 후 질문 리스트 페이지 연결  app.js 라우터 연결후 사용
+  const user = useSelector((state) => state.authReducer.userId);
 
   const editorOnChange = () => {
     const value = editorRef.current.getInstance().getMarkdown();
@@ -54,6 +56,7 @@ function AskQuestion() {
 
   const buttonOnClick = () => {
     const data = {
+      userid: user,
       title: titleRef.title.current.value,
       content: editorRef.current.getInstance().getMarkdown(),
     };
@@ -63,20 +66,13 @@ function AskQuestion() {
       return;
     }
     console.log(data);
-    questionApi.postQuestion(data.title, data.content);
-    // fetch(`http://localhost:8080/questions/ask`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     title: data.title,
-    //     content: data.content,
-    //   }),
-    // })
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
-    // navigate('/questions');
+    questionApi
+      .postQuestion(data.userid, data.title, data.content)
+      .then((res) => {
+        console.log(res);
+        navigate('/questions');
+        location.reload();
+      });
   };
 
   return (
