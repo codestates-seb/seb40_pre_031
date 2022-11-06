@@ -44,9 +44,10 @@ const InfoBox = styled.div`
   }
 `;
 
-//로그인 전 or 후, 상태에 따라 달라지는 Header
+//로그인 전 or 후, 상태에 따라 달라지는 Header & 로그인된 userName 보여주기
 const HeaderButton = () => {
   const isLogin = useSelector((store) => store.authReducer.userStatus);
+  const userName = useSelector((store) => store.authReducer.displayName);
 
   return (
     <>
@@ -63,7 +64,7 @@ const HeaderButton = () => {
       ) : (
         <>
           <div>
-            Hello! <span>userName</span>
+            Hello! <span>{userName}</span>
           </div>
           <InfoBox>
             <HeaderInfo />
