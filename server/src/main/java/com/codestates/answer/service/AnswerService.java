@@ -43,8 +43,8 @@ public class AnswerService {
 	public VoteStatus getUserAnswerVoteStatus(Long answerId, Long userId) {
 		Answer answer = findVerifiedAnswer(answerId);
 
-		for(AnswerVote answerVote : answer.getAnswerVoteList()) {
-			if(answerVote.getUser().getId().equals(userId)) {
+		for (AnswerVote answerVote : answer.getAnswerVoteList()) {
+			if (answerVote.getUser().getId().equals(userId)) {
 
 				return answerVote.getStatus();
 			}
