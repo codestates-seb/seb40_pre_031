@@ -4,6 +4,7 @@ import { ReactComponent as InfoHamburger } from '../../assets/icon/Header-InfoIc
 import { SvgHelp } from './SvgHeaderIcon';
 import { BsPersonCircle } from 'react-icons/bs';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 //로그아웃 관련 import
 import { logoutAction } from '../../actions';
@@ -53,11 +54,8 @@ const HeaderInfo = () => {
   const [InfoOpened, setInfoOpened] = useState(true);
   //로그아웃 누르면 로그아웃 하기
   const dispatch = useDispatch();
-  // const onLogout = (e) => {
   const onLogout = () => {
-    // e.preventDefault();
     dispatch(logoutAction()); // logout
-    // page move
   };
 
   return (
@@ -68,8 +66,10 @@ const HeaderInfo = () => {
           {!InfoOpened && (
             <ul>
               <DropdownItem>
-                <BsPersonCircle size={22} style={{ marginRight: '4px' }} />
-                <ListText>My Page</ListText>
+                <Link to={'/mypage'}>
+                  <BsPersonCircle size={22} style={{ marginRight: '4px' }} />
+                  <ListText>My Page</ListText>
+                </Link>
               </DropdownItem>
               <DropdownItem>
                 <SvgHelp />
@@ -77,7 +77,6 @@ const HeaderInfo = () => {
                   <a href="https://stackoverflow.com/help">Help</a>
                 </ListText>
               </DropdownItem>
-
               {/* 로그아웃을 누르면, 로그아웃 action을 가져와 .then 에 넣기 */}
               <DropdownItem
                 onClick={onLogout}

@@ -38,18 +38,18 @@ const HeaderMenu = () => {
   return (
     <>
       <DropdownBox onClick={() => setIsMenuOpened(!MenuOpened)}>
-        {!MenuOpened ? (
-          !isLogin && <AiOutlineMenu size={18} />
-        ) : (
-          <>
-            <MenuX size={18} />
-            <HamburgerContainer>
-              <IconBox>
-                <LeftNav />
-              </IconBox>
-            </HamburgerContainer>
-          </>
-        )}
+        {!MenuOpened
+          ? !isLogin && <AiOutlineMenu size={18} />
+          : !isLogin && (
+              <>
+                <MenuX size={18} />
+                <HamburgerContainer>
+                  <IconBox>
+                    <LeftNav />
+                  </IconBox>
+                </HamburgerContainer>
+              </>
+            )}
       </DropdownBox>
     </>
   );
