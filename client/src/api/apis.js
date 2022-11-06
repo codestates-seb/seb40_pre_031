@@ -59,10 +59,14 @@ export const questionApi = {
 
     return data.data.content;
   },
+  // 질문 작성
   postQuestion: async (title, content) => {
     const body = { title, content };
     console.log(body);
-    const result = await customAxios.post(`/questions/ask`, body);
+    const result = await customAxios.post(
+      `/questions/ask`,
+      JSON.stringify(body)
+    );
     return result;
   },
 };
