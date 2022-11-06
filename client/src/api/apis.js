@@ -59,40 +59,66 @@ export const questionApi = {
 
     return data.data.content;
   },
+  // 질문 작성
+  postQuestion: async (title, content) => {
+    const body = { title, content };
+    console.log(body);
+    const result = await customAxios.post(
+      `/questions/ask`,
+      JSON.stringify(body)
+    );
+    return result;
+  },
 };
 
 export const answerApi = {
-  postAnswer: (question_id) =>
-    customAxios.post(`/questions/${question_id}/answers`, {
-      users_id: 'id',
-      content: 'content',
-    }),
-  putAnswer: (question_id, answer_id) =>
-    customAxios.put(`/questions/${question_id}/answers/${answer_id}`, {
-      content: 'content',
-    }),
+  postAnswer: async (question_id, content) => {
+    const body = { content };
+    const result = customAxios.post(
+      `/questions/${question_id}/answers`,
+      JSON.stringify(body)
+    );
+    console.log(body);
+    return result;
+  },
+  patchAnswer: (question_id, answer_id, content) => {
+    const body = { content };
+    const result = customAxios.patch(
+      `/questions/${question_id}/answers/${answer_id}`,
+      body
+    );
+    return result;
+  },
   deleteAnswer: (question_id, answer_id) =>
     customAxios.delete(`/questions/${question_id}/answers/${answer_id}`),
 };
 
 export const commentApi = {
-  postComment: (question_id, answer_id) =>
-    customAxios.post(
+  //  댓글 작성
+  postComment: async (question_id, answer_id, userId, content) => {
+    const body = { userId, content };
+    const result = customAxios.post(
       `/questions/${question_id}/answers/${answer_id}/comments`,
-      body
+      JSON.stringify(body)
     );
-    console.log(body);
     return result;
   },
-  putComment: (question_id, answer_id, comment_id) =>
-    customAxios.put(
+  // 댓글 수정
+  patchComment: (question_id, answer_id, comment_id, content) => {
+    const body = { content };
+    const result = customAxios.patch(
       `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`,
-      { content: 'content' }
-    ),
-  deleteComment: (question_id, answer_id, comment_id) =>
-    customAxios.delete(
+      body
+    );
+    return result;
+  },
+  // 댓글 삭제
+  deleteComment: (question_id, answer_id, comment_id) => {
+    const result = customAxios.delete(
       `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`
-    ),
+    );
+    return result;
+  },
 };
 
 export const questionDetailApi = {

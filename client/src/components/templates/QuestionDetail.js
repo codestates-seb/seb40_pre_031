@@ -7,6 +7,7 @@ import { QuestionDetailUserFooter } from '../organism/QuestionDetailUserFooter';
 import QuestionViewer from '../atoms/QuestionViewer';
 import QuestionEditor from '../atoms/QuestionEditor';
 import { useState, useRef } from 'react';
+// import { answerApi } from '../../api/apis';
 
 //본문내용과 추천수를 포함하는 컴포넌트
 export const QuestionDetail = ({ data }) => {
@@ -16,8 +17,16 @@ export const QuestionDetail = ({ data }) => {
   const editOnClick = () => {
     console.log('edit');
     if (edit === true) {
-      const value = editorRef.current.getInstance().getMarkdown();
-      console.log(value);
+      const content = editorRef.current.getInstance().getMarkdown();
+      console.log(content);
+      console.log(data);
+
+      if (data.answerId) {
+        console.log(data.answerId);
+      } else if (data.questionId) {
+        console.log(data.questionId);
+      }
+      // answerApi.patchAnswer();
     }
     setEdit(!edit);
   };
@@ -42,6 +51,7 @@ export const QuestionDetail = ({ data }) => {
       <QuestionDetailUserFooter
         date={data.createdAt}
         displayName={data.displayName}
+        id={data.userId}
         onClick={editOnClick}
       ></QuestionDetailUserFooter>
     </>
