@@ -16,7 +16,7 @@ const MyPage = () => {
 
   useEffect(() => {
     myApi
-      .getUser(10)
+      .getUser(userId)
       .then((res) => {
         setUsers(res);
       })
