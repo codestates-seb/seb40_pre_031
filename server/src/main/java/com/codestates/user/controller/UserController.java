@@ -1,12 +1,14 @@
 package com.codestates.user.controller;
 
-import java.util.logging.Logger;
+import java.security.Principal;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codestates.auth.UsersDetailService;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 import com.codestates.user.dto.UserPatchDto;
 import com.codestates.user.dto.UserPostDto;
 import com.codestates.user.dto.UserResponseDto;
@@ -57,7 +62,15 @@ public class UserController {
 
 	// 회원 조회 --> 마이 페이지
 	@GetMapping("/users/{user_id}")
-	public ResponseEntity getUser(@PathVariable("user_id") @Positive long userId) {
+	public ResponseEntity getUser(@PathVariable("user_id") @Positive long userId, Principal principal) {
+
+		// 로그인 유저 != 접근 하려는 유저 --> 403 에러
+		User findUser = userService.findUserByEmail(principal.getName());
+		if (findUser.getId() != userId) {
+			System.out.println("점근하려는 사용자 ID : " + findUser.getId());
+			System.out.println("해당 페이지 사용자 ID : " + userId);
+			throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
+		}
 		UserResponseDto responseDto = mapper.userToUserResponseDto(userService.findMember(userId));
 
 		return new ResponseEntity<>(responseDto, HttpStatus.OK);
@@ -66,7 +79,15 @@ public class UserController {
 	// 마이 페이지 --> 수정
 	@PatchMapping("/users/{user_id}")
 	public ResponseEntity patchUser(@PathVariable("user_id") @Positive long userId,
-		@Valid @RequestBody UserPatchDto userPatchDto) {
+		@Valid @RequestBody UserPatchDto userPatchDto,
+		Principal principal) {
+
+		// 로그인 유저 != 접근 하려는 유저 --> 403 에러
+		User findUser = userService.findUserByEmail(principal.getName());
+		if (findUser.getId() != userId) {
+			throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
+		}
+
 		userPatchDto.setId(userId);
 		User user = userService.updateUser(mapper.userPatchDtoToUser(userPatchDto));
 		UserResponseDto response = mapper.userToUserResponseDto(user);
@@ -76,7 +97,15 @@ public class UserController {
 
 	// 회원 정보 삭제 --> 상태 변경 메서드 구현함
 	@DeleteMapping("/users/{user_id}")
-	public ResponseEntity deleteUser(@PathVariable("user_id") @Positive long userId) {
+	public ResponseEntity deleteUser(@PathVariable("user_id") @Positive long userId,
+		Principal principal) {
+
+		// 로그인 유저 != 접근 하려는 유저 --> 403 에러
+		User findUser = userService.findUserByEmail(principal.getName());
+		if (findUser.getId() != userId) {
+			throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
+		}
+
 		User user = userService.deleteUser(userId);
 		UserResponseDto response = mapper.userToUserResponseDto(user);
 
