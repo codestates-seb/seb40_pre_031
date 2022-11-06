@@ -1,9 +1,14 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const QuestionAskButton = () => {
+  const navigate = useNavigate();
+  const navigateToAsk = () => {
+    navigate('/questionask');
+  };
   return (
     <>
-      <AskQuestion>Ask Question</AskQuestion>
+      <AskQuestion onClick={navigateToAsk}>Ask Question</AskQuestion>
     </>
   );
 };
