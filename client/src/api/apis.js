@@ -7,9 +7,6 @@ const customAxios = axios.create({
     'Content-Type': 'application/json',
   },
   timeout: 1000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 customAxios.defaults.withCredentials = true;
@@ -66,17 +63,6 @@ export const questionApi = {
     return data.data;
   },
   // 질문 작성
-  postQuestion: async (title, content) => {
-    const body = { title, content };
-    console.log(body);
-    const result = await customAxios.post(
-      `/questions/ask`,
-      JSON.stringify(body)
-    );
-    return result;
-  },
-
-  // 질문 작성
   postQuestion: async (userId, title, content) => {
     const body = { userId, title, content };
     console.log(body);
@@ -105,7 +91,6 @@ export const questionApi = {
 };
 
 export const answerApi = {
-
   // 답변 등록
   postAnswer: async (questionId, content) => {
     const body = { content };
