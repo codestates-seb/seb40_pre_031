@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class QuestionService {
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
+	private final AnswerRepository answerRepository;
 
 	public Question createQuestion(Question question) {
 		questionRepository.save(question);
@@ -44,13 +45,12 @@ public class QuestionService {
 		questionRepository.deleteById(questionId);
 	}
 
-
-  public Question findQuestion(Long questionId) {
+	public Question findQuestion(Long questionId) {
 
 		return findVerifiedQuestion(questionId);
 	}
 
-  public Question findVerifiedQuestion(Long questionId) {
+	public Question findVerifiedQuestion(Long questionId) {
 		Optional<Question> getQuestion = questionRepository.findById(questionId);
 
 		return getQuestion.orElseThrow(
