@@ -13,6 +13,7 @@ const QuestionList = ({ question }) => {
       />
       <QuestionSummaryContent
         question_id={question.questionId}
+        color={question.avatarColor}
         title={question.title}
         content={question.content}
         displayname={question.displayName}
