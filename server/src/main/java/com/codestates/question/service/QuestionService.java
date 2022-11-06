@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codestates.answer.entity.Answer;
 import com.codestates.answer.repository.AnswerRepository;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
 import com.codestates.question.repository.QuestionRepository;
@@ -54,7 +56,7 @@ public class QuestionService {
 		Optional<Question> getQuestion = questionRepository.findById(questionId);
 
 		return getQuestion.orElseThrow(
-			() -> new RuntimeException("QUESTION_NOT_FOUND"));
+			() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 	}
 
 	public VoteStatus checkUserVoteStatus(Question question, User user) {
@@ -76,10 +78,10 @@ public class QuestionService {
 
 	public void chosenAnswer(Long questionId, Long chosenAnswerId) {
 		Answer answer = answerRepository.findById(chosenAnswerId)
-			.orElseThrow(() -> new RuntimeException("ANSWER_NOT_FOUND"));
+			.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 
 		if (!answer.getQuestion().getId().equals(questionId)) {
-			throw new RuntimeException("WRONG_ID");
+			throw new BusinessLogicException(ExceptionCode.WRONG_ID);
 		}
 
 		answer.getQuestion().setChosenAnswerId(chosenAnswerId);
