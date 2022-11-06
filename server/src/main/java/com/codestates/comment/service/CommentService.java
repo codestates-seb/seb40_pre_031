@@ -20,7 +20,7 @@ public class CommentService {
 
 	public Comment updateComment(Comment comment) {
 		Comment found = findVerifiedComment(comment.getId());
-		found.setContent(comment.getContent());
+		found.updateContent(comment.getContent());
 
 		return commentRepository.save(found);
 	}

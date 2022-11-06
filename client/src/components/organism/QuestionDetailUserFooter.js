@@ -5,7 +5,9 @@ import { QuestionDetailUserProfile } from '../molecules/QuestionDetailUserProfil
 export const QuestionDetailUserFooter = (props) => {
   return (
     <QuestionDetailUserFooterBox>
-      <div className="Editdiv">Edit</div>
+      <div className="Editdiv">
+        <button onClick={props.onClick}>Edit</button>
+      </div>
       <QuestionDetailUserProfile {...props}></QuestionDetailUserProfile>
     </QuestionDetailUserFooterBox>
   );

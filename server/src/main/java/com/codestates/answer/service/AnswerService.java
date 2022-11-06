@@ -20,7 +20,7 @@ public class AnswerService {
 
 	public Answer updateAnswer(Answer answer) {
 		Answer found = findVerifiedAnswer(answer.getId());
-		found.setContent(answer.getContent());
+		found.updateContent(answer.getContent());
 
 		return answerRepository.save(found);
 	}

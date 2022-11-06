@@ -84,11 +84,11 @@ export const commentApi = {
   postComment: (question_id, answer_id) =>
     customAxios.post(
       `/questions/${question_id}/answers/${answer_id}/comments`,
-      {
-        users_id: 'id',
-        content: 'content',
-      }
-    ),
+      body
+    );
+    console.log(body);
+    return result;
+  },
   putComment: (question_id, answer_id, comment_id) =>
     customAxios.put(
       `/questions/${question_id}/answers/${answer_id}/comments/${comment_id}`,
