@@ -1,8 +1,8 @@
 function OrangeSpotSearch(props) {
   return (
     <svg
-      width={48}
-      height={48}
+      width={45}
+      height={45}
       aria-hidden="true"
       className="fc-orange-500 mb16 svg-spot spotSearch"
       style={{
@@ -57,4 +57,4 @@ function BlueSpotLock(props) {
     </svg>
   );
 }
-export default { OrangeSpotSearch, BlueSpotLock };
+export { OrangeSpotSearch, BlueSpotLock };

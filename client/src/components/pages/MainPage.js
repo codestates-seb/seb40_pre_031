@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line import/named
-// import { OrangeSpotSearch, BlueSpotLock } from '../atoms/SvgMainPageIcons';
+import { OrangeSpotSearch, BlueSpotLock } from '../atoms/SvgMainPageIcons';
 
 //메인페이지
 const MainPageBox = styled.div`
   padding: 48px;
   margin: auto;
-  background-color: #f8f9f9;
+  background-color: var(--black-010);
+
   > .home-container {
     padding: 32px;
-    background: linear-gradient(180deg, #232629 0%, #525960 130%);
+    background: linear-gradient(
+      180deg,
+      var(--black-800) 0%,
+      var(--black-600) 130%
+    );
     border-radius: 7px;
 
     > .bubbles {
@@ -23,7 +28,7 @@ const MainPageBox = styled.div`
         flex-basis: 50%;
         text-align: center;
         font-size: 13px;
-        color: #232629;
+        color: var(--black-800);
         margin: 16px;
         padding: 24px;
         border-top-right-radius: 7px;
@@ -50,25 +55,25 @@ const MainPageBox = styled.div`
         }
       }
       > .left {
-        background-color: #fee3cd;
+        background-color: var(--orange-100);
         border-bottom-left-radius: 7px;
         button {
-          background-color: #f2740d;
+          background-color: var(--orange-500);
           border: none;
           border-radius: 3px;
           padding: 12px 32px;
-          color: #fff;
+          color: var(--white);
           cursor: pointer;
           :hover {
-            background-color: #da680b;
+            background-color: var(--orange);
           }
         }
         > div {
           margin-top: 12px;
           > a {
-            color: #3b4045;
+            color: var(--black-700);
             :hover {
-              color: #da680b;
+              color: var(--orange-600);
             }
           }
         }
@@ -80,7 +85,7 @@ const MainPageBox = styled.div`
         }
       }
       > .right {
-        background-color: #cde9fe;
+        background-color: var(--blue-100);
         border-bottom-right-radius: 7px;
         > .get-started {
           display: flex;
@@ -91,7 +96,7 @@ const MainPageBox = styled.div`
           margin-bottom: 12px;
           > .line {
             flex-basis: 33.3333333%;
-            border-top: 1px solid #6bbbf7;
+            border-top: 1px solid var(--blue-300);
           }
           > .text {
             padding: 0 12px;
@@ -103,15 +108,15 @@ const MainPageBox = styled.div`
           display: flex;
           justify-content: center;
           margin: auto;
-          > button {
+          button {
             display: flex;
             align-items: center;
             gap: 3px;
-            background-color: #0a95ff;
+            background-color: var(--blue-500);
             border: none;
             border-radius: 3px;
             padding: 12px;
-            color: #fff;
+            color: var(--white);
             cursor: pointer;
             :nth-child(2) {
               margin-left: 8px;
@@ -119,7 +124,7 @@ const MainPageBox = styled.div`
           }
         }
         ::after {
-          background: #cde9fe;
+          background: var(--blue-100);
           left: 0;
         }
       }
@@ -132,7 +137,7 @@ const MainPage = () => {
       <div className="home-container">
         <div className="bubbles">
           <div className="bubble left">
-            <span>아이콘1</span>
+            <OrangeSpotSearch />
             <h2>
               Find the best answer to your technical question, help others
               answer theirs
@@ -140,38 +145,29 @@ const MainPage = () => {
             <Link to="/signup">
               <button>Join the community</button>
             </Link>
-
             <div>
               or <Link to="/questions">search content</Link>
             </div>
           </div>
           <div className="bubble right">
-            <span>아이콘</span>
+            <BlueSpotLock />
             <h2>Want a secure, private space for your technical knowledge?</h2>
             <div className="get-started">
               <span className="line"></span>
               <span className="text">Get started</span>
               <span className="line"></span>
             </div>
+
             <div className="button-container">
-              {/* <Link to="/login"> */}
-              <button>Log in</button>
-              {/* </Link> */}
+              <Link to="/login">
+                <button>Log in</button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
       {/* 오렌지박스 & 파란색 박스 */}
-      <div>
-        <div>
-          <a>FaStackOverflow 아이콘</a>
-          <img>이미지1</img>
-          <h2></h2>
-          <p></p>
-          <button></button>
-        </div>
-      </div>
     </MainPageBox>
   );
 };
