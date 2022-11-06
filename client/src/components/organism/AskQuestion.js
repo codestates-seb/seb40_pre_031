@@ -1,12 +1,12 @@
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import PostQuestionButton from '../atoms/PostQuestionButton';
 import AskQuestionEditorBox from '../molecules/AskQuestionEditorBox';
 import AskQuestionHeader from '../molecules/AskQuestionHeader';
 import AskQuestionTagBox from '../molecules/AskQuestionTagBox';
 import AskQuestionTitleBox from '../molecules/AskQuestionTitleBox';
-import { questionApi } from '../../api/apis';
+// import { questionApi } from '../../api/apis';
 
 const Container = styled.div`
   background: var(--black-050);
@@ -34,7 +34,7 @@ function AskQuestion() {
   const titleRef = { title: useRef(null), p: useRef(null) };
   const editorRef = useRef(null);
   const tagRef = useRef(null);
-  const navigate = useNavigate(); // 질문 등록 후 질문 리스트 페이지 연결  app.js 라우터 연결후 사용
+  // const navigate = useNavigate(); // 질문 등록 후 질문 리스트 페이지 연결  app.js 라우터 연결후 사용
 
   const editorOnChange = () => {
     const value = editorRef.current.getInstance().getMarkdown();
@@ -54,6 +54,7 @@ function AskQuestion() {
 
   const buttonOnClick = () => {
     const data = {
+      userId: 1,
       title: titleRef.title.current.value,
       content: editorRef.current.getInstance().getMarkdown(),
     };
@@ -62,9 +63,20 @@ function AskQuestion() {
       titleRef.title.current.focus();
       return;
     }
-    console.log(data);
-    questionApi.postQuestion(data.title, data.content);
-    navigate('/questions');
+    // console.log(data);
+    // questionApi.postQuestion(data.userId, data.title, data.content);
+    // navigate('/questions');
+    fetch('http://localhost:8080/questions/ask', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: 1,
+        title: titleRef.title.current.value,
+        content: editorRef.current.getInstance().getMarkdown(),
+      }),
+    }).then((response) => console.log(response));
   };
 
   return (
