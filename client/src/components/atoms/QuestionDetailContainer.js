@@ -61,7 +61,7 @@ const QuestionDetailUserProfileBox = styled.div`
       height: 32px;
       margin-right: 10px;
       border-radius: 3px;
-      background-color: orange;
+      background-color: ${({ avatarColor }) => avatarColor};
     }
   }
 `;
