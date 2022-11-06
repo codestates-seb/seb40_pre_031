@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 import PostAnswerButton from '../atoms/PostAnswerButton';
 import AnswerWrite from './AnswerEditor';
+// import { answerApi } from '../../api/apis';
+import { useSelector } from 'react-redux';
 
 const PostAnswer = styled.div`
   background: var(--white);
@@ -25,16 +27,29 @@ const ButtonBox = styled.div`
   padding-bottom: 15px;
 `;
 
-function PostAnswerBox() {
+function PostAnswerBox({ questionid }) {
   const editorRef = useRef(null);
-
+  const questionId = questionid;
+  const userId = useSelector((state) => state.authReducer.userId);
   const buttonOnClick = () => {
     const data = {
-      user_id: 'codingkim',
+      userId: userId,
       content: editorRef.current.getInstance().getMarkdown(),
+      questionId: questionId,
     };
-
-    console.log(data);
+    // answerApi.postAnswer(questionid, data.content);
+    // console.log(data);
+    fetch(`http://localhost:8080/questions/${questionId}/answers`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content: data.content,
+      }),
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
   return (
     <div>

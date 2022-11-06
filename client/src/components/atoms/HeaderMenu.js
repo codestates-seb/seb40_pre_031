@@ -20,6 +20,7 @@ const DropdownBox = styled.div`
 const LeftnavBox = styled.div`
   position: absolute;
   top: 100%;
+  border: 1px solid var(--black-075);
 `;
 
 const HeaderMenu = () => {
