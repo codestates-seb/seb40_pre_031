@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.codestates.answer.entity.Answer;
 import com.codestates.answer.entity.AnswerVote;
 import com.codestates.answer.repository.AnswerRepository;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 import com.codestates.status.VoteStatus;
 
 import lombok.RequiredArgsConstructor;
@@ -37,7 +39,7 @@ public class AnswerService {
 		Optional<Answer> found = answerRepository.findById(answerId);
 
 		return found.orElseThrow(() ->
-			new RuntimeException("ANSWER_NOT_FOUND"));
+			new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 	}
 
 	public VoteStatus getUserAnswerVoteStatus(Long answerId, Long userId) {

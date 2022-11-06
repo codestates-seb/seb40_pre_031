@@ -54,7 +54,7 @@ public class UserService {
 		User findUser = findVerifiedUser(user.getId());
 
 		if (findUser.getUserStatus() == UserStatus.USER_OUT || findUser.getUserStatus() == UserStatus.ADMIN) {
-			throw new BusinessLogicException(ExceptionCode.OUT_OF_CONTROL);
+			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
 		} else {
 			// 수정하기
 			Optional.ofNullable(user.getPassword()).ifPresent(password ->
@@ -76,7 +76,7 @@ public class UserService {
 		User findUser = findVerifiedUser(userId);
 
 		if (findUser.getUserStatus() == UserStatus.USER_OUT || findUser.getUserStatus() == UserStatus.ADMIN) {
-			throw new BusinessLogicException(ExceptionCode.OUT_OF_CONTROL);
+			throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
 		} else {
 			return findUser;
 		}
@@ -105,7 +105,7 @@ public class UserService {
 	// 존재하는 회원인지 확인
 	public User findVerifiedUser(long userId) {
 		Optional<User> optionalUser = userRepository.findById(userId);
-		User findUser = optionalUser.orElseThrow(() -> new RuntimeException("USER_NOT_FOUND"));
+		User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
 
 		return findUser;
 	}
