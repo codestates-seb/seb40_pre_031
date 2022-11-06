@@ -74,9 +74,10 @@ export const questionApi = {
 export const answerApi = {
   postAnswer: async (question_id, content) => {
     const body = { content };
-    const result = customAxios.post(`/questions/${question_id}/answers`, body, {
-      withCredentials: true,
-    });
+    const result = customAxios.post(
+      `/questions/${question_id}/answers`,
+      JSON.stringify(body)
+    );
     console.log(body);
     return result;
   },
@@ -98,9 +99,8 @@ export const commentApi = {
     const body = { userId, content };
     const result = customAxios.post(
       `/questions/${question_id}/answers/${answer_id}/comments`,
-      body
+      JSON.stringify(body)
     );
-    console.log(body);
     return result;
   },
   // 댓글 수정
