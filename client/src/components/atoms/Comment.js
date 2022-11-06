@@ -66,9 +66,10 @@ function Comment({
     console.log(commentId);
     if (window.confirm('삭제하시겠습니까?')) {
       console.log('delete');
-      commentApi
-        .deleteComment(questionId, answerId, commentId)
-        .then((res) => console.log(res));
+      commentApi.deleteComment(questionId, answerId, commentId).then((res) => {
+        console.log(res);
+        location.reload();
+      });
     }
   };
   const putOnClick = () => {
@@ -76,7 +77,10 @@ function Comment({
       console.log(text);
       commentApi
         .patchComment(questionId, answerId, commentId, text)
-        .then((res) => console.log(res));
+        .then((res) => {
+          console.log(res);
+          location.reload();
+        });
       setEdit(!edit);
     }
   };

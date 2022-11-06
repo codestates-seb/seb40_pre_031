@@ -24,12 +24,12 @@ function QuestionComments({ commentList, questionid, answerid }) {
       questionid: questionid,
       answerid: answerid,
     };
-    commentApi.postComment(
-      data.questionid,
-      data.answerid,
-      data.userid,
-      data.content
-    );
+    commentApi
+      .postComment(data.questionid, data.answerid, data.userid, data.content)
+      .then((res) => {
+        console.log(res);
+        location.reload();
+      });
     CommentRef.current.value = '';
   };
   return (
