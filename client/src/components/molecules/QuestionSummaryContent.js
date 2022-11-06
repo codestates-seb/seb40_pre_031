@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const QuestionSummaryContent = ({
   question_id,
+  color,
   title,
   content,
   displayname,
@@ -20,7 +21,7 @@ const QuestionSummaryContent = ({
       </h3>
       <QuestionContent>{content}</QuestionContent>
       <UserBox>
-        <Avartar />
+        <Avartar color={color} />
         <Username>{displayname}</Username>
         <span>{createdAt}</span>
       </UserBox>
