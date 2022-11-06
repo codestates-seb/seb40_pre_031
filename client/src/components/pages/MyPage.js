@@ -22,7 +22,6 @@ const MyPage = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(users);
 
   return (
     <MyPageLayout>
