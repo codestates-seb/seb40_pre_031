@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 import PostAnswerButton from '../atoms/PostAnswerButton';
 import AnswerWrite from './AnswerEditor';
-// import { answerApi } from '../../api/apis';
+import { answerApi } from '../../api/apis';
 import { useSelector } from 'react-redux';
 
 const PostAnswer = styled.div`
