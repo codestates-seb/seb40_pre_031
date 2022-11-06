@@ -12,4 +12,6 @@ import com.codestates.user.entity.User;
 @Repository
 public interface QuestionVoteRepository extends JpaRepository<QuestionVote, Long> {
 	Optional<QuestionVote> findByQuestionAndUser(Question question, User user);
+
+	Optional<QuestionVote> findByQuestionIdAndUserId(Long questionId, Long userId);
 }

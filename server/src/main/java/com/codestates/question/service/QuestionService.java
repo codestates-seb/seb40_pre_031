@@ -7,13 +7,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codestates.answer.entity.Answer;
 import com.codestates.answer.repository.AnswerRepository;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 import com.codestates.question.entity.Question;
 import com.codestates.question.entity.QuestionVote;
 import com.codestates.question.repository.QuestionRepository;
 import com.codestates.question.repository.QuestionVoteRepository;
 import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
-import com.codestates.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +25,6 @@ public class QuestionService {
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
 	private final AnswerRepository answerRepository;
-	private final UserRepository userRepository;
 
 	public Question createQuestion(Question question) {
 		questionRepository.save(question);
@@ -41,24 +41,22 @@ public class QuestionService {
 		return questionRepository.save(verifiedQuestion);
 	}
 
-	@Transactional(readOnly = true)
-	public Question findQuestion(Long questionId) {
-
-		return findVerifiedQuestion(questionId);
-	}
-
 	public void deleteQuestion(Long questionId) {
 		Question findQuestion = findVerifiedQuestion(questionId);
 
 		questionRepository.deleteById(questionId);
 	}
 
-	@Transactional(readOnly = true)
-	private Question findVerifiedQuestion(Long questionId) {
+	public Question findQuestion(Long questionId) {
+
+		return findVerifiedQuestion(questionId);
+	}
+
+	public Question findVerifiedQuestion(Long questionId) {
 		Optional<Question> getQuestion = questionRepository.findById(questionId);
 
 		return getQuestion.orElseThrow(
-			() -> new RuntimeException("QUESTION_NOT_FOUND"));
+			() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
 	}
 
 	public VoteStatus checkUserVoteStatus(Question question, User user) {
@@ -72,17 +70,18 @@ public class QuestionService {
 		return optionalQuestionVote.get().getStatus();
 	}
 
-	public int updateView(Long id) {
+	@Transactional
+	public void updateView(Long id) {
 
-		return this.questionRepository.updateView(id);
+		this.questionRepository.updateView(id);
 	}
 
 	public void chosenAnswer(Long questionId, Long chosenAnswerId) {
 		Answer answer = answerRepository.findById(chosenAnswerId)
-			.orElseThrow(() -> new RuntimeException("ANSWER_NOT_FOUND"));
+			.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 
 		if (!answer.getQuestion().getId().equals(questionId)) {
-			throw new RuntimeException("WRONG_ID");
+			throw new BusinessLogicException(ExceptionCode.WRONG_ID);
 		}
 
 		answer.getQuestion().setChosenAnswerId(chosenAnswerId);

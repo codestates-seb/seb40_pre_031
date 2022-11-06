@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.codestates.comment.entity.Comment;
 import com.codestates.comment.repository.CommentRepository;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 
 import lombok.AllArgsConstructor;
 
@@ -33,12 +35,12 @@ public class CommentServiceV2 {
 		Optional<Comment> found = commentRepository.findById(commentId);
 
 		return found.orElseThrow(() ->
-			new RuntimeException("COMMENT_NOT_FOUND"));
+			new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
 	}
 
 	public void checkCommentAuthor(Long authorId, Long loginId) {
 		if (authorId.equals(loginId)) {
-			throw new RuntimeException("NO_PERMISSION_TO_EDIT_THIS_COMMENT");
+			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
 		}
 	}
 }
