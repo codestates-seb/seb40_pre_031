@@ -3,9 +3,10 @@ export const LOG_OUT = 'LOG_OUT';
 export const SIGN_UP = 'SIGN_UP';
 export const QUESTION_DETAIL = 'QUESTION_DETAIL';
 
-export const loginAction = () => {
+export const loginAction = (data) => {
   const payload = {
     userStatus: true,
+    ...data,
   };
   return {
     type: LOG_IN,

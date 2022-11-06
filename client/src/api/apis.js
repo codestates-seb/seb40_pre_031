@@ -37,14 +37,9 @@ export const authApi = {
     const result = await customAxios.post(`/signup`, body);
     return result;
   },
-  getLogin: async (email, password) => {
-    const body = { email, password };
-    // const result = await customAxios.get('/login',body);
-    const result = await customAxios.get(
-      `/signup?email=${email}&password=${password}`,
-      body
-    );
-    return result;
+  getLogin: (username, password) => {
+    const body = { username, password };
+    return customAxios.post('/login', JSON.stringify(body));
   },
 };
 
@@ -102,10 +97,8 @@ export const commentApi = {
 
 export const questionDetailApi = {
   //질문 상세 조회
-  getQuestionDetail: async (question_id) => {
-    // const data = await customAxios.get(`/questions/${question_id}`);
-    const data = await customAxios.get(`/questions?questionId=${question_id}`);
-    return data;
+  getQuestionDetail: (question_id) => {
+    return customAxios.get(`/questions/${question_id}`);
   },
   //답변 추천 비추천
   postVote: async (question_id, answer_id, std) => {
