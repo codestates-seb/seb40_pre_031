@@ -79,8 +79,31 @@ const QuestionDetailUserFooterBox = styled.div`
   border-radius: 5px;
 
   .Editdiv {
+    display: flex;
+    flex-direction: row;
+
+    gap: 10px;
     margin: 10px;
     color: var(--black-500);
+    button {
+      width: 50px;
+      height: 20px;
+      border: 0;
+      outline: 0;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: 15px;
+      :hover {
+        color: var(--white);
+        background: var(--blue);
+      }
+    }
+    .delete {
+      :hover {
+        color: var(--white);
+        background: var(--red);
+      }
+    }
   }
 `;
 
