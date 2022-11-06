@@ -13,7 +13,6 @@ import com.codestates.question.repository.QuestionRepository;
 import com.codestates.question.repository.QuestionVoteRepository;
 import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
-import com.codestates.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,8 +22,6 @@ import lombok.RequiredArgsConstructor;
 public class QuestionService {
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
-	private final AnswerRepository answerRepository;
-	private final UserRepository userRepository;
 
 	public Question createQuestion(Question question) {
 		questionRepository.save(question);
@@ -47,12 +44,13 @@ public class QuestionService {
 		questionRepository.deleteById(questionId);
 	}
 
-	public Question findQuestion(Long questionId) {
+
+  public Question findQuestion(Long questionId) {
 
 		return findVerifiedQuestion(questionId);
 	}
 
-	private Question findVerifiedQuestion(Long questionId) {
+  public Question findVerifiedQuestion(Long questionId) {
 		Optional<Question> getQuestion = questionRepository.findById(questionId);
 
 		return getQuestion.orElseThrow(
@@ -70,9 +68,10 @@ public class QuestionService {
 		return optionalQuestionVote.get().getStatus();
 	}
 
-	public int updateView(Long id) {
+	@Transactional
+	public void updateView(Long id) {
 
-		return this.questionRepository.updateView(id);
+		this.questionRepository.updateView(id);
 	}
 
 	public void chosenAnswer(Long questionId, Long chosenAnswerId) {
