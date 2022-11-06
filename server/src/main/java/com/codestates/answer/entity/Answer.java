@@ -18,6 +18,7 @@ import com.codestates.comment.entity.Comment;
 import com.codestates.global.auditing.BaseTime;
 import com.codestates.question.entity.Question;
 import com.codestates.status.PostStatus;
+import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
 
 import lombok.AccessLevel;
@@ -94,5 +95,26 @@ public class Answer extends BaseTime {
 		if (answerVote.getAnswer() != this) {
 			answerVote.setAnswer(this);
 		}
+	}
+
+	public int getAnswerVoteScore() {
+		List<AnswerVote> answerVoteList = this.getAnswerVoteList();
+
+		if (answerVoteList.size() == 0) {
+			return 0;
+		}
+
+		int score = 0;
+
+		for (AnswerVote answerVote : answerVoteList) {
+			if (answerVote.getStatus() == VoteStatus.DOWN) {
+				score += -1;
+				continue;
+			}
+
+			score += 1;
+		}
+
+		return score;
 	}
 }
