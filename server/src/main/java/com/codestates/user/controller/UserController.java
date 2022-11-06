@@ -67,7 +67,7 @@ public class UserController {
 		// 로그인 유저 != 접근 하려는 유저 --> 403 에러
 		User findUser = userService.findUserByEmail(principal.getName());
 		if (findUser.getId() != userId) {
-			System.out.println("점근하려는 사용자 ID : " + findUser.getId());
+			System.out.println("접근하려는 사용자 ID : " + findUser.getId());
 			System.out.println("해당 페이지 사용자 ID : " + userId);
 			throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
 		}
