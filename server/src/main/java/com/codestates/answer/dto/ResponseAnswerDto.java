@@ -19,6 +19,7 @@ public class ResponseAnswerDto {
 	private int votes;
 	private VoteStatus voteStatus;
 	private String displayName;
+	private String avatarColor;
 	private List<ResponseCommentDto> commentList;
 	private LocalDateTime createdAt;
 	private LocalDateTime modifiedAt;

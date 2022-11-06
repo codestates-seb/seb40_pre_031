@@ -21,6 +21,7 @@ public class ResponseSpecificQuestionDto {
 	private VoteStatus status;
 	private Long chosenAnswerId;
 	private String displayName;
+	private String avatarColor;
 	private List<ResponseAnswerDto> answerList;
 	private LocalDateTime createdAt;
 	private LocalDateTime modifiedAt;
