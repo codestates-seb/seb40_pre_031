@@ -35,7 +35,11 @@ function QuestionComments({ commentList, questionid, answerid }) {
   return (
     <>
       <CommentsBox>
-        <CommentsList commentsList={commentList} />
+        <CommentsList
+          commentsList={commentList}
+          questionid={questionid}
+          answerid={answerid}
+        />
         <CommentsAddBox ref={CommentRef} onClick={addCommentOnClick} />
       </CommentsBox>
     </>
