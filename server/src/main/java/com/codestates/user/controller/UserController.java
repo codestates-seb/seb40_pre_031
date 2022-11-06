@@ -1,5 +1,7 @@
 package com.codestates.user.controller;
 
+import java.util.logging.Logger;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
@@ -22,11 +24,10 @@ import com.codestates.user.dto.UserResponseDto;
 import com.codestates.user.entity.User;
 import com.codestates.user.mapper.UserMapper;
 import com.codestates.user.service.UserService;
-import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+// @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true", maxAge = 5000L)
 @RestController
 @RequestMapping("/")
 @Validated
@@ -45,8 +46,9 @@ public class UserController {
 	// 회원 가입
 	@PostMapping("/signup")
 	public ResponseEntity postUser(@Valid @RequestBody UserPostDto userPostDto) {
-		Gson gson = new Gson();
-		System.out.println(gson.toJson(userPostDto));
+		log.info("이메일 : {}", userPostDto.getEmail());
+		log.info("이름 : {}", userPostDto.getDisplayName());
+		log.info("비밀번호 : {}", userPostDto.getPassword());
 		User user = userService.createUser(mapper.userPostDtoToUser(userPostDto));
 		UserResponseDto response = mapper.userToUserResponseDto(user);
 
