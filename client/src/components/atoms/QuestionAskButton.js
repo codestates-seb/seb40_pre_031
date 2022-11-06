@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const QuestionAskButton = () => {
   const navigate = useNavigate();
   const navigateToAsk = () => {
-    navigate('/questionask');
+    navigate('/questions/ask');
   };
   return (
     <>
