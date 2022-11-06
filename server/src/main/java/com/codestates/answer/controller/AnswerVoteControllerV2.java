@@ -4,6 +4,7 @@ import javax.validation.constraints.Positive;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/v2/questions/{question_id}/answers/{answer_id}/votes")
 @RequiredArgsConstructor
