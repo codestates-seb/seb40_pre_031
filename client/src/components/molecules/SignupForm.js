@@ -12,7 +12,7 @@ import { Input } from '../atoms/SignupInput';
 import SignupRecaptcha from '../atoms/SignupRecaptcha';
 import useInput from '../../hooks/useInput';
 import { authApi } from '../../api/apis';
-
+import { useNavigate } from 'react-router-dom';
 const color = ['gray', 'black'];
 
 // 회원가입 작성하는 곳
@@ -23,10 +23,13 @@ const Signinput = () => {
   const [email, emailBind] = useInput('', true, 'text', 'Email');
   const captchaRef = useRef(null);
   const [ischecked, setIschecked] = useState('no');
+  const navigate = useNavigate();
 
   //Sign up 버튼 눌렀을시 작동
   const onClick = () => {
-    let regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    let regex = new RegExp(
+      '^.*(?=^.{8,20}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$'
+    );
     regex.test(password)
       ? passwordBind.setPass(true)
       : passwordBind.setPass(false);
@@ -49,7 +52,17 @@ const Signinput = () => {
       setIschecked('no');
       captchaRef.current.reset();
       //서버와통신
-      authApi.postSignUp(name, email, password);
+      authApi
+        .postSignUp(name, email, password)
+        .then((res) => {
+          if (res.data.status === 409) {
+            alert(res.data.message);
+          } else {
+            alert('회원가입을 성공했습니다.\n로그인 화면으로 이동합니다.');
+            navigate('/login');
+          }
+        })
+        .catch(() => alert('양식에맞게 작성해주세요.'));
 
       // 아이디 이메일 중복이면 처리해야함. -> useSelector와 useEffect활용해서 하면 될듯
     }
@@ -75,7 +88,7 @@ const Signinput = () => {
         color={passwordBind.pass ? color[0] : 'var(--red-500)'}
       >
         Passwords must contain at least eight characters, including at least 1
-        letter and 1 number.
+        letter,1 special character and 1 number.
       </SignupinfoPassword>
 
       <SignupRobotBox ischecked={ischecked}>

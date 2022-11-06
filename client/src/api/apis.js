@@ -3,12 +3,17 @@ import axios from 'axios';
 
 const customAxios = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
   timeout: 1000,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
 customAxios.defaults.withCredentials = true;
+
 customAxios.interceptors.request.use(
   function (config) {
     // 요청 바로 직전
@@ -34,11 +39,9 @@ customAxios.interceptors.response.use(
 export default customAxios;
 
 export const authApi = {
-  postSignUp: async (name, email, password) => {
-    const body = { name, email, password };
-    console.log(body);
-    const result = await customAxios.post(`/signup`, body);
-    return result;
+  postSignUp: (displayName, email, password) => {
+    const body = { displayName, email, password };
+    return customAxios.post(`/signup`, JSON.stringify(body));
   },
   getLogin: (username, password) => {
     const body = { username, password };
@@ -60,7 +63,17 @@ export const questionApi = {
     };
     const data = await customAxios.get(`/questions`, { params });
 
-    return data.data.content;
+    return data.data;
+  },
+  // 질문 작성
+  postQuestion: async (title, content) => {
+    const body = { title, content };
+    console.log(body);
+    const result = await customAxios.post(
+      `/questions/ask`,
+      JSON.stringify(body)
+    );
+    return result;
   },
 
   // 질문 작성
@@ -92,6 +105,7 @@ export const questionApi = {
 };
 
 export const answerApi = {
+
   // 답변 등록
   postAnswer: async (questionId, content) => {
     const body = { content };
@@ -103,6 +117,7 @@ export const answerApi = {
     console.log(body);
     return result;
   },
+
   // 답변 수정
   patchAnswer: async (questionId, answerId, content) => {
     const body = { content };
@@ -123,6 +138,7 @@ export const answerApi = {
 
 export const commentApi = {
   //  댓글 작성
+
   postComment: async (questionId, answerId, userId, content) => {
     const body = { userId, content };
     console.log(body);
@@ -174,14 +190,14 @@ export const questionDetailApi = {
 export const myApi = {
   // 마이페이지
   getUser: async (user_id) => {
-    const data = await customAxios.get(`/user/${user_id}`);
-    return data.data;
+    const result = await customAxios.get(`/users/${user_id}`);
+    return result.data;
   },
 
   patchName: async (user_id, displayName) => {
     const data = { displayName };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
 
@@ -191,20 +207,19 @@ export const myApi = {
   patchPassword: async (user_id, password) => {
     const data = { password };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
 
     return result.data;
   },
 
-  patchColor: async (user_id, avartarColor) => {
-    const data = { avartarColor };
+  patchColor: async (user_id, avatarColor) => {
+    const data = { avatarColor };
     const result = await customAxios.patch(
-      `/questions/${user_id}`,
+      `/users/${user_id}`,
       JSON.stringify(data)
     );
-
     return result.data;
   },
 

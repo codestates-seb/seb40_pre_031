@@ -10,6 +10,7 @@ import { useState, useRef } from 'react';
 import { answerApi, questionApi } from '../../api/apis';
 import { useNavigate } from 'react-router-dom';
 
+
 //본문내용과 추천수를 포함하는 컴포넌트
 export const QuestionDetail = ({ data }) => {
   data.voteStatus = data.voteStatus || data.status;
@@ -22,7 +23,6 @@ export const QuestionDetail = ({ data }) => {
     console.log('edit');
     if (edit === true) {
       const content = editorRef.current.getInstance().getMarkdown();
-
       if (data.answerId) {
         console.log(data.answerId);
         if (window.confirm('수정하시겠습니까?')) {
@@ -39,6 +39,7 @@ export const QuestionDetail = ({ data }) => {
             .then((res) => console.log(res));
         }
       }
+
     }
     setEdit(!edit);
   };

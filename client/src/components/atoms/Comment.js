@@ -77,6 +77,7 @@ function Comment({
       console.log(text);
       commentApi
         .patchComment(questionId, answerId, commentId, text)
+
         .then((res) => {
           console.log(res);
           location.reload();
