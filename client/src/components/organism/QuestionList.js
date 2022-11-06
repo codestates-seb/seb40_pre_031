@@ -3,6 +3,7 @@ import QuestionSummary from '../molecules/QuestionSummary';
 import QuestionSummaryContent from '../molecules/QuestionSummaryContent';
 
 const QuestionList = ({ question }) => {
+  console.log(question);
   return (
     <QuestionListLayout>
       <QuestionSummary
@@ -11,6 +12,7 @@ const QuestionList = ({ question }) => {
         views={question.views}
       />
       <QuestionSummaryContent
+        question_id={question.questionId}
         title={question.title}
         content={question.content}
         displayname={question.displayName}

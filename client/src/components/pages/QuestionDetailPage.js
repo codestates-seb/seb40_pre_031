@@ -10,7 +10,11 @@ import styled from 'styled-components';
 import QuestionComments from '../organism/QuestionComments';
 import PostAnswerBox from '../molecules/PostAnswerBox';
 import RightSideBar from '../templates/RightSidebar';
-const QuestionDetailPage = ({ question_id }) => {
+import { useLocation } from 'react-router-dom';
+
+const QuestionDetailPage = () => {
+  const location = useLocation();
+  const question_id = location.state.question_id;
   const [question, setQuestion] = useState(null);
   const [answers, setAnswer] = useState(null);
 

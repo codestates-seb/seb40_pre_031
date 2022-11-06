@@ -50,47 +50,28 @@ export const authApi = {
 
 export const questionApi = {
   // 메인 페이지 질문 데이터 불러오기
-  getQuestion: () =>
-    customAxios.get(
-      `/questions`
-      // , {
-      //   params: {
-      //     page: '전역 상태에서 page',
-      //     size: '전역 상태에서 size',
-      //   },
-      // }
-    ),
-  // 게시물 작성
-  postQuestion: async (title, content) => {
-    const body = { title, content };
-    console.log(body);
-    const result = await customAxios.post(`/questions/ask`, body);
-    return result;
+  getQuestion: async () => {
+    const data = await customAxios.get(`/questions`);
+    return data.data.content;
   },
 
-  // 질문 상세
-  questionDetail: (question_id) => customAxios.get(`/questions/${question_id}`),
+  getQuestionPage: async (page, size) => {
+    const params = {
+      page: page,
+      size: size,
+    };
+    const data = await customAxios.get(`/questions`, { params });
 
-  // 질문 수정
-  questionEdit: (question_id) =>
-    customAxios.put(`/questions/${question_id}`, {
-      title: 'Test title',
-      content: '이걸로 수정할게요',
-    }),
-  // 질문 삭제
-  questionDelete: (question_id) =>
-    customAxios.delete(`/questions/${question_id}`),
+    return data.data.content;
+  },
 };
 
 export const answerApi = {
-  getAnswer: (question_id) =>
-    customAxios.get(`/questions/${question_id}/answers`),
-  postAnswer: async (question_id, userId, content) => {
-    const body = { userId, content };
-    const result = customAxios.post(`/questions/${question_id}/answers`, body);
-    console.log(body);
-    return result;
-  },
+  postAnswer: (question_id) =>
+    customAxios.post(`/questions/${question_id}/answers`, {
+      users_id: 'id',
+      content: 'content',
+    }),
   putAnswer: (question_id, answer_id) =>
     customAxios.put(`/questions/${question_id}/answers/${answer_id}`, {
       content: 'content',
@@ -100,11 +81,8 @@ export const answerApi = {
 };
 
 export const commentApi = {
-  getComment: (question_id, answer_id) =>
-    customAxios.get(`/questions/${question_id}/answers/${answer_id}/comments`),
-  postComment: async (question_id, answer_id, userId, content) => {
-    const body = { userId, content };
-    const result = customAxios.post(
+  postComment: (question_id, answer_id) =>
+    customAxios.post(
       `/questions/${question_id}/answers/${answer_id}/comments`,
       body
     );
@@ -142,5 +120,49 @@ export const questionDetailApi = {
       `/questions/${question_id}/answers/${answer_id}/votes/${std}`
     );
     return data;
+  },
+};
+
+export const myApi = {
+  // 마이페이지
+  getUser: async (user_id) => {
+    const data = await customAxios.get(`/user/${user_id}`);
+    return data.data;
+  },
+
+  patchName: async (user_id, displayName) => {
+    const data = { displayName };
+    const result = await customAxios.patch(
+      `/questions/${user_id}`,
+      JSON.stringify(data)
+    );
+
+    return result.data;
+  },
+
+  patchPassword: async (user_id, password) => {
+    const data = { password };
+    const result = await customAxios.patch(
+      `/questions/${user_id}`,
+      JSON.stringify(data)
+    );
+
+    return result.data;
+  },
+
+  patchColor: async (user_id, avartarColor) => {
+    const data = { avartarColor };
+    const result = await customAxios.patch(
+      `/questions/${user_id}`,
+      JSON.stringify(data)
+    );
+
+    return result.data;
+  },
+
+  deleteUser: async (user_id) => {
+    const result = await customAxios.patch(`/questions/${user_id}`);
+
+    return result.data;
   },
 };
