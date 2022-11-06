@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
 import ReactDOM from 'react-dom/client';
