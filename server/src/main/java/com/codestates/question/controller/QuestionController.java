@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codestates.answer.dto.ResponseAnswerDto;
+import com.codestates.answer.service.AnswerService;
 import com.codestates.question.dto.QuestionPatchDto;
 import com.codestates.question.dto.QuestionPostDto;
 import com.codestates.question.dto.QuestionResponseDto;
@@ -42,6 +44,7 @@ public class QuestionController {
 	private final QuestionRepository questionRepository;
 	private final QuestionMapper mapper;
 	private final UserService userService;
+	private final AnswerService answerService;
 
 	@PostMapping("/ask")
 	public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
@@ -69,13 +72,19 @@ public class QuestionController {
 	}
 
 	@GetMapping("/{question_id}")
-	public ResponseEntity<ResponseSpecificQuestionDto> getQuestion(
+	public ResponseEntity getQuestion(
 		@PathVariable("question_id") @Positive Long questionId) {
 		Question question = questionService.findQuestion(questionId);
 		User user = userService.findMember(1L);
 
 		VoteStatus voteStatus = questionService.checkUserVoteStatus(question, user);
 		ResponseSpecificQuestionDto response = mapper.questionToResponsePickOneDto(question, voteStatus);
+
+		for (ResponseAnswerDto responseAnswerDto : response.getAnswerList()) {
+			VoteStatus status = answerService.getUserAnswerVoteStatus(responseAnswerDto.getAnswerId(), 1L);
+
+			responseAnswerDto.setVoteStatus(status);
+		}
 
 		questionService.updateView(questionId);
 

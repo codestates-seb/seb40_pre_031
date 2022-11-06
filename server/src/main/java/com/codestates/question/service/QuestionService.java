@@ -41,19 +41,17 @@ public class QuestionService {
 		return questionRepository.save(verifiedQuestion);
 	}
 
-	@Transactional(readOnly = true)
-	public Question findQuestion(Long questionId) {
-
-		return findVerifiedQuestion(questionId);
-	}
-
 	public void deleteQuestion(Long questionId) {
 		Question findQuestion = findVerifiedQuestion(questionId);
 
 		questionRepository.deleteById(questionId);
 	}
 
-	@Transactional(readOnly = true)
+	public Question findQuestion(Long questionId) {
+
+		return findVerifiedQuestion(questionId);
+	}
+
 	private Question findVerifiedQuestion(Long questionId) {
 		Optional<Question> getQuestion = questionRepository.findById(questionId);
 
