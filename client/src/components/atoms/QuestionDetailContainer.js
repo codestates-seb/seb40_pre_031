@@ -9,7 +9,7 @@ const QuestionDetailsideBox = styled.div`
 //추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
 const QuestionDetailSubsideBox = styled.div`
   width: 36px;
-  heigth: 102px;
+  height: 102px;
   display: flex;
   flex-direction: column;
   .Arrow {
@@ -70,7 +70,7 @@ const QuestionDetailUserProfileBox = styled.div`
 const QuestionDetailUserFooterBox = styled.div`
   width: 640px;
   height: 100px;
-  margin: 16px 0 16px 88px;
+  margin: 16px 0 16px 73px;
   display: flex;
   font-size: 13px;
   justify-content: space-between;

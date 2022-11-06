@@ -28,6 +28,7 @@ const HamburgerContainer = styled.div`
 const IconBox = styled.div`
   position: absolute;
   top: 100%;
+  border: 1px solid var(--black-075);
 `;
 
 const HeaderMenu = () => {
