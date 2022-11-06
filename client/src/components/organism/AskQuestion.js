@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 // import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import styled from 'styled-components';
 import PostQuestionButton from '../atoms/PostQuestionButton';
 import AskQuestionEditorBox from '../molecules/AskQuestionEditorBox';
 import AskQuestionHeader from '../molecules/AskQuestionHeader';
 import AskQuestionTagBox from '../molecules/AskQuestionTagBox';
 import AskQuestionTitleBox from '../molecules/AskQuestionTitleBox';
+import { questionApi } from '../../api/apis';
 
 const Container = styled.div`
   background: var(--black-050);
@@ -63,15 +63,20 @@ function AskQuestion() {
       return;
     }
     console.log(data);
-    axios
-      .post('/questions/ask', data)
-      .then((res) => {
-        console.log(res);
-        // navigate('/questions');
-      })
-      .catch((error) => {
-        console.log(error.res);
-      });
+    questionApi.postQuestion(data.title, data.content);
+    // fetch(`http://localhost:8080/questions/ask`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     title: data.title,
+    //     content: data.content,
+    //   }),
+    // })
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
+    // navigate('/questions');
   };
 
   return (

@@ -1,4 +1,19 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
+const QuestionAskButton = () => {
+  const navigate = useNavigate();
+  const navigateToAsk = () => {
+    navigate('/questions/ask');
+  };
+  return (
+    <>
+      <AskQuestion onClick={navigateToAsk}>Ask Question</AskQuestion>
+    </>
+  );
+};
+
+export default QuestionAskButton;
 
 const AskQuestion = styled.button`
   font-size: 12px;
@@ -11,13 +26,3 @@ const AskQuestion = styled.button`
   border: 1px solid transparent; /*투명한 테두리 추가*/
   padding: 0.8em;
 `;
-
-const QuestionAskButton = () => {
-  return (
-    <>
-      <AskQuestion>Ask Question</AskQuestion>
-    </>
-  );
-};
-
-export default QuestionAskButton;

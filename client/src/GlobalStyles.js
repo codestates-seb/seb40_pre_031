@@ -308,6 +308,8 @@ const GlobalStyle = createGlobalStyle`
     --lh-xxl: 2;
     --lh-base: var(--lh-md);
     --lh-6: ((var(--stacks-internals-lh-unit) + 6) / var(--stacks-internals-lh-unit));
+    --su2: calc(var(--su-static2) * var(--su-base));
+    --su8: calc(var(--su-static8) * var(--su-base));
   }
 `;
 

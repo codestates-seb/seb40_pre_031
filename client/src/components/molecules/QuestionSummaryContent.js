@@ -1,10 +1,55 @@
 import styled from 'styled-components';
-import QuestionTitle from '../atoms/QuestionTitle';
-import QuestionUser from './QuestionUser';
+import Avartar from '../atoms/Avartar';
+import { Link } from 'react-router-dom';
+
+const QuestionSummaryContent = ({
+  question_id,
+  title,
+  content,
+  displayname,
+  createdAt,
+}) => {
+  return (
+    <QuestionSummaryContenLayout>
+      <h3>
+        <Title>
+          <Link to="/QuestionDetailPage" state={{ question_id: question_id }}>
+            {title}
+          </Link>
+        </Title>
+      </h3>
+      <QuestionContent>{content}</QuestionContent>
+      <UserBox>
+        <Avartar />
+        <Username>{displayname}</Username>
+        <span>{createdAt}</span>
+      </UserBox>
+    </QuestionSummaryContenLayout>
+  );
+};
+
+export default QuestionSummaryContent;
 
 const QuestionSummaryContenLayout = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  max-width: 100%;
+
+  h3 {
+    vertical-align: baseline;
+    font-weight: 400;
+  }
+`;
+
+const Title = styled.div`
+  width: 595px;
+  height: 34px;
+  a {
+    color: var(--theme-post-title-color);
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 `;
 
 const QuestionContent = styled.div`
@@ -17,18 +62,22 @@ const QuestionContent = styled.div`
   height: 34px;
 `;
 
-const QuestionSummaryContent = () => {
-  return (
-    <QuestionSummaryContenLayout>
-      <QuestionTitle />
-      <QuestionContent>
-        I have a p-dialog modal with Date fields (using p-calendar). When I
-        enter dates into them manually and press Tab key, the dates get erased.
-        Please let me
-      </QuestionContent>
-      <QuestionUser />
-    </QuestionSummaryContenLayout>
-  );
-};
+const UserBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: auto;
+  flex-wrap: wrap;
 
-export default QuestionSummaryContent;
+  span {
+    color: var(--black-500);
+    font-size: 12px;
+  }
+`;
+
+const Username = styled.a`
+  color: var(--theme-link-color-hover);
+  font-size: 12px;
+  margin: 0 5px;
+`;

@@ -8,17 +8,17 @@ import { RiLogoutBoxRLine } from 'react-icons/ri';
 const DropDownBox = styled.div`
   display: block;
 
-  > ul {
+  ul {
     width: 120px;
     list-style: none;
     display: flex;
     flex-direction: column;
     padding: 0;
     font-size: 13px;
-  }
-  > li {
-    font-size: 14px;
-    cursor: pointer;
+    li {
+      font-size: 14px;
+      cursor: pointer;
+    }
   }
 `;
 
