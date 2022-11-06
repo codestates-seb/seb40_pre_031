@@ -37,37 +37,37 @@ const HeaderMenu = () => {
   //로그인 후, 햄버거 버튼 보이지 않음
   const isLogin = useSelector((store) => store.authReducer.userStatus);
   return (
-    // <DropdownBox onClick={() => setIsMenuOpened(!MenuOpened)}>
-    //   {!MenuOpened
-    //     ? !isLogin && <AiOutlineMenu size={18} />
-    //     : !isLogin && (
-    //         <>
-    //           <MenuX size={18} />
-    //           <HamburgerContainer>
-    //             <IconBox>
-    //               <LeftNav />
-    //             </IconBox>
-    //           </HamburgerContainer>
-    //         </>
-    //       )}
-    // </DropdownBox>
+    <DropdownBox onClick={() => setIsMenuOpened(!MenuOpened)}>
+      {!MenuOpened
+        ? !isLogin && <AiOutlineMenu size={18} />
+        : !isLogin && (
+            <>
+              <MenuX size={18} />
+              <HamburgerContainer>
+                <IconBox>
+                  <LeftNav />
+                </IconBox>
+              </HamburgerContainer>
+            </>
+          )}
+    </DropdownBox>
 
-    !isLogin && (
-      <DropdownBox onClick={() => setIsMenuOpened(!MenuOpened)}>
-        {!MenuOpened ? (
-          <AiOutlineMenu size={18} />
-        ) : (
-          <>
-            <MenuX size={18} />
-            <HamburgerContainer>
-              <IconBox>
-                <LeftNav />
-              </IconBox>
-            </HamburgerContainer>
-          </>
-        )}
-      </DropdownBox>
-    )
+    // !isLogin && (
+    //   <DropdownBox onClick={() => setIsMenuOpened(!MenuOpened)}>
+    //     {!MenuOpened ? (
+    //       <AiOutlineMenu size={18} />
+    //     ) : (
+    //       <>
+    //         <MenuX size={18} />
+    //         <HamburgerContainer>
+    //           <IconBox>
+    //             <LeftNav />
+    //           </IconBox>
+    //         </HamburgerContainer>
+    //       </>
+    //     )}
+    //   </DropdownBox>
+    // )
   );
 };
 
