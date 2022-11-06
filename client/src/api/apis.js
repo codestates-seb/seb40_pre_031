@@ -174,13 +174,12 @@ export const myApi = {
     return result.data;
   },
 
-  patchColor: async (user_id, avartarColor) => {
-    const data = { avartarColor };
+  patchColor: async (user_id, avatarColor) => {
+    const data = { avatarColor };
     const result = await customAxios.patch(
       `/users/${user_id}`,
       JSON.stringify(data)
     );
-
     return result.data;
   },
 
