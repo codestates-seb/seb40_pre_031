@@ -9,7 +9,7 @@ const PostAnswer = styled.div`
   background: var(--white);
   display: flex;
   flex-direction: column;
-  padding-left: 88px;
+  padding-left: 73px;
   margin-bottom: 20px;
   width: 727px;
   height: 100%;

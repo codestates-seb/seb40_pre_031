@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { MenuX } from './SvgHeaderIcons';
-import LeftNav from '../organism/LeftNav';
 import { useSelector } from 'react-redux';
+import Leftnavlist from '../molecules/LeftNavList';
 
 //왼쪽 햄버거 드롭다운
 const DropdownBox = styled.div`
@@ -45,7 +45,7 @@ const HeaderMenu = () => {
               <MenuX size={18} />
               <HamburgerContainer>
                 <IconBox>
-                  <LeftNav />
+                  <Leftnavlist />
                 </IconBox>
               </HamburgerContainer>
             </>

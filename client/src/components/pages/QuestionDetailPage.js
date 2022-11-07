@@ -11,42 +11,47 @@ import QuestionComments from '../organism/QuestionComments';
 import PostAnswerBox from '../molecules/PostAnswerBox';
 import RightSideBar from '../templates/RightSidebar';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { LodingCircle } from '../atoms/LoadingCircle';
+
+const QuestionDetailPageBox = styled.div`
+  display: flex;
+  background-color: rgba(254, 253, 254);
+  padding: 0 0 0 18vw;
+  @media screen and (max-width: 1060px) {
+    padding: 0px;
+    .RightSideBar {
+      display: none;
+      border: solid 1px red;
+    }
+  }
+  .ContentAndRightSidebarBox {
+    display: flex;
+  }
+`;
 
 const QuestionDetailPage = () => {
   const location = useLocation();
   const question_id = location.state.question_id;
   const [question, setQuestion] = useState(null);
   const [answers, setAnswer] = useState(null);
+  const isLogined = useSelector((store) => store.authReducer.userStatus);
 
   useEffect(() => {
     questionDetailApi
       .getQuestionDetail(question_id)
       .then((res) => {
         const { answerList, ...tempQuestion } = res.data;
-        setQuestion(tempQuestion);
-        setAnswer(answerList);
+        setTimeout(() => {
+          setQuestion(tempQuestion);
+          setAnswer(answerList);
+        }, 1000);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const QuestionDetailPage = styled.div`
-    display: flex;
-    background-color: rgba(254, 253, 254);
-    padding: 0 0 0 18vw;
-    @media screen and (max-width: 1060px) {
-      padding: 0px;
-      .RightSideBar {
-        display: none;
-        border: solid 1px red;
-      }
-    }
-    .ContentAndRightSidebarBox {
-      display: flex;
-    }
-  `;
-
   return question ? (
-    <QuestionDetailPage>
+    <QuestionDetailPageBox>
       <LeftNav />
       <div>
         <QuestionDetailDivideTitle
@@ -56,17 +61,16 @@ const QuestionDetailPage = () => {
         <div className="ContentAndRightSidebarBox">
           <div>
             <QuestionDetail data={question}></QuestionDetail>
-            {/* comment 컴포넌트와 comment작성컴포넌트를 추가해야함. */}
             <QuestionDetailDivideLine
-              count={answers.length}
+              count={answers.len1th}
             ></QuestionDetailDivideLine>
-            {/* 받은 답변 만큼 아래를 map을 돌려서 추가해야함 */}
             {answers
               ? answers.map((answer) => (
                   <>
                     <QuestionDetail
                       key={answer.answerId}
                       data={answer}
+                      chosenAnswerId={question.chosenAnswerId}
                     ></QuestionDetail>
                     <QuestionComments
                       commentList={answer.commentList}
@@ -76,13 +80,17 @@ const QuestionDetailPage = () => {
                   </>
                 ))
               : null}
-            <PostAnswerBox questionid={question_id}></PostAnswerBox>
+            {isLogined && (
+              <PostAnswerBox questionid={question_id}></PostAnswerBox>
+            )}
           </div>
           <RightSideBar />
         </div>
       </div>
-    </QuestionDetailPage>
-  ) : null;
+    </QuestionDetailPageBox>
+  ) : (
+    <LodingCircle />
+  );
 };
 
 export default QuestionDetailPage;
