@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 const HeaderNavLists = () => {
   const isLogin = useSelector((store) => store.authReducer.userStatus);
 
-  // console.log(isLogin);
-
   return (
     <>
       {!isLogin ? (

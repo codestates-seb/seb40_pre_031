@@ -58,8 +58,6 @@ const HeaderButton = () => {
     myApi
       .getUser(userId)
       .then((res) => {
-        console.log(res);
-
         setUsers(res);
       })
       .catch((err) => console.log(err));
@@ -93,7 +91,7 @@ const HeaderButton = () => {
       ) : (
         <>
           Hello!
-          <Avartar avatarColor={users.avatarColor} />
+          <Avartar color={users.avatarColor} />
           <span>{userName}</span>
           <InfoBox>
             <HeaderInfo />

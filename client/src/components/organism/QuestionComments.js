@@ -27,8 +27,7 @@ function QuestionComments({ commentList, questionid, answerid }) {
     };
     commentApi
       .postComment(data.questionid, data.answerid, data.userid, data.content)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         location.reload();
       });
     CommentRef.current.value = '';

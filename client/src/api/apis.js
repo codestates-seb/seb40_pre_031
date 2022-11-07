@@ -77,12 +77,10 @@ export const questionApi = {
   // 질문 수정
   patchQuestion: async (questionId, title, content) => {
     const body = { title, content };
-    console.log(content);
     const result = customAxios.patch(
       `/questions/${questionId}`,
       JSON.stringify(body)
     );
-    console.log(result);
     return result;
   },
   // 질문 삭제
@@ -96,12 +94,12 @@ export const answerApi = {
   // 답변 등록
   postAnswer: async (questionId, content) => {
     const body = { content };
-    console.log(body);
+
     const result = customAxios.post(
       `/questions/${questionId}/answers/`,
       JSON.stringify(body)
     );
-    console.log(body);
+
     return result;
   },
 
@@ -128,7 +126,7 @@ export const commentApi = {
 
   postComment: async (questionId, answerId, userId, content) => {
     const body = { userId, content };
-    console.log(body);
+
     const result = customAxios.post(
       `/questions/${questionId}/answers/${answerId}/comments/`,
       JSON.stringify(body)
@@ -161,32 +159,11 @@ export const questionDetailApi = {
   getQuestionDetail: (question_id) => {
     return customAxios.get(`/questions/${question_id}`);
   },
-  // //답변 추천 비추천
-  // postAnswerVote: (question_id, answer_id, direction) => {
-  //   return customAxios.post(
-  //     `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
-  //   );
-  // },
-  // //답변 추천 비추천 취소
-  // deleteAnswerVote: (question_id, answer_id, direction) => {
-  //   return customAxios.delete(
-  //     `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
-  //   );
-  // },
-  // //질문 추천 비추천
-  // postQuestionVote: (question_id, direction) => {
-  //   return customAxios.post(`/questions/${question_id}/votes/${direction}`);
-  // },
-  // //질문 추천 비추천 취소
-  // deleteQuestionVote: (question_id, direction) => {
-  //   return customAxios.delete(`/questions/${question_id}/votes/${direction}`);
-  // },
   //질문 추천 비추천, 추천누른상태에서 비추천눌를때, 반대
   postVote: (data, direction) => {
     let uri = data.answerId
       ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
       : `/questions/${data.questionId}/votes/${direction}`;
-    console.log(uri);
     return axios.post(uri);
   },
   //질문 추천 비추천 취소
@@ -194,7 +171,6 @@ export const questionDetailApi = {
     let uri = data.answerId
       ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
       : `/questions/${data.questionId}/votes/${direction}`;
-    console.log(uri);
     return axios.delete(uri);
   },
   postChosenAnswer: (questionId, answerId) => {

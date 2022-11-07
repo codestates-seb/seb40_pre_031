@@ -44,6 +44,7 @@ export default MyPage;
 
 const MyPageLayout = styled.div`
   display: flex;
+  justify-content: center;
 
   .my {
     margin: 12px;

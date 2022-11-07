@@ -37,8 +37,7 @@ function PostAnswerBox({ questionid }) {
       content: editorRef.current.getInstance().getMarkdown(),
       questionId: questionId,
     };
-    answerApi.postAnswer(questionId, data.content).then((res) => {
-      console.log(res);
+    answerApi.postAnswer(questionId, data.content).then(() => {
       location.reload();
     });
   };
