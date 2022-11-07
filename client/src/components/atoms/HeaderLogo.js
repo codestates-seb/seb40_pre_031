@@ -17,7 +17,7 @@ const HeaderLogoBox = styled.div`
 const HeaderLogo = () => {
   return (
     <HeaderLogoBox>
-      <Link to="/">
+      <Link to="/main">
         <LogoIcon />
       </Link>
     </HeaderLogoBox>

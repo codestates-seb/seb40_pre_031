@@ -23,6 +23,7 @@ const HamburgerContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 20;
 `;
 
 const IconBox = styled.div`
@@ -51,23 +52,6 @@ const HeaderMenu = () => {
             </>
           )}
     </DropdownBox>
-
-    // !isLogin && (
-    //   <DropdownBox onClick={() => setIsMenuOpened(!MenuOpened)}>
-    //     {!MenuOpened ? (
-    //       <AiOutlineMenu size={18} />
-    //     ) : (
-    //       <>
-    //         <MenuX size={18} />
-    //         <HamburgerContainer>
-    //           <IconBox>
-    //             <LeftNav />
-    //           </IconBox>
-    //         </HamburgerContainer>
-    //       </>
-    //     )}
-    //   </DropdownBox>
-    // )
   );
 };
 

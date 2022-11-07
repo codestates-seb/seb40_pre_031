@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import HeaderInfo from './HeaderInfo';
 import authReducer from './../../reducers/authReducer';
+import Avartar from '../atoms/Avartar';
+import { useEffect } from 'react';
 
-// 로그인 전: Login버튼, Signup버튼 & 로그인 후: Hello {user.name}, 햄버거정보버튼
+// 로그인 전: Login버튼, Signup버튼
+// 로그인 후: Hello {avatarColor}{displayName}}], 햄버거정보버튼
 const LinkButton = styled.button`
   height: 35px;
   margin-right: 5px;
@@ -47,9 +50,10 @@ const InfoBox = styled.div`
 const HeaderButton = () => {
   const isLogin = useSelector((store) => store.authReducer.userStatus);
   const userName = useSelector((store) => store.authReducer.displayName);
-  const avatarColor = useSelector((store) => store.authReducer.avatarColor);
+  const avatarColor = useSelector((store) => store);
+  // console.log(avatarColor);
 
-  //Link to => useNavigate 수정하여 버튼 클릭시 바로 이동할 수 있게 함
+  // Link to => useNavigate 수정하여 버튼 클릭시 바로 이동할 수 있게 함
   const Navigate = useNavigate();
   const gotoLogin = () => {
     Navigate('/login');
@@ -57,7 +61,10 @@ const HeaderButton = () => {
   const gotoSignup = () => {
     Navigate('/signup');
   };
-
+  // 로그아웃 후 /main 이동
+  useEffect(() => {
+    if (!isLogin) Navigate('/main');
+  }, [isLogin]);
 
   return (
     <>
@@ -68,25 +75,13 @@ const HeaderButton = () => {
             Log in
           </LinkButton>
           <LinkButton className="signup" onClick={gotoSignup}>
-            Log in
+            Sign up
           </LinkButton>
-          {/* 문제 찾음
-          <LinkButton className="login">
-            <Link to="/login">Log in</Link>
-          </LinkButton>
-          <LinkButton className="signup">
-            <Link to="/signup">Sign up</Link>
-          </LinkButton> */}
         </div>
       ) : (
         <>
-          <div>
-            Hello!{' '}
-            <span>
-              {avatarColor}
-              {userName}
-            </span>
-          </div>
+          Hello! <Avartar avatarColor={avatarColor} />
+          <span>{userName}</span>
           <InfoBox>
             <HeaderInfo />
           </InfoBox>
