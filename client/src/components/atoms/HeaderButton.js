@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import HeaderInfo from './HeaderInfo';
 import authReducer from './../../reducers/authReducer';
 import Avartar from '../atoms/Avartar';
-import { useEffect } from 'react';
+import { myApi } from '../../api/apis';
+import { useEffect, useState } from 'react';
 
 // 로그인 전: Login버튼, Signup버튼
 // 로그인 후: Hello {avatarColor}{displayName}}], 햄버거정보버튼
@@ -50,8 +51,20 @@ const InfoBox = styled.div`
 const HeaderButton = () => {
   const isLogin = useSelector((store) => store.authReducer.userStatus);
   const userName = useSelector((store) => store.authReducer.displayName);
-  const avatarColor = useSelector((store) => store);
+  const userId = useSelector((store) => store.authReducer.userId);
   // console.log(avatarColor);
+
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    myApi
+      .getUser(userId)
+      .then((res) => {
+        console.log(res);
+
+        setUsers(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   // Link to => useNavigate 수정하여 버튼 클릭시 바로 이동할 수 있게 함
   const Navigate = useNavigate();
@@ -80,7 +93,8 @@ const HeaderButton = () => {
         </div>
       ) : (
         <>
-          Hello! <Avartar avatarColor={avatarColor} />
+          Hello!
+          <Avartar avatarColor={users.avatarColor} />
           <span>{userName}</span>
           <InfoBox>
             <HeaderInfo />
