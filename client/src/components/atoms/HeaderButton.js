@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import HeaderInfo from './HeaderInfo';
 import authReducer from './../../reducers/authReducer';
@@ -49,17 +48,34 @@ const HeaderButton = () => {
   const isLogin = useSelector((store) => store.authReducer.userStatus);
   const userName = useSelector((store) => store.authReducer.displayName);
 
+  //Link to => useNavigate 수정하여 버튼 클릭시 바로 이동할 수 있게 함
+  const Navigate = useNavigate();
+  const gotoLogin = () => {
+    Navigate('/login');
+  };
+  const gotoSignup = () => {
+    Navigate('/signup');
+  };
+
+
   return (
     <>
       {!isLogin ? (
         <div style={{ minWidth: 135 }}>
           {/* 문제 찾음 */}
+          <LinkButton className="login" onClick={gotoLogin}>
+            Log in
+          </LinkButton>
+          <LinkButton className="signup" onClick={gotoSignup}>
+            Log in
+          </LinkButton>
+          {/* 문제 찾음
           <LinkButton className="login">
             <Link to="/login">Log in</Link>
           </LinkButton>
           <LinkButton className="signup">
             <Link to="/signup">Sign up</Link>
-          </LinkButton>
+          </LinkButton> */}
         </div>
       ) : (
         <>

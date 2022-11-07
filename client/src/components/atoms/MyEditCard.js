@@ -4,21 +4,16 @@ import styled from 'styled-components';
 import { ChromePicker } from 'react-color';
 import { Edit } from './SvgMyIcons';
 import { myApi } from '../../api/apis';
+import { useSelector, useDispatch } from 'react-redux';
 
 const MyEditCard = () => {
   const [color, setColor] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(0);
-
-  useEffect(() => {
-    myApi
-      .getUser(10)
-      .then((res) => {
-        setUser(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const { userId } = useSelector((state) => ({
+    userId: state.authReducer.userId,
+  }));
 
   const handleNameChange = useCallback(
     (name) => {
@@ -43,7 +38,7 @@ const MyEditCard = () => {
 
   const handleName = () => {
     myApi
-      .patchName(10, name)
+      .patchName(userId, name)
       .then((res) => {
         setUser(res);
       })
@@ -51,8 +46,13 @@ const MyEditCard = () => {
   };
 
   const handlePassword = () => {
+    let regex = new RegExp(
+      '^.*(?=^.{8,20}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$'
+    );
+    regex.test(password);
+
     myApi
-      .patchPassword(10, password)
+      .patchPassword(userId, password)
       .then((res) => {
         setUser(res);
       })
@@ -61,7 +61,7 @@ const MyEditCard = () => {
 
   const handleColor = () => {
     myApi
-      .patchColor(10, color)
+      .patchColor(userId, color)
       .then((res) => {
         setUser(res);
       })

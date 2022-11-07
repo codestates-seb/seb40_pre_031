@@ -61,8 +61,6 @@ public class Answer extends BaseTime {
 	public Answer(Long id, String content, User user, Question question) {
 		this.id = id;
 		this.content = content;
-		this.user = user;
-		this.question = question;
 	}
 
 	public void updateContent(String content) {
