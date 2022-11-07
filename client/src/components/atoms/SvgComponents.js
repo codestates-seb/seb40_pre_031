@@ -206,6 +206,21 @@ function IconCheck(props) {
   );
 }
 
+function SVGchosenAnswer(props) {
+  return (
+    <svg
+      width={36}
+      height={36}
+      aria-hidden="true"
+      className="SVGchosenAnswer"
+      viewBox="0 0 36 36"
+      {...props}
+    >
+      <path d="m6 14 8 8L30 6v8L14 30l-8-8v-8Z" />
+    </svg>
+  );
+}
+
 export {
   SignupUpandDown,
   Signupquestion,
@@ -220,4 +235,5 @@ export {
   IconPencil,
   IconClear,
   IconCheck,
+  SVGchosenAnswer,
 };
