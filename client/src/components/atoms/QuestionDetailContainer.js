@@ -17,7 +17,8 @@ const QuestionDetailSubsideBox = styled.div`
     cursor: pointer;
   }
   .SVGchosenAnswer {
-    cursor: pointer;
+    cursor: ${({ data, userId }) =>
+      data.questionId === userId ? 'pointer' : 'default'};
   }
 `;
 
