@@ -1,12 +1,15 @@
 package com.codestates.comment.controller;
 
+import static com.codestates.global.utils.Check.*;
+
+import java.security.Principal;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,13 +42,14 @@ public class CommentController {
 
 	@PostMapping("")
 	public ResponseEntity postComment(@Positive @PathVariable(name = "answer_id") Long answerId,
-		@Valid @RequestBody CommentPostDto commentPostDto) {
-		Comment comment = Comment.builder()
-			.content(commentPostDto.getContent())
-			.build();
-		comment.setAnswer(answerService.findVerifiedAnswer(answerId));
-		comment.setUser(userService.findMember(1L));
+		@Valid @RequestBody CommentPostDto commentPostDto,
+		Principal principal) {
 
+		Comment comment = buildComment(
+			answerId,
+			principal.getName(),
+			commentPostDto.getContent()
+		);
 		commentService.createComment(comment);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -53,22 +57,42 @@ public class CommentController {
 
 	@PatchMapping("/{comment_id}")
 	public ResponseEntity patchComment(@Positive @PathVariable(name = "comment_id") Long commentId,
-		@Valid @RequestBody CommentPatchDto commentPatchDto) {
-		Comment comment = Comment.builder()
-			.id(commentId)
-			.content(commentPatchDto.getContent())
-			.build();
+		@Valid @RequestBody CommentPatchDto commentPatchDto,
+		Principal principal) {
+
+		Comment comment = commentService.findVerifiedComment(commentId);
+		checkAuthor(
+			comment.getUser().getEmail(),
+			principal.getName()
+		);
+		comment.updateContent(commentPatchDto.getContent());
 
 		CommentResponseDto response = commentMapper.commentToCommentResponseDto(
-			commentService.updateComment(comment));
+			commentService.updateVerifiedComment(comment));
 
 		return ResponseEntity.ok().body(response);
 	}
 
 	@DeleteMapping("{comment_id}")
-	public ResponseEntity deleteComment(@Positive @PathVariable(name = "comment_id") Long commentId) {
-		commentService.deleteComment(commentId);
+	public ResponseEntity deleteComment(@Positive @PathVariable(name = "comment_id") Long commentId,
+		Principal principal) {
+		Comment comment = commentService.findVerifiedComment(commentId);
+		checkAuthor(
+			comment.getUser().getEmail(),
+			principal.getName()
+		);
+		commentService.deleteVerifiedComment(comment);
 
 		return ResponseEntity.noContent().build();
+	}
+
+	private Comment buildComment(Long answerId, String email, String content) {
+		Comment comment = Comment.builder()
+			.content(content)
+			.build();
+		comment.setAnswer(answerService.findVerifiedAnswer(answerId));
+		comment.setUser(userService.findUserByEmail(email));
+
+		return comment;
 	}
 }

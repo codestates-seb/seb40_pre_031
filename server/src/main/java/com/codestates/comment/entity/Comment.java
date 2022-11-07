@@ -49,8 +49,6 @@ public class Comment extends BaseTime {
 	public Comment(Long id, String content, User user, Answer answer) {
 		this.id = id;
 		this.content = content;
-		this.user = user;
-		this.answer = answer;
 	}
 
 	public void updateContent(String content) {
