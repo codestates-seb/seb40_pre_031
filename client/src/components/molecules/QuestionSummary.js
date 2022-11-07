@@ -29,7 +29,7 @@ const SummaryLayout = styled.div`
   }
 
   .green {
-    width: 65px;
+    width: 70px;
     height: 25px;
     border: 1px solid var(--green-700);
     border-radius: 3px;
