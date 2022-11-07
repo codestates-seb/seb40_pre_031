@@ -95,7 +95,7 @@ public class AnswerController {
 
 	private void checkAnswerAuthor(String authorEmail, String loginEmail) {
 		if (!authorEmail.equals(loginEmail)) {
-			throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
+			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
 		}
 	}
 }
