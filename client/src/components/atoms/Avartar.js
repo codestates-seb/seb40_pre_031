@@ -9,7 +9,6 @@ const AvartarImage = styled.div`
 `;
 
 const Avartar = ({ color }) => {
-  console.log(color);
   return <AvartarImage color={color} />;
 };
 
