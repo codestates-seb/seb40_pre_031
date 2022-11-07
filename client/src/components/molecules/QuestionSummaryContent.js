@@ -10,6 +10,7 @@ const QuestionSummaryContent = ({
   displayname,
   createdAt,
 }) => {
+  console.log(content);
   return (
     <QuestionSummaryContenLayout>
       <h3>
@@ -19,7 +20,7 @@ const QuestionSummaryContent = ({
           </Link>
         </Title>
       </h3>
-      <QuestionContent>{content}</QuestionContent>
+      <QuestionContent>{content.slice(0, 120)}....</QuestionContent>
       <UserBox>
         <Avartar color={color} />
         <Username>{displayname}</Username>
