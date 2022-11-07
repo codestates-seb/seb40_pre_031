@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.codestates.comment.entity.Comment;
 import com.codestates.global.auditing.BaseTime;
@@ -25,6 +26,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -42,6 +44,10 @@ public class Answer extends BaseTime {
 	@Column(nullable = false, length = 20)
 	@Enumerated(EnumType.STRING)
 	private PostStatus status = PostStatus.PUBLIC;
+
+	@Setter
+	@Transient
+	private VoteStatus voteStatus = VoteStatus.NONE;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
