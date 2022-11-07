@@ -36,6 +36,7 @@ const QuestionDetailContentBox = styled.div`
   margin-top: 30px;
   display: flex;
   .toastui-editor-contents {
+    margin-left: 10px;
     width: 640px;
   }
 `;

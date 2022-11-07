@@ -10,7 +10,6 @@ import Footer from './components/templates/FooterTemplate';
 import QuestionDetailPage from './components/pages/QuestionDetailPage';
 import Home from './components/pages/HomePage';
 import MyPage from './components/pages/MyPage';
-
 function App() {
   return (
     <>
