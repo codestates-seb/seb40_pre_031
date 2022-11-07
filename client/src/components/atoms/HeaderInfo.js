@@ -6,12 +6,9 @@ import { ReactComponent as InfoHamburger } from '../../assets/icon/Header-InfoIc
 import { SvgHelp } from './SvgHeaderIcon';
 import { BsPersonCircle } from 'react-icons/bs';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
-// import { Link } from 'react-router-dom';
 
 //로그아웃 관련 import
 import { logoutAction } from '../../actions';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
