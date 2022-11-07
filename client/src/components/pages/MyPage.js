@@ -31,8 +31,9 @@ const MyPage = () => {
         <div className="name">
           <Avartar color={users.avatarColor} />
           <h1>{users.displayName}</h1>
+          <MyBye />
         </div>
-        <MyBye />
+
         <MyEditCard />
       </div>
     </MyPageLayout>
@@ -48,6 +49,8 @@ const MyPageLayout = styled.div`
     margin: 12px;
 
     .name {
+      margin: 12px;
+      padding: 12px;
       display: flex;
       justify-content: flex-start;
       align-items: center;

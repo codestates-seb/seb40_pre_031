@@ -4,7 +4,7 @@ import { Delete } from './SvgMyIcons';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { myApi } from '../../api/apis';
-// 메인페이지 호출
+import MainPage from '../pages/MainPage';
 
 const MyBye = () => {
   const userId = useSelector((store) => store.authReducer.userId);
