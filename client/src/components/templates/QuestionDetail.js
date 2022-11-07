@@ -16,7 +16,8 @@ export const QuestionDetail = ({ data }) => {
   const [edit, setEdit] = useState(false);
   const editorRef = useRef(null);
   const navigate = useNavigate();
-  const title = '수정된 질문입니다.';
+  const emoji = String.fromCodePoint(parseInt('1F4DD', 16));
+  const title = `${emoji}${data.title}`;
   // 수정 버튼 이벤트
   const editOnClick = () => {
     console.log('edit');
@@ -28,14 +29,20 @@ export const QuestionDetail = ({ data }) => {
           console.log(content);
           answerApi
             .patchAnswer(data.questionId, data.answerId, content)
-            .then((res) => console.log(res));
+            .then((res) => {
+              console.log(res);
+              location.reload();
+            });
         }
       } else if (data.questionId) {
         console.log(content);
         if (window.confirm('수정하시겠습니까?')) {
           questionApi
             .patchQuestion(data.questionId, title, content)
-            .then((res) => console.log(res));
+            .then((res) => {
+              console.log(res);
+              location.reload();
+            });
         }
       }
     }
