@@ -5,10 +5,64 @@ import {
 import { QuestionDetailSidebar } from '../molecules/QuestionDetailSidebar';
 import { QuestionDetailUserFooter } from '../organism/QuestionDetailUserFooter';
 import QuestionViewer from '../atoms/QuestionViewer';
+import QuestionEditor from '../atoms/QuestionEditor';
+import { useState, useRef } from 'react';
+import { answerApi, questionApi } from '../../api/apis';
+import { useNavigate } from 'react-router-dom';
 
 //본문내용과 추천수를 포함하는 컴포넌트
 export const QuestionDetail = ({ data }) => {
   data.voteStatus = data.voteStatus || data.status;
+  const [edit, setEdit] = useState(false);
+  const editorRef = useRef(null);
+  const navigate = useNavigate();
+  const title = '수정된 질문입니다.';
+  // 수정 버튼 이벤트
+  const editOnClick = () => {
+    console.log('edit');
+    if (edit === true) {
+      const content = editorRef.current.getInstance().getMarkdown();
+      if (data.answerId) {
+        console.log(data.answerId);
+        if (window.confirm('수정하시겠습니까?')) {
+          console.log(content);
+          answerApi
+            .patchAnswer(data.questionId, data.answerId, content)
+            .then((res) => console.log(res));
+        }
+      } else if (data.questionId) {
+        console.log(content);
+        if (window.confirm('수정하시겠습니까?')) {
+          questionApi
+            .patchQuestion(data.questionId, title, content)
+            .then((res) => console.log(res));
+        }
+      }
+    }
+    setEdit(!edit);
+  };
+
+  // 삭제버튼 이벤트
+  const deleteOnClick = () => {
+    console.log('delete');
+    if (data.answerId) {
+      if (window.confirm('삭제하시겠습니까?')) {
+        answerApi.deleteAnswer(data.questionId, data.answerId).then((res) => {
+          console.log(res);
+          location.reload();
+        });
+      }
+    } else if (data.questionId) {
+      if (window.confirm('삭제하시겠습니까?')) {
+        questionApi.deleteQuestion(data.questionId).then((res) => {
+          console.log(res);
+          location.reload();
+        });
+        navigate('/questions');
+      }
+    }
+  };
+
   return data ? (
     <>
       <QuestionDetailContentBox>
@@ -18,11 +72,21 @@ export const QuestionDetail = ({ data }) => {
             voteStatus={data.voteStatus}
           ></QuestionDetailSidebar>
         </QuestionDetailsideBox>
-        <QuestionViewer content={data.content}></QuestionViewer>
+        {!edit && <QuestionViewer content={data.content}></QuestionViewer>}
+        {edit && (
+          <QuestionEditor
+            content={data.content}
+            ref={editorRef}
+          ></QuestionEditor>
+        )}
       </QuestionDetailContentBox>
       <QuestionDetailUserFooter
         date={data.createdAt}
         displayName={data.displayName}
+        id={data.userId}
+        avatarColor={data.avatarColor}
+        onClick={editOnClick}
+        deleteOnClick={deleteOnClick}
       ></QuestionDetailUserFooter>
     </>
   ) : null;

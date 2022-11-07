@@ -17,5 +17,6 @@ public class ResponseAllQuestionsDto {
 	private int answers;
 	private int views;
 	private String displayName;
+	private String avatarColor;
 	private LocalDateTime createdAt;
 }

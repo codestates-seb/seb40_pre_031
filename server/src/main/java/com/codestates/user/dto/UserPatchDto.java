@@ -13,5 +13,6 @@ public class UserPatchDto {
 	private long id;
 	private String password;
 	private String displayName;
+	private String avatarColor;
 	private UserStatus userStatus;
 }

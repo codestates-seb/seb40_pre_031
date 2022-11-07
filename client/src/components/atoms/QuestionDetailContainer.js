@@ -9,7 +9,7 @@ const QuestionDetailsideBox = styled.div`
 //추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
 const QuestionDetailSubsideBox = styled.div`
   width: 36px;
-  heigth: 102px;
+  height: 102px;
   display: flex;
   flex-direction: column;
   .Arrow {
@@ -61,7 +61,7 @@ const QuestionDetailUserProfileBox = styled.div`
       height: 32px;
       margin-right: 10px;
       border-radius: 3px;
-      background-color: orange;
+      background-color: ${({ avatarColor }) => avatarColor};
     }
   }
 `;
@@ -70,7 +70,7 @@ const QuestionDetailUserProfileBox = styled.div`
 const QuestionDetailUserFooterBox = styled.div`
   width: 640px;
   height: 100px;
-  margin: 16px 0 16px 88px;
+  margin: 16px 0 16px 73px;
   display: flex;
   font-size: 13px;
   justify-content: space-between;
@@ -79,8 +79,31 @@ const QuestionDetailUserFooterBox = styled.div`
   border-radius: 5px;
 
   .Editdiv {
+    display: flex;
+    flex-direction: row;
+
+    gap: 10px;
     margin: 10px;
     color: var(--black-500);
+    button {
+      width: 50px;
+      height: 20px;
+      border: 0;
+      outline: 0;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: 15px;
+      :hover {
+        color: var(--white);
+        background: var(--blue);
+      }
+    }
+    .delete {
+      :hover {
+        color: var(--white);
+        background: var(--red);
+      }
+    }
   }
 `;
 

@@ -50,7 +50,7 @@ const RightSidebarBox = () => {
         <div>
           <BoxHeader>
             <div>
-              <GoogleCloud size="32px" height="32px" />
+              <GoogleCloud />
             </div>
             <TittleBox>
               <h1>Google Cloud</h1>
@@ -73,7 +73,7 @@ const RightSidebarBox = () => {
         <div>
           <BoxHeader>
             <div>
-              <Intel size="32px" height="32px" />
+              <Intel />
             </div>
             <TittleBox>
               <h1>Intel</h1>

@@ -1,12 +1,13 @@
 import { useRef } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import PostQuestionButton from '../atoms/PostQuestionButton';
 import AskQuestionEditorBox from '../molecules/AskQuestionEditorBox';
 import AskQuestionHeader from '../molecules/AskQuestionHeader';
 import AskQuestionTagBox from '../molecules/AskQuestionTagBox';
 import AskQuestionTitleBox from '../molecules/AskQuestionTitleBox';
+import { questionApi } from '../../api/apis';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   background: var(--black-050);
@@ -34,7 +35,8 @@ function AskQuestion() {
   const titleRef = { title: useRef(null), p: useRef(null) };
   const editorRef = useRef(null);
   const tagRef = useRef(null);
-  // const navigate = useNavigate(); // 질문 등록 후 질문 리스트 페이지 연결  app.js 라우터 연결후 사용
+  const navigate = useNavigate(); // 질문 등록 후 질문 리스트 페이지 연결  app.js 라우터 연결후 사용
+  const user = useSelector((state) => state.authReducer.userId);
 
   const editorOnChange = () => {
     const value = editorRef.current.getInstance().getMarkdown();
@@ -54,6 +56,7 @@ function AskQuestion() {
 
   const buttonOnClick = () => {
     const data = {
+      userid: user,
       title: titleRef.title.current.value,
       content: editorRef.current.getInstance().getMarkdown(),
     };
@@ -63,14 +66,12 @@ function AskQuestion() {
       return;
     }
     console.log(data);
-    axios
-      .post('/questions/ask', data)
+    questionApi
+      .postQuestion(data.userid, data.title, data.content)
       .then((res) => {
         console.log(res);
-        // navigate('/questions');
-      })
-      .catch((error) => {
-        console.log(error.res);
+        navigate('/questions');
+        location.reload();
       });
   };
 

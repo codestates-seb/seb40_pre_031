@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.codestates.comment.entity.Comment;
 import com.codestates.comment.repository.CommentRepository;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 
 import lombok.AllArgsConstructor;
 
@@ -20,7 +22,7 @@ public class CommentService {
 
 	public Comment updateComment(Comment comment) {
 		Comment found = findVerifiedComment(comment.getId());
-		found.setContent(comment.getContent());
+		found.updateContent(comment.getContent());
 
 		return commentRepository.save(found);
 	}
@@ -35,6 +37,14 @@ public class CommentService {
 		Optional<Comment> found = commentRepository.findById(commentId);
 
 		return found.orElseThrow(() ->
-			new RuntimeException("COMMENT_NOT_FOUND"));
+			new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
+	}
+
+	public Comment updateVerifiedComment(Comment comment) {
+		return commentRepository.save(comment);
+	}
+
+	public void deleteVerifiedComment(Comment comment) {
+		commentRepository.delete(comment);
 	}
 }

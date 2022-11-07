@@ -19,12 +19,10 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
-@Setter
 public class Comment extends BaseTime {
 
 	@Id
@@ -51,8 +49,10 @@ public class Comment extends BaseTime {
 	public Comment(Long id, String content, User user, Answer answer) {
 		this.id = id;
 		this.content = content;
-		this.user = user;
-		this.answer = answer;
+	}
+
+	public void updateContent(String content) {
+		this.content = content;
 	}
 
 	public void setUser(User user) {
