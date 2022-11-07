@@ -35,6 +35,9 @@ customAxios.interceptors.response.use(
 
 export default customAxios;
 
+/////////////////
+/*    인증관련   */
+/////////////////
 export const authApi = {
   postSignUp: (displayName, email, password) => {
     const body = { displayName, email, password };
@@ -151,24 +154,54 @@ export const commentApi = {
   },
 };
 
+/////////////////
+/* 질문상세조회관련 */
+/////////////////
 export const questionDetailApi = {
   //질문 상세 조회
   getQuestionDetail: (question_id) => {
     return customAxios.get(`/questions/${question_id}`);
   },
-  //답변 추천 비추천
-  postVote: async (question_id, answer_id, std) => {
-    const data = await customAxios.post(
-      `/questions/${question_id}/answers/${answer_id}/votes/${std}`
-    );
-    return data;
+  // //답변 추천 비추천
+  // postAnswerVote: (question_id, answer_id, direction) => {
+  //   return customAxios.post(
+  //     `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
+  //   );
+  // },
+  // //답변 추천 비추천 취소
+  // deleteAnswerVote: (question_id, answer_id, direction) => {
+  //   return customAxios.delete(
+  //     `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
+  //   );
+  // },
+  // //질문 추천 비추천
+  // postQuestionVote: (question_id, direction) => {
+  //   return customAxios.post(`/questions/${question_id}/votes/${direction}`);
+  // },
+  // //질문 추천 비추천 취소
+  // deleteQuestionVote: (question_id, direction) => {
+  //   return customAxios.delete(`/questions/${question_id}/votes/${direction}`);
+  // },
+  //질문 추천 비추천, 추천누른상태에서 비추천눌를때, 반대
+  postVote: (data, direction) => {
+    let uri = data.answerId
+      ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
+      : `/questions/${data.questionId}/votes/${direction}`;
+    console.log(uri);
+    return axios.post(uri);
   },
-  //답변 추천 비추천 취소
-  deleteVote: async (question_id, answer_id, std) => {
-    const data = await customAxios.delete(
-      `/questions/${question_id}/answers/${answer_id}/votes/${std}`
+  //질문 추천 비추천 취소
+  deleteVote: (data, direction) => {
+    let uri = data.answerId
+      ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
+      : `/questions/${data.questionId}/votes/${direction}`;
+    console.log(uri);
+    return axios.delete(uri);
+  },
+  postChosenAnswer: (questionId, answerId) => {
+    return customAxios.post(
+      `questions/${questionId}/answers/${answerId}/chosen`
     );
-    return data;
   },
 };
 

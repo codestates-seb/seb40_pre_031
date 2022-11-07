@@ -9,9 +9,9 @@ import QuestionEditor from '../atoms/QuestionEditor';
 import { useState, useRef } from 'react';
 import { answerApi, questionApi } from '../../api/apis';
 import { useNavigate } from 'react-router-dom';
-
+/* eslint-disable */
 //본문내용과 추천수를 포함하는 컴포넌트
-export const QuestionDetail = ({ data }) => {
+export const QuestionDetail = ({ data, chosenAnswerId }) => {
   data.voteStatus = data.voteStatus || data.status;
   const [edit, setEdit] = useState(false);
   const editorRef = useRef(null);
@@ -69,7 +69,6 @@ export const QuestionDetail = ({ data }) => {
       }
     }
   };
-
   return data ? (
     <>
       <QuestionDetailContentBox>
@@ -77,11 +76,13 @@ export const QuestionDetail = ({ data }) => {
           <QuestionDetailSidebar
             vote={data.votes}
             voteStatus={data.voteStatus}
+            data={{questionId: data.questionId, answerId:data.answerId, chosenAnswerId: chosenAnswerId}}
           ></QuestionDetailSidebar>
         </QuestionDetailsideBox>
         {!edit && <QuestionViewer content={data.content}></QuestionViewer>}
         {edit && (
           <QuestionEditor
+            className="toastui-editor-contents"
             content={data.content}
             ref={editorRef}
           ></QuestionEditor>
