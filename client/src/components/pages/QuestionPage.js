@@ -44,6 +44,7 @@ export default QuestionPage;
 const QuestionLayout = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   background-color: var(--white);
 `;
 
