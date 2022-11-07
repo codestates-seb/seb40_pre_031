@@ -7,14 +7,16 @@ import RightSidebar from '../templates/RightSidebar';
 import QuestionPagination from '../organism/QuestionPagination';
 import usePatch from '../../hooks/usePatch';
 import useTotal from '../../hooks/useTotal';
+import Paginator from 'react-hooks-paginator';
 
 const QuestionPage = () => {
-  const [currentPage, setCurrentPage] = useState(0); // 초기 값 1
+  const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1); // 초기 값 1
   const [currentSize, setCurrentSize] = useState(5); // 한 페이지에 보여줄 질문 개수
   let total = useTotal(currentPage, currentSize);
   let questionlist = usePatch(currentPage, currentSize);
 
-  const paginate = (page) => setCurrentPage(page);
+  const handlePageChange = (page) => setCurrentPage(page);
 
   return (
     <>
@@ -24,10 +26,13 @@ const QuestionPage = () => {
           <QuestionHead />
           {questionlist}
           <QuestionBox>
-            <QuestionPagination
-              total={total}
-              size={currentSize}
-              paginate={paginate}
+            <Paginator
+              totalRecords={total}
+              pageLimit={5}
+              pageNeighbours={1}
+              setOffset={setOffset}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
             />
           </QuestionBox>
         </div>
