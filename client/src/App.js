@@ -12,7 +12,6 @@ import Home from './components/pages/HomePage';
 import MyPage from './components/pages/MyPage';
 import Error404Page from './components/pages/Error404Page';
 
-
 function App() {
   return (
     <>
