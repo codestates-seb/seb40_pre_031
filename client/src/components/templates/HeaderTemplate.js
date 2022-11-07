@@ -19,6 +19,7 @@ const HeaderBox = styled.div`
   margin: 0 auto;
   border-top: 3px solid #f48225;
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+  padding: 0px 50px;
   position: fixed; //항상 헤더 상단 고정
   top: 0;
   padding: 0px 50px;

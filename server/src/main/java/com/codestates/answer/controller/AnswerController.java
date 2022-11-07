@@ -1,12 +1,15 @@
 package com.codestates.answer.controller;
 
+import static com.codestates.global.utils.Check.*;
+
+import java.security.Principal;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,13 +39,14 @@ public class AnswerController {
 
 	@PostMapping("")
 	public ResponseEntity postAnswer(@Positive @PathVariable(name = "question_id") Long questionId,
-		@Valid @RequestBody AnswerPostDto answerPostDto) {
-		Answer answer = Answer.builder()
-			.content(answerPostDto.getContent())
-			.build();
-		answer.setQuestion(questionService.findQuestion(questionId));
-		answer.setUser(userService.findMember(1L));
+		@Valid @RequestBody AnswerPostDto answerPostDto,
+		Principal principal) {
 
+		Answer answer = buildAnswer(
+			questionId,
+			principal.getName(),
+			answerPostDto.getContent()
+		);
 		answerService.createAnswer(answer);
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -50,21 +54,40 @@ public class AnswerController {
 
 	@PatchMapping("{answer_id}")
 	public ResponseEntity patchAnswer(@Positive @PathVariable(name = "answer_id") Long answerId,
-		@Valid @RequestBody AnswerPatchDto answerPatchDto) {
-		Answer answer = Answer.builder()
-			.id(answerId)
-			.content(answerPatchDto.getContent())
-			.build();
+		@Valid @RequestBody AnswerPatchDto answerPatchDto,
+		Principal principal) {
 
-		answerService.updateAnswer(answer);
+		Answer answer = answerService.findVerifiedAnswer(answerId);
+		checkAuthor(
+			answer.getUser().getEmail(),
+			principal.getName()
+		);
+		answer.updateContent(answerPatchDto.getContent());
+
+		answerService.updateVerifiedAnswer(answer);
 
 		return ResponseEntity.ok().build();
 	}
 
 	@DeleteMapping("{answer_id}")
-	public ResponseEntity deleteAnswer(@Positive @PathVariable(name = "answer_id") Long answerId) {
-		answerService.deleteAnswer(answerId);
+	public ResponseEntity deleteAnswer(@Positive @PathVariable(name = "answer_id") Long answerId, Principal principal) {
+		Answer answer = answerService.findVerifiedAnswer(answerId);
+		checkAuthor(
+			answer.getUser().getEmail(),
+			principal.getName()
+		);
+		answerService.deleteVerifiedAnswer(answer);
 
 		return ResponseEntity.noContent().build();
+	}
+
+	private Answer buildAnswer(Long questionId, String email, String content) {
+		Answer answer = Answer.builder()
+			.content(content)
+			.build();
+		answer.setQuestion(questionService.findQuestion(questionId));
+		answer.setUser(userService.findUserByEmail(email));
+
+		return answer;
 	}
 }

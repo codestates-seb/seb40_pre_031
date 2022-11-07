@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -58,6 +57,7 @@ const HeaderButton = () => {
   const gotoSignup = () => {
     Navigate('/signup');
   };
+
 
   return (
     <>

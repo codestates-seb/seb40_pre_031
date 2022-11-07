@@ -1,8 +1,13 @@
 import { QuestionDetailUserProfileBox } from '../atoms/QuestionDetailContainer';
-export const QuestionDetailUserProfile = ({ date, displayName }) => {
+import { TimeCheck } from '../../actions/index';
+export const QuestionDetailUserProfile = ({
+  date,
+  displayName,
+  avatarColor,
+}) => {
   return (
-    <QuestionDetailUserProfileBox>
-      <div>asked {date}</div>
+    <QuestionDetailUserProfileBox avatarColor={avatarColor}>
+      <div>asked {TimeCheck(date)}</div>
       <div className="UserProfile">
         <div></div>
         {displayName}

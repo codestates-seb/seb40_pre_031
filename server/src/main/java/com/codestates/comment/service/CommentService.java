@@ -39,4 +39,12 @@ public class CommentService {
 		return found.orElseThrow(() ->
 			new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
 	}
+
+	public Comment updateVerifiedComment(Comment comment) {
+		return commentRepository.save(comment);
+	}
+
+	public void deleteVerifiedComment(Comment comment) {
+		commentRepository.delete(comment);
+	}
 }
