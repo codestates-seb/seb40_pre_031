@@ -4,11 +4,11 @@ import RightSidebarBox from '../molecules/RightSidebarBox';
 
 const RightSidebar = () => {
   return (
-    <>
+    <div className="RightSideBar">
       <RightSidebarA />
       <RightSidebarTittleBox />
       <RightSidebarBox />
-    </>
+    </div>
   );
 };
 

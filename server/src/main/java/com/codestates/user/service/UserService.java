@@ -54,12 +54,14 @@ public class UserService {
 		User findUser = findVerifiedUser(user.getId());
 
 		if (findUser.getUserStatus() == UserStatus.USER_OUT || findUser.getUserStatus() == UserStatus.ADMIN) {
-			throw new BusinessLogicException(ExceptionCode.OUT_OF_CONTROL);
+			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
 		} else {
 			// 수정하기
 			Optional.ofNullable(user.getPassword()).ifPresent(password ->
 				findUser.setPassword(passwordEncoder.encode(password)));
 			Optional.ofNullable(user.getDisplayName()).ifPresent(displayName -> findUser.setDisplayName(displayName));
+			Optional.ofNullable(user.getAvatarColor()).ifPresent(avatarColor ->
+				findUser.setAvatarColor(avatarColor.toLowerCase()));
 
 			// 상태 수정 -> ACTIVE, DORMANT 둘 중 하나여야 함.
 			Optional.ofNullable(user.getUserStatus()).ifPresent(userStatus -> findUser.setUserStatus(userStatus));
@@ -74,7 +76,7 @@ public class UserService {
 		User findUser = findVerifiedUser(userId);
 
 		if (findUser.getUserStatus() == UserStatus.USER_OUT || findUser.getUserStatus() == UserStatus.ADMIN) {
-			throw new BusinessLogicException(ExceptionCode.OUT_OF_CONTROL);
+			throw new BusinessLogicException(ExceptionCode.FORBIDDEN);
 		} else {
 			return findUser;
 		}
@@ -103,7 +105,16 @@ public class UserService {
 	// 존재하는 회원인지 확인
 	public User findVerifiedUser(long userId) {
 		Optional<User> optionalUser = userRepository.findById(userId);
-		User findUser = optionalUser.orElseThrow(() -> new RuntimeException("USER_NOT_FOUND"));
+		User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+
+		return findUser;
+	}
+
+	// 이메일을 통한 회원 확인
+	public User findUserByEmail(String email) {
+		Optional<User> optionalUser = userRepository.findByEmail(email);
+
+		User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
 
 		return findUser;
 	}

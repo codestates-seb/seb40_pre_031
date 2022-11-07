@@ -27,10 +27,12 @@ public interface QuestionMapper {
 	@Mapping(source = "user.id", target = "userId")
 	@Mapping(expression = "java(question.getAnswerList().size())", target = "answers")
 	@Mapping(source = "user.displayName", target = "displayName")
+	@Mapping(source = "user.avatarColor", target = "avatarColor")
 	ResponseAllQuestionsDto questionToResponseAllPagesDto(Question question);
 
 	@Mapping(source = "question.id", target = "questionId")
 	@Mapping(source = "question.user.id", target = "userId")
 	@Mapping(source = "question.user.displayName", target = "displayName")
+	@Mapping(source = "question.user.avatarColor", target = "avatarColor")
 	ResponseSpecificQuestionDto questionToResponsePickOneDto(Question question, VoteStatus status);
 }

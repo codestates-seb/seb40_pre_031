@@ -3,6 +3,7 @@ package com.codestates.auth.config;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -56,21 +57,22 @@ public class SecurityConfig {
 			.apply(new CustomFilterConfigurer())
 			.and()
 			.authorizeHttpRequests(authorize -> authorize
-				// .antMatchers(HttpMethod.POST, "/signup").permitAll()
-				// .antMatchers(HttpMethod.PATCH, "/users/**").hasRole("USER")
-				// .antMatchers(HttpMethod.GET, "/users/**").hasRole("USER")
-				// .antMatchers(HttpMethod.DELETE, "/users/**").hasRole("USER")
-				// .antMatchers(HttpMethod.POST, "/questions/ask").hasRole("USER")
-				// .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
-				// .antMatchers(HttpMethod.GET, "/questions").permitAll()
-				// .antMatchers(HttpMethod.GET, "/questions/**").permitAll()
-				// .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
-				// .antMatchers(HttpMethod.POST, "/**/answers").hasRole("USER")
-				// .antMatchers(HttpMethod.PATCH, "/**/answers/*").hasRole("USER")
-				// .antMatchers(HttpMethod.DELETE, "/**/answers/*").hasRole("USER")
-				// .antMatchers(HttpMethod.POST, "/**/comments").hasRole("USER")
-				// .antMatchers(HttpMethod.PATCH, "/**/comments/*").hasRole("USER")
-				// .antMatchers(HttpMethod.DELETE, "/**/comments/*").hasRole("USER")
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
+				.antMatchers(HttpMethod.POST, "/signup").permitAll()
+				.antMatchers(HttpMethod.PATCH, "/users/**").hasRole("USER")
+				.antMatchers(HttpMethod.GET, "/users/**").hasRole("USER")
+				.antMatchers(HttpMethod.DELETE, "/users/**").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/questions/ask").hasRole("USER")
+				.antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+				.antMatchers(HttpMethod.GET, "/questions").permitAll()
+				.antMatchers(HttpMethod.GET, "/questions/**").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/**/answers").hasRole("USER")
+				.antMatchers(HttpMethod.PATCH, "/**/answers/*").hasRole("USER")
+				.antMatchers(HttpMethod.DELETE, "/**/answers/*").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/**/comments").hasRole("USER")
+				.antMatchers(HttpMethod.PATCH, "/**/comments/*").hasRole("USER")
+				.antMatchers(HttpMethod.DELETE, "/**/comments/*").hasRole("USER")
 				.anyRequest().permitAll());
 		return http.build();
 	}
@@ -83,10 +85,15 @@ public class SecurityConfig {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("*"));
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
+		configuration.addAllowedHeader("*");
+		// configuration.addExposedHeader("Authorization");
+		// configuration.addExposedHeader("Refresh");
+		configuration.addAllowedOriginPattern("*");
+		configuration.setAllowCredentials(true);
+		configuration.setMaxAge(5000L);
 
 		return source;
 	}

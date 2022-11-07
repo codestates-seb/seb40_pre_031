@@ -35,7 +35,7 @@ const Loginsubmit = () => {
       <Socials />
       <LoginForm />
       <SignupinfoPassword margin="rightmedium">
-        Don’t have an account? <Link to="/signup">Sign in</Link>
+        Don’t have an account?<Link to="/signup">Sign in</Link>
       </SignupinfoPassword>
     </LoginsubmitBox>
   );

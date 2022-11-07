@@ -24,8 +24,8 @@ function SvgChat(props) {
 function SvgHelp(props) {
   return (
     <svg
-      width={18}
-      height={18}
+      width={24}
+      height={24}
       aria-hidden="true"
       className="svg-icon iconHelp"
       style={{

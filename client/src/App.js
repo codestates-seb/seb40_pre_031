@@ -9,6 +9,8 @@ import SignUp from './components/pages/SignupPage';
 import Footer from './components/templates/FooterTemplate';
 import QuestionDetailPage from './components/pages/QuestionDetailPage';
 import Home from './components/pages/HomePage';
+import MyPage from './components/pages/MyPage';
+import Error404Page from './components/pages/Error404Page';
 
 import MainPage from './components/pages/MainPage';
 
@@ -23,13 +25,14 @@ function App() {
           <Route path="/leftnav" element={<LeftNav />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/questions" element={<Question />} />
-          <Route path="/questionask" element={<QuestionAsk />} />
+          <Route path="/questions/ask" element={<QuestionAsk />} />
           <Route
             path="/QuestionDetailPage"
             element={<QuestionDetailPage question_id={'9'} />}
           />
-
           <Route path="/main" element={<MainPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/*" element={<Error404Page />} />
         </Routes>
         <Footer />
       </BrowserRouter>

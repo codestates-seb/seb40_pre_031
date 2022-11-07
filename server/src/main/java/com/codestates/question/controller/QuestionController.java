@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codestates.answer.dto.ResponseAnswerDto;
+import com.codestates.answer.service.AnswerService;
 import com.codestates.question.dto.QuestionPatchDto;
 import com.codestates.question.dto.QuestionPostDto;
 import com.codestates.question.dto.QuestionResponseDto;
@@ -31,6 +34,7 @@ import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
+// @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true", maxAge = 5000L)
 @RestController
 @RequestMapping("/questions")
 @RequiredArgsConstructor
@@ -40,6 +44,7 @@ public class QuestionController {
 	private final QuestionRepository questionRepository;
 	private final QuestionMapper mapper;
 	private final UserService userService;
+	private final AnswerService answerService;
 
 	@PostMapping("/ask")
 	public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
@@ -67,13 +72,19 @@ public class QuestionController {
 	}
 
 	@GetMapping("/{question_id}")
-	public ResponseEntity<ResponseSpecificQuestionDto> getQuestion(
+	public ResponseEntity getQuestion(
 		@PathVariable("question_id") @Positive Long questionId) {
 		Question question = questionService.findQuestion(questionId);
 		User user = userService.findMember(1L);
 
 		VoteStatus voteStatus = questionService.checkUserVoteStatus(question, user);
 		ResponseSpecificQuestionDto response = mapper.questionToResponsePickOneDto(question, voteStatus);
+
+		for (ResponseAnswerDto responseAnswerDto : response.getAnswerList()) {
+			VoteStatus status = answerService.getUserAnswerVoteStatus(responseAnswerDto.getAnswerId(), 1L);
+
+			responseAnswerDto.setVoteStatus(status);
+		}
 
 		questionService.updateView(questionId);
 
@@ -94,5 +105,13 @@ public class QuestionController {
 		questionService.deleteQuestion(questionId);
 
 		return "success to delete!";
+	}
+
+	@PostMapping("/{question_id}/answers/{answer_id}/chosen")
+	public String postChosenAnswer(@PathVariable("question_id") @Positive Long questionId,
+		@PathVariable("answer_id") @Positive Long chosenAnswerId) {
+		questionService.chosenAnswer(questionId, chosenAnswerId);
+
+		return "success to marked!";
 	}
 }

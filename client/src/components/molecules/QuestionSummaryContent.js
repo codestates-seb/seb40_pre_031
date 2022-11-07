@@ -1,15 +1,30 @@
 import styled from 'styled-components';
 import Avartar from '../atoms/Avartar';
+import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
-const QuestionSummaryContent = ({ title, content, displayname, createdAt }) => {
+const QuestionSummaryContent = ({
+  question_id,
+  color,
+  title,
+  content,
+  displayname,
+  createdAt,
+}) => {
   return (
     <QuestionSummaryContenLayout>
       <h3>
-        <Title>{title}</Title>
+        <Title>
+          <Link to="/QuestionDetailPage" state={{ question_id: question_id }}>
+            {title}
+          </Link>
+        </Title>
       </h3>
-      <QuestionContent>{content}</QuestionContent>
+      <QuestionContent>
+        <ReactMarkdown>{content.slice(0, 120)}</ReactMarkdown>....
+      </QuestionContent>
       <UserBox>
-        <Avartar />
+        <Avartar color={color} />
         <Username>{displayname}</Username>
         <span>{createdAt}</span>
       </UserBox>
@@ -31,12 +46,14 @@ const QuestionSummaryContenLayout = styled.div`
   }
 `;
 
-const Title = styled.a`
+const Title = styled.div`
   width: 595px;
   height: 34px;
-  color: var(--theme-post-title-color);
-  word-break: break-word;
-  overflow-wrap: break-word;
+  a {
+    color: var(--theme-post-title-color);
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 `;
 
 const QuestionContent = styled.div`

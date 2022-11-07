@@ -16,7 +16,7 @@ const QuestionDetailDivideLineBox = styled.div`
 `;
 
 const QuestionDetailDivideTitleBox = styled.div`
-  width: 1050px;
+  width: 1094px;
   height: 50px;
   margin: 20px 0 5px 0;
   padding: 0 20px 0 20px;
@@ -29,8 +29,9 @@ const QuestionDetailDivideTitleBox = styled.div`
     font-weight: 400;
   }
   h6 {
-    margin: 0 0 10px 1px;
+    margin: 0 0 10px 2px;
     color: var(--black-500);
+    font-weight: 600;
   }
   hr {
     border: solid 1px var(--black-100);
