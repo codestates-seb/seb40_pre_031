@@ -166,8 +166,6 @@ const MainPage = () => {
           </div>
         </div>
       </div>
-
-      {/* 오렌지박스 & 파란색 박스 */}
     </MainPageBox>
   );
 };

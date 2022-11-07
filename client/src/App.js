@@ -10,6 +10,8 @@ import Footer from './components/templates/FooterTemplate';
 import QuestionDetailPage from './components/pages/QuestionDetailPage';
 import Home from './components/pages/HomePage';
 
+import MainPage from './components/pages/MainPage';
+
 function App() {
   return (
     <>
@@ -26,6 +28,8 @@ function App() {
             path="/QuestionDetailPage"
             element={<QuestionDetailPage question_id={'9'} />}
           />
+
+          <Route path="/main" element={<MainPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
