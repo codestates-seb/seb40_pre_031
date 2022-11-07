@@ -25,7 +25,7 @@ public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	public void onAuthenticationSuccess(HttpServletRequest request,
 		HttpServletResponse response, Authentication authentication) throws IOException {
 		log.info("# 인증 성공");
-		log.info("response.getHeader() : {}", response.getHeader("Authorization"));
+		// log.info("response.getHeader() : {}", response.getHeader("Authorization"));
 
 		Gson gson = new Gson();
 		String cookieValue = response.getHeader("Authorization");
