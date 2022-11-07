@@ -12,13 +12,12 @@ import { useSelector } from 'react-redux';
 export const QuestionDetailSidebar = ({ vote, voteStatus, data }) => {
   const [votes, setVotes] = useState(vote);
   const [status, setStatus] = useState(voteStatus); //추천상태
-  const [upbind] = useClick('up', votes, setVotes, status, setStatus, data);
-  const [downbind] = useClick('down', votes, setVotes, status, setStatus, data);
+  const [upbind] = useClick('UP', votes, setVotes, status, setStatus, data);
+  const [downbind] = useClick('DOWN', votes, setVotes, status, setStatus, data);
   const userId = useSelector((status) => status.authReducer.userId);
   //data.asnwerId 와 chosenAnswer가 같으면 초록색 체크모양 표시
   //그게아니라면 회색체크모양
   //질문한사람만 채택기능활성화 (questionId === userId)
-  console.log(data);
   const fill =
     data.answerId === data.chosenAnswerId ? 'green' : 'var(--black-050)';
   const onClick = () => {
