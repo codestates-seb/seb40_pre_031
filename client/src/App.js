@@ -12,6 +12,8 @@ import Home from './components/pages/HomePage';
 import MyPage from './components/pages/MyPage';
 import Error404Page from './components/pages/Error404Page';
 
+import MainPage from './components/pages/MainPage';
+
 function App() {
   return (
     <>
@@ -28,6 +30,7 @@ function App() {
             path="/QuestionDetailPage"
             element={<QuestionDetailPage question_id={'9'} />}
           />
+          <Route path="/main" element={<MainPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/*" element={<Error404Page />} />
         </Routes>

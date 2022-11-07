@@ -89,8 +89,8 @@ public class SecurityConfig {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		configuration.addAllowedHeader("*");
-		// configuration.addExposedHeader("Authorization");
-		// configuration.addExposedHeader("Refresh");
+		configuration.addExposedHeader("Authorization");
+		configuration.addExposedHeader("Refresh");
 		configuration.addAllowedOriginPattern("*");
 		configuration.setAllowCredentials(true);
 		configuration.setMaxAge(5000L);
