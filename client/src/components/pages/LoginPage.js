@@ -25,7 +25,6 @@ const LoginsubmitBox = styled.div`
 
 const Loginsubmit = () => {
   const isLogined = useSelector((store) => store.authReducer.userStatus);
-  console.log(isLogined);
 
   return isLogined ? (
     <Navigate to="/questions"></Navigate>

@@ -10,6 +10,7 @@ const QuestionList = ({ question }) => {
         votes={question.votes}
         answers={question.answers}
         views={question.views}
+        chosen={question.chosenAnswerId}
       />
       <QuestionSummaryContent
         question_id={question.questionId}

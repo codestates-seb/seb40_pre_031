@@ -1,15 +1,8 @@
-// import styled from 'styled-components';
-// import { useState } from 'react';
 import HeaderNav from '../atoms/HeaderNav';
 import { useSelector } from 'react-redux';
 
 const HeaderNavLists = () => {
-  //   const isDesktopSize = useMediaQuery({ query: '(min-width: 660px)' });
-  // const [isLogin] = useState(false);
-
   const isLogin = useSelector((store) => store.authReducer.userStatus);
-
-  console.log(isLogin);
 
   return (
     <>

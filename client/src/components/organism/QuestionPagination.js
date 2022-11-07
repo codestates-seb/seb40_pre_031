@@ -11,7 +11,6 @@ const QuestionPagination = ({ total, size, paginate }) => {
   return (
     <QuestionBox>
       {pageNumber.map((pageNum, idx) => {
-        console.log(pageNum);
         <button
           key={idx}
           className="pagination_item"

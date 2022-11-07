@@ -85,7 +85,7 @@ public class AnswerController {
 		Answer answer = Answer.builder()
 			.content(content)
 			.build();
-		answer.setQuestion(questionService.findQuestion(questionId));
+		answer.setQuestion(questionService.findQuestion(questionId, null));
 		answer.setUser(userService.findUserByEmail(email));
 
 		return answer;

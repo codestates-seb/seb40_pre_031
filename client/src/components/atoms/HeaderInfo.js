@@ -1,14 +1,16 @@
+// import { useState, useEffect } from 'react';
 import { useState } from 'react';
+
 import styled from 'styled-components';
 import { ReactComponent as InfoHamburger } from '../../assets/icon/Header-InfoIcon.svg';
 import { SvgHelp } from './SvgHeaderIcon';
 import { BsPersonCircle } from 'react-icons/bs';
 import { RiLogoutBoxRLine } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
 
 //로그아웃 관련 import
 import { logoutAction } from '../../actions';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // 로그인 후, 이름 + Header-오른쪽 드롭박스
 const DropDownBox = styled.div`
@@ -49,9 +51,11 @@ const ListText = styled.span`
   font-size: 14px;
   font-weight: 450;
 `;
+
 const HeaderInfo = () => {
   //InfoHamburger아이콘 누르면  myPage,Help,LogOut 보여줌
   const [InfoOpened, setInfoOpened] = useState(true);
+
   //로그아웃 누르면 로그아웃 하기
   const dispatch = useDispatch();
   const onLogout = () => {

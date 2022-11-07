@@ -20,27 +20,21 @@ export const QuestionDetail = ({ data, chosenAnswerId }) => {
   const title = `${emoji}${data.title}`;
   // 수정 버튼 이벤트
   const editOnClick = () => {
-    console.log('edit');
     if (edit === true) {
       const content = editorRef.current.getInstance().getMarkdown();
       if (data.answerId) {
-        console.log(data.answerId);
         if (window.confirm('수정하시겠습니까?')) {
-          console.log(content);
           answerApi
             .patchAnswer(data.questionId, data.answerId, content)
             .then((res) => {
-              console.log(res);
               location.reload();
             });
         }
       } else if (data.questionId) {
-        console.log(content);
         if (window.confirm('수정하시겠습니까?')) {
           questionApi
             .patchQuestion(data.questionId, title, content)
             .then((res) => {
-              console.log(res);
               location.reload();
             });
         }
@@ -51,18 +45,15 @@ export const QuestionDetail = ({ data, chosenAnswerId }) => {
 
   // 삭제버튼 이벤트
   const deleteOnClick = () => {
-    console.log('delete');
     if (data.answerId) {
       if (window.confirm('삭제하시겠습니까?')) {
         answerApi.deleteAnswer(data.questionId, data.answerId).then((res) => {
-          console.log(res);
           location.reload();
         });
       }
     } else if (data.questionId) {
       if (window.confirm('삭제하시겠습니까?')) {
         questionApi.deleteQuestion(data.questionId).then((res) => {
-          console.log(res);
           location.reload();
         });
         navigate('/questions');

@@ -39,13 +39,12 @@ function AskQuestion() {
   const user = useSelector((state) => state.authReducer.userId);
 
   const editorOnChange = () => {
+    // eslint-disable-next-line no-unused-vars
     const value = editorRef.current.getInstance().getMarkdown();
-    console.log(value);
   };
 
   const titleOnChange = () => {
     const value = titleRef.title.current.value;
-    console.log(value.length);
     if (value.length >= 35 || value.length < 1) {
       titleRef.p.current.classList.remove('hide');
       return;
@@ -65,11 +64,11 @@ function AskQuestion() {
       titleRef.title.current.focus();
       return;
     }
-    console.log(data);
+
     questionApi
       .postQuestion(data.userid, data.title, data.content)
+      // eslint-disable-next-line no-unused-vars
       .then((res) => {
-        console.log(res);
         navigate('/questions');
         location.reload();
       });

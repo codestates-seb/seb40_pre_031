@@ -1,5 +1,9 @@
 package com.codestates.question.controller;
 
+import static com.codestates.global.utils.Check.*;
+
+import java.security.Principal;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
@@ -7,7 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,8 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codestates.answer.dto.ResponseAnswerDto;
 import com.codestates.answer.service.AnswerService;
+import com.codestates.exception.BusinessLogicException;
+import com.codestates.exception.ExceptionCode;
 import com.codestates.question.dto.QuestionPatchDto;
 import com.codestates.question.dto.QuestionPostDto;
 import com.codestates.question.dto.QuestionResponseDto;
@@ -38,7 +43,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/questions")
 @RequiredArgsConstructor
-@Valid
+@Validated
 public class QuestionController {
 	private final QuestionService questionService;
 	private final QuestionRepository questionRepository;
@@ -47,8 +52,9 @@ public class QuestionController {
 	private final AnswerService answerService;
 
 	@PostMapping("/ask")
-	public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
-		User user = userService.findMember(questionPostDto.getUserId());
+	public ResponseEntity postQuestion(@Valid @RequestBody QuestionPostDto questionPostDto,
+		Principal principal) {
+		User user = userService.findUserByEmail(principal.getName());
 		Question question = mapper.questionPostDtoToQuestion(questionPostDto);
 		question.setUser(user);
 
@@ -60,8 +66,13 @@ public class QuestionController {
 
 	@PatchMapping("/{question_id}")
 	public ResponseEntity patchQuestion(@PathVariable("question_id") @Positive Long questionId,
-		@Valid @RequestBody QuestionPatchDto questionPatchDto) {
+		@Valid @RequestBody QuestionPatchDto questionPatchDto, Principal principal) {
 		Question question = mapper.questionPatchDtoToQuestion(questionPatchDto);
+
+		if (question.getUser().getEmail() != principal.getName()) {
+			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
+		}
+
 		question.setId(questionId);
 
 		Question updatedQuestion = questionService.updateQuestion(question);
@@ -73,18 +84,17 @@ public class QuestionController {
 
 	@GetMapping("/{question_id}")
 	public ResponseEntity getQuestion(
-		@PathVariable("question_id") @Positive Long questionId) {
-		Question question = questionService.findQuestion(questionId);
-		User user = userService.findMember(1L);
+		@PathVariable("question_id") @Positive Long questionId, Principal principal) {
+		Question question = questionService.findQuestion(questionId, principal);
 
-		VoteStatus voteStatus = questionService.checkUserVoteStatus(question, user);
-		ResponseSpecificQuestionDto response = mapper.questionToResponsePickOneDto(question, voteStatus);
+		VoteStatus voteStatus = VoteStatus.NONE;
 
-		for (ResponseAnswerDto responseAnswerDto : response.getAnswerList()) {
-			VoteStatus status = answerService.getUserAnswerVoteStatus(responseAnswerDto.getAnswerId(), 1L);
-
-			responseAnswerDto.setVoteStatus(status);
+		if (principal != null) {
+			User findUser = userService.findUserByEmail(principal.getName());
+			voteStatus = questionService.checkUserVoteStatus(question, findUser);
 		}
+
+		ResponseSpecificQuestionDto response = mapper.questionToResponsePickOneDto(question, voteStatus);
 
 		questionService.updateView(questionId);
 
@@ -101,7 +111,13 @@ public class QuestionController {
 	}
 
 	@DeleteMapping("/{question_id}")
-	public String deleteQuestion(@PathVariable("question_id") @Positive Long questionId) {
+	public String deleteQuestion(@PathVariable("question_id") @Positive Long questionId, Principal principal) {
+		Question question = questionService.findQuestion(questionId, null);
+		checkAuthor(
+			question.getUser().getEmail(),
+			principal.getName()
+		);
+
 		questionService.deleteQuestion(questionId);
 
 		return "success to delete!";
@@ -109,7 +125,13 @@ public class QuestionController {
 
 	@PostMapping("/{question_id}/answers/{answer_id}/chosen")
 	public String postChosenAnswer(@PathVariable("question_id") @Positive Long questionId,
-		@PathVariable("answer_id") @Positive Long chosenAnswerId) {
+		@PathVariable("answer_id") @Positive Long chosenAnswerId, Principal principal) {
+		Question question = questionService.findQuestion(questionId, null);
+		checkAuthor(
+			question.getUser().getEmail(),
+			principal.getName()
+		);
+
 		questionService.chosenAnswer(questionId, chosenAnswerId);
 
 		return "success to marked!";

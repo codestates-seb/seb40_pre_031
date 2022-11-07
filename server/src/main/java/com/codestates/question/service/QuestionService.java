@@ -1,12 +1,16 @@
 package com.codestates.question.service;
 
+import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.codestates.answer.entity.Answer;
+import com.codestates.answer.entity.AnswerVote;
 import com.codestates.answer.repository.AnswerRepository;
+import com.codestates.answer.repository.AnswerVoteRepository;
 import com.codestates.exception.BusinessLogicException;
 import com.codestates.exception.ExceptionCode;
 import com.codestates.question.entity.Question;
@@ -15,6 +19,7 @@ import com.codestates.question.repository.QuestionRepository;
 import com.codestates.question.repository.QuestionVoteRepository;
 import com.codestates.status.VoteStatus;
 import com.codestates.user.entity.User;
+import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +30,8 @@ public class QuestionService {
 	private final QuestionVoteRepository questionVoteRepository;
 	private final QuestionRepository questionRepository;
 	private final AnswerRepository answerRepository;
+	private final AnswerVoteRepository answerVoteRepository;
+	private final UserService userService;
 
 	public Question createQuestion(Question question) {
 		questionRepository.save(question);
@@ -44,12 +51,53 @@ public class QuestionService {
 	public void deleteQuestion(Long questionId) {
 		Question findQuestion = findVerifiedQuestion(questionId);
 
-		questionRepository.deleteById(questionId);
+		questionRepository.delete(findQuestion);
 	}
 
-	public Question findQuestion(Long questionId) {
+	public Question findQuestion(Long questionId, Principal principal) {
+		Question question = findVerifiedQuestion(questionId);
 
-		return findVerifiedQuestion(questionId);
+		orderChosenAnswerFirst(question);
+		changeAnswerVoteStatus(question, principal);
+
+		return question;
+	}
+
+	private void orderChosenAnswerFirst(Question question) {
+		if (question.getChosenAnswerId() == null || question.getAnswerList().size() == 0 ||
+			question.getAnswerList().get(0).getId().equals(question.getChosenAnswerId())) {
+
+			return;
+		}
+
+		List<Answer> answerList = question.getAnswerList();
+
+		for (int i = 0; i < answerList.size(); i++) {
+			if (answerList.get(i).getId().equals(question.getChosenAnswerId())) {
+				answerList.add(0, answerList.remove(i));
+
+				break;
+			}
+		}
+	}
+
+	private void changeAnswerVoteStatus(Question question, Principal principal) {
+		if (principal == null) {
+
+			return;
+		}
+
+		User findUser = userService.findUserByEmail(principal.getName());
+
+		List<AnswerVote> answerVotes = answerVoteRepository.findByAnswer_QuestionAndUser(question, findUser);
+
+		answerVotes.stream()
+			.filter(answerVote -> answerVote.getStatus() == VoteStatus.UP)
+			.forEach(answerVote -> answerVote.getAnswer().setVoteStatus(VoteStatus.UP));
+
+		answerVotes.stream()
+			.filter(answerVote -> answerVote.getStatus() == VoteStatus.DOWN)
+			.forEach(answerVote -> answerVote.getAnswer().setVoteStatus(VoteStatus.DOWN));
 	}
 
 	public Question findVerifiedQuestion(Long questionId) {
