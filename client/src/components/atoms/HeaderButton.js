@@ -44,10 +44,11 @@ const InfoBox = styled.div`
   }
 `;
 
-//로그인 전 or 후, 상태에 따라 달라지는 Header & 로그인된 userName 보여주기
+//로그인 전 or 후, 상태에 따라 달라지는 Header & 로그인된 userName & 프로필 색 보여주기
 const HeaderButton = () => {
   const isLogin = useSelector((store) => store.authReducer.userStatus);
   const userName = useSelector((store) => store.authReducer.displayName);
+  const avatarColor = useSelector((store) => store.authReducer.avatarColor);
 
   //Link to => useNavigate 수정하여 버튼 클릭시 바로 이동할 수 있게 함
   const Navigate = useNavigate();
@@ -80,7 +81,11 @@ const HeaderButton = () => {
       ) : (
         <>
           <div>
-            Hello! <span>{userName}</span>
+            Hello!{' '}
+            <span>
+              {avatarColor}
+              {userName}
+            </span>
           </div>
           <InfoBox>
             <HeaderInfo />
