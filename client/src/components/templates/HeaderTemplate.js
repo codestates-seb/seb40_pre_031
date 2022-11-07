@@ -23,7 +23,6 @@ const HeaderBox = styled.div`
   position: sticky; //항상 헤더 상단 고정
   top: 0;
   padding: 0px 50px;
-  z-index: 99;
 `;
 
 function HeaderTemplate() {

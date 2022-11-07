@@ -52,7 +52,6 @@ const HeaderButton = () => {
   const isLogin = useSelector((store) => store.authReducer.userStatus);
   const userName = useSelector((store) => store.authReducer.displayName);
   const userId = useSelector((store) => store.authReducer.userId);
-  // console.log(avatarColor);
 
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -78,15 +77,6 @@ const HeaderButton = () => {
   useEffect(() => {
     if (!isLogin) Navigate('/main');
   }, [isLogin]);
-
-  //Link to => useNavigate 수정하여 버튼 클릭시 바로 이동할 수 있게 함
-  const Navigate = useNavigate();
-  const gotoLogin = () => {
-    Navigate('/login');
-  };
-  const gotoSignup = () => {
-    Navigate('/signup');
-  };
 
   return (
     <>
