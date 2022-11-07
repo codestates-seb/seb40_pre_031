@@ -57,7 +57,6 @@ const HeaderButton = () => {
     Navigate('/signup');
   };
 
-
   return (
     <>
       {!isLogin ? (
