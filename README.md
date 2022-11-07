@@ -23,13 +23,11 @@
 ## 🧑‍💻Member
 | FE김오은 | FE고대연 | FE남궁태욱 | FE이지연 |
 | --- | --- | --- | --- |
-| 이미지1 | 이미지2 | 이미지3 | 이미지4 |
-| [Gitub](https://github.com/dorrion) | [Gitub](https://github.com/kkdy21?tab=overview&from=2022-10-01&to=2022-10-25) | [Gitub](https://github.com/waymokorea) | [Gitub](https://github.com/GitHubJIYEON) | 
+| [Github](https://github.com/dorrion) | [Github](https://github.com/kkdy21?tab=overview&from=2022-10-01&to=2022-10-25) | [Github](https://github.com/waymokorea) | [Github](https://github.com/GitHubJIYEON) | 
 
 | BE가빈 | BE손경은 | BE조성호 |
 | --- | --- | --- |
-| 이미지5 | 이미지6 | 이미지7 |
-| [Gitub](https://github.com/Bhinney) | [Gitub](https://github.com/kexxxon) | [Gitub](https://github.com/toneofrain) |
+| [Github](https://github.com/Bhinney) | [Github](https://github.com/kexxxon) | [Github](https://github.com/toneofrain) |
 
 ## 팀 커뮤니케이션
 
