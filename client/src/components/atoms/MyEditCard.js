@@ -37,12 +37,14 @@ const MyEditCard = () => {
   );
 
   const handleName = () => {
-    myApi
-      .patchName(userId, name)
-      .then((res) => {
-        setUser(res);
-      })
-      .catch((err) => console.log(err));
+    confirm(`이름을 ${name}으로 바꾸시겠습니까?`) &&
+      myApi
+        .patchName(userId, name)
+        .then((res) => {
+          setUser(res);
+          location.reload();
+        })
+        .catch((err) => console.log(err));
   };
 
   const handlePassword = () => {
@@ -51,21 +53,25 @@ const MyEditCard = () => {
     );
     regex.test(password);
 
-    myApi
-      .patchPassword(userId, password)
-      .then((res) => {
-        setUser(res);
-      })
-      .catch((err) => console.log(err));
+    confirm(`비밀번호를 ${password}로 바꾸시겠습니까?`) &&
+      myApi
+        .patchPassword(userId, password)
+        .then((res) => {
+          setUser(res);
+          location.reload();
+        })
+        .catch((err) => console.log(err));
   };
 
   const handleColor = () => {
-    myApi
-      .patchColor(userId, color)
-      .then((res) => {
-        setUser(res);
-      })
-      .catch((err) => console.log(err));
+    confirm(`프로필 색깔을 ${color}으로 바꾸시겠습니까?`) &&
+      myApi
+        .patchColor(userId, color)
+        .then((res) => {
+          setUser(res);
+          location.reload();
+        })
+        .catch((err) => console.log(err));
   };
 
   return (
