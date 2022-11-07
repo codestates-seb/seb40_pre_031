@@ -10,6 +10,7 @@ import useTotal from '../../hooks/useTotal';
 import Paginator from 'react-hooks-paginator';
 
 const QuestionPage = () => {
+  document.title = 'Question Page';
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1); // 초기 값 1
   const [currentSize, setCurrentSize] = useState(5); // 한 페이지에 보여줄 질문 개수

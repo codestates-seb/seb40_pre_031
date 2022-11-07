@@ -6,6 +6,7 @@ import HomeLists from '../templates/HomeLists';
 import RightSidebar from '../templates/RightSidebar';
 
 const QuestionPage = () => {
+  document.title = 'QuestionPage';
   return (
     <QuestionLayout>
       <LeftNav />

@@ -132,6 +132,7 @@ const MainPageBox = styled.div`
   }
 `;
 const MainPage = () => {
+  document.title = 'Main Page';
   return (
     <MainPageBox>
       <div className="home-container">

@@ -9,6 +9,7 @@ const QuestionAskPageFoam = styled.div`
 `;
 
 function QuestionAskPage() {
+  document.title = 'Question Ask Page';
   return (
     <>
       <QuestionAskPageFoam>

@@ -10,6 +10,7 @@ import LeftNav from '../organism/LeftNav';
 import MyBye from '../atoms/MyBye';
 
 const MyPage = () => {
+  document.title = 'My Page';
   const { userId } = useSelector((state) => ({
     userId: state.authReducer.userId,
   }));

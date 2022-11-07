@@ -31,6 +31,7 @@ const QuestionDetailPageBox = styled.div`
 `;
 
 const QuestionDetailPage = () => {
+  document.title = 'Question Detail Page';
   const location = useLocation();
   const question_id = location.state.question_id;
   const [question, setQuestion] = useState(null);

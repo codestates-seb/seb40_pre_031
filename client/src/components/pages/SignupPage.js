@@ -16,6 +16,7 @@ const SignupPageForm = styled.div`
 `;
 
 const SignupPage = () => {
+  document.title = 'Signup Page';
   return (
     <SignupPageForm>
       <Signupinfo></Signupinfo>

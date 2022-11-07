@@ -24,6 +24,7 @@ const LoginsubmitBox = styled.div`
 `;
 
 const Loginsubmit = () => {
+  document.title = 'Login Page';
   const isLogined = useSelector((store) => store.authReducer.userStatus);
 
   return isLogined ? (
