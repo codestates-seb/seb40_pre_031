@@ -52,14 +52,13 @@ export const questionApi = {
     const data = await customAxios.get(`/questions`);
     return data.data.content;
   },
-
+  // 페이지별 질문데이터
   getQuestionPage: async (page, size) => {
     const params = {
       page: page,
       size: size,
     };
     const data = await customAxios.get(`/questions`, { params });
-
     return data.data;
   },
   // 질문 작성
