@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Avartar from '../atoms/Avartar';
 import MyEditCard from '../atoms/MyEditCard';
 import LeftNav from '../organism/LeftNav';
+import MyBye from '../atoms/MyBye';
 
 const MyPage = () => {
   const { userId } = useSelector((state) => ({
@@ -31,6 +32,7 @@ const MyPage = () => {
           <Avartar color={users.avatarColor} />
           <h1>{users.displayName}</h1>
         </div>
+        <MyBye />
         <MyEditCard />
       </div>
     </MyPageLayout>
