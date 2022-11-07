@@ -3,19 +3,19 @@ import { useState, useEffect } from 'react';
 import { questionApi } from '../api/apis';
 import QuestionList from '../components/organism/QuestionList';
 
-const usePatch = (currentPage, currentSize) => {
-  const [Questions, setQuestions] = useState([]);
+const useTotal = (currentPage, currentSize) => {
+  const [total, setTotal] = useState(0);
+
   useEffect(() => {
     questionApi
       .getQuestionPage(currentPage, currentSize)
       .then((res) => {
-        setQuestions(res.content);
+        setTotal(res.totalElements);
       })
       .catch((err) => console.log(err));
   }, []);
-  return Questions.map((question, index) => {
-    return <QuestionList key={index} question={question} />;
-  });
+
+  return total;
 };
 
-export default usePatch;
+export default useTotal;
