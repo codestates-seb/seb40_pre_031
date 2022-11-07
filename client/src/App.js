@@ -10,6 +10,9 @@ import Footer from './components/templates/FooterTemplate';
 import QuestionDetailPage from './components/pages/QuestionDetailPage';
 import Home from './components/pages/HomePage';
 import MyPage from './components/pages/MyPage';
+import Error404Page from './components/pages/Error404Page';
+
+
 function App() {
   return (
     <>
@@ -27,6 +30,7 @@ function App() {
             element={<QuestionDetailPage question_id={'9'} />}
           />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/*" element={<Error404Page />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -8,7 +8,7 @@ import { commentApi } from '../../api/apis';
 const CommentsBox = styled.div`
   background: var(--white);
   width: 730px;
-  padding-left: 88px;
+  padding-left: 73px;
   padding-bottom: 20px;
   border-top: 1px solid var(--black-075);
   border-bottom: 1px solid var(--black-075);
@@ -16,6 +16,7 @@ const CommentsBox = styled.div`
 function QuestionComments({ commentList, questionid, answerid }) {
   const CommentRef = useRef(null);
   const userId = useSelector((state) => state.authReducer.userId);
+  const isLogined = useSelector((store) => store.authReducer.userStatus);
 
   const addCommentOnClick = () => {
     const data = {
@@ -40,7 +41,9 @@ function QuestionComments({ commentList, questionid, answerid }) {
           questionid={questionid}
           answerid={answerid}
         />
-        <CommentsAddBox ref={CommentRef} onClick={addCommentOnClick} />
+        {isLogined && (
+          <CommentsAddBox ref={CommentRef} onClick={addCommentOnClick} />
+        )}
       </CommentsBox>
     </>
   );

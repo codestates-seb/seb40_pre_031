@@ -11,6 +11,7 @@ import QuestionComments from '../organism/QuestionComments';
 import PostAnswerBox from '../molecules/PostAnswerBox';
 import RightSideBar from '../templates/RightSidebar';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { LodingCircle } from '../atoms/LoadingCircle';
 
 const QuestionDetailPageBox = styled.div`
@@ -34,6 +35,7 @@ const QuestionDetailPage = () => {
   const question_id = location.state.question_id;
   const [question, setQuestion] = useState(null);
   const [answers, setAnswer] = useState(null);
+  const isLogined = useSelector((store) => store.authReducer.userStatus);
 
   useEffect(() => {
     questionDetailApi
@@ -78,7 +80,9 @@ const QuestionDetailPage = () => {
                   </>
                 ))
               : null}
-            <PostAnswerBox questionid={question_id}></PostAnswerBox>
+            {isLogined && (
+              <PostAnswerBox questionid={question_id}></PostAnswerBox>
+            )}
           </div>
           <RightSideBar />
         </div>
