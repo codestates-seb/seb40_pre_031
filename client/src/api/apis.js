@@ -162,47 +162,46 @@ export const questionDetailApi = {
   getQuestionDetail: (question_id) => {
     return customAxios.get(`/questions/${question_id}`);
   },
-  //답변 추천 비추천
-  postAnswerVote: (question_id, answer_id, direction) => {
-    return customAxios.post(
-      `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
-    );
-  },
-  //답변 추천 비추천 취소
-  deleteAnswerVote: (question_id, answer_id, direction) => {
-    return customAxios.delete(
-      `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
-    );
-  },
-  //질문 추천 비추천
-  postQuestionVote: (question_id, direction) => {
-    return customAxios.post(`/questions/${question_id}/votes/${direction}`);
-  },
-  //질문 추천 비추천 취소
-  deleteQuestionVote: (question_id, direction) => {
-    return customAxios.delete(`/questions/${question_id}/votes/${direction}`);
-  },
+  // //답변 추천 비추천
+  // postAnswerVote: (question_id, answer_id, direction) => {
+  //   return customAxios.post(
+  //     `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
+  //   );
+  // },
+  // //답변 추천 비추천 취소
+  // deleteAnswerVote: (question_id, answer_id, direction) => {
+  //   return customAxios.delete(
+  //     `/questions/${question_id}/answers/${answer_id}/votes/${direction}`
+  //   );
+  // },
+  // //질문 추천 비추천
+  // postQuestionVote: (question_id, direction) => {
+  //   return customAxios.post(`/questions/${question_id}/votes/${direction}`);
+  // },
+  // //질문 추천 비추천 취소
+  // deleteQuestionVote: (question_id, direction) => {
+  //   return customAxios.delete(`/questions/${question_id}/votes/${direction}`);
+  // },
   //질문 추천 비추천, 추천누른상태에서 비추천눌를때, 반대
   postVote: (data, direction) => {
-    if (data.answerId)
-      return customAxios.post(
-        `/questions/${data.questionId}/votes/${direction}`
-      );
-    else
-      return customAxios.post(
-        `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
-      );
+    let uri = data.answerId
+      ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
+      : `/questions/${data.questionId}/votes/${direction}`;
+    console.log(uri);
+    return axios.post(uri);
   },
   //질문 추천 비추천 취소
   deleteVote: (data, direction) => {
-    if (data.answerId)
-      return customAxios.delete(
-        `/questions/${data.questionId}/votes/${direction}`
-      );
-    else
-      return customAxios.delete(
-        `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
-      );
+    let uri = data.answerId
+      ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
+      : `/questions/${data.questionId}/votes/${direction}`;
+    console.log(uri);
+    return axios.delete(uri);
+  },
+  postChosenAnswer: (questionId, answerId) => {
+    return customAxios.post(
+      `questions/${questionId}/answers/${answerId}/chosen`
+    );
   },
 };
 

@@ -68,6 +68,7 @@ const QuestionDetailPage = () => {
                     <QuestionDetail
                       key={answer.answerId}
                       data={answer}
+                      chosenAnswerId={question.chosenAnswerId}
                     ></QuestionDetail>
                     <QuestionComments
                       commentList={answer.commentList}

@@ -9,10 +9,14 @@ const QuestionDetailsideBox = styled.div`
 //추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
 const QuestionDetailSubsideBox = styled.div`
   width: 36px;
-  height: 102px;
+  height: 140px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   .Arrow {
+    cursor: pointer;
+  }
+  .SVGchosenAnswer {
     cursor: pointer;
   }
 `;
