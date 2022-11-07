@@ -5,44 +5,43 @@ import { ReactComponent as Twilio } from '../../assets/icon/Twilio.svg';
 import RightSidebarBtn from '../atoms/RightSidebarBtn';
 
 //오른쪽 사이드바 두번째 박스 구현
+const SidebarJoinBox = styled.div`
+  width: 300px;
+  background-color: var(--white);
+  margin: 0 0 0 1.5rem;
+  border: 1px solid var(--black-100);
+  padding-left: 0;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 6px 0px;
+  border-radius: 3px;
+  border-top: 1px solid var(--black-100);
+  padding: 16px 15px;
+`;
+
+const BoxHeader = styled.div`
+  display: flex;
+  flex: 1 auto;
+`;
+
+const TittleBox = styled.div`
+  margin-right: 80px;
+  padding: 0 10px;
+  > h1 {
+    font-size: 10px;
+  }
+  > p {
+    font-size: 10px;
+  }
+`;
+
+const BodyText = styled.span`
+  user-select: text;
+  display: -webkit-box;
+  word-wrap: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
 const RightSidebarBox = () => {
-  const SidebarJoinBox = styled.div`
-    width: 300px;
-    background-color: var(--white);
-    margin: 0 0 0 1.5rem;
-    border: 1px solid var(--black-100);
-    padding-left: 0;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 1px 6px 0px;
-    border-radius: 3px;
-    border-top: 1px solid var(--black-100);
-    padding: 16px 15px;
-  `;
-
-  const BoxHeader = styled.div`
-    display: flex;
-    flex: 1 auto;
-  `;
-
-  const TittleBox = styled.div`
-    margin-right: 80px;
-    padding: 0 10px;
-    > h1 {
-      font-size: 10px;
-    }
-    > p {
-      font-size: 10px;
-    }
-  `;
-
-  const BodyText = styled.span`
-    user-select: text;
-    display: -webkit-box;
-    word-wrap: break-word;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  `;
-
   return (
     <>
       {/* 박스1 Google */}

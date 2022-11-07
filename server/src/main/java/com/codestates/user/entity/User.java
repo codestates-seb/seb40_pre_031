@@ -1,6 +1,6 @@
 package com.codestates.user.entity;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -48,7 +48,7 @@ public class User extends BaseTime {
 	private String displayName;
 
 	@Column(nullable = false)
-	private String avatarColor = "rgb(" + color().getRed() +","+color().getGreen()+","+color().getBlue()+")";
+	private String avatarColor = "rgb(" + color().getRed() + "," + color().getGreen() + "," + color().getBlue() + ")";
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20, nullable = false)
