@@ -9,11 +9,16 @@ const QuestionDetailsideBox = styled.div`
 //추천수와 화살표를 담고있는 div 최소 높이가 102px를 유지하기위함
 const QuestionDetailSubsideBox = styled.div`
   width: 36px;
-  height: 102px;
+  height: 140px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   .Arrow {
     cursor: pointer;
+  }
+  .SVGchosenAnswer {
+    cursor: ${({ data, userId }) =>
+      data.questionId === userId ? 'pointer' : 'default'};
   }
 `;
 
@@ -36,6 +41,7 @@ const QuestionDetailContentBox = styled.div`
   margin-top: 30px;
   display: flex;
   .toastui-editor-contents {
+    margin-left: 10px;
     width: 640px;
   }
 `;
@@ -61,7 +67,7 @@ const QuestionDetailUserProfileBox = styled.div`
       height: 32px;
       margin-right: 10px;
       border-radius: 3px;
-      background-color: orange;
+      background-color: ${({ avatarColor }) => avatarColor};
     }
   }
 `;
