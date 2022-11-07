@@ -42,6 +42,14 @@ public class AnswerService {
 			new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 	}
 
+	public Answer updateVerifiedAnswer(Answer answer) {
+		return answerRepository.save(answer);
+	}
+
+	public void deleteVerifiedAnswer(Answer answer) {
+		answerRepository.delete(answer);
+	}
+
 	public VoteStatus getUserAnswerVoteStatus(Long answerId, Long userId) {
 		Answer answer = findVerifiedAnswer(answerId);
 
