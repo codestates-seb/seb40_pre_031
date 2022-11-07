@@ -183,6 +183,7 @@ export const questionDetailApi = {
   // },
   //질문 추천 비추천, 추천누른상태에서 비추천눌를때, 반대
   postVote: (data, direction) => {
+    direction = direction.toLowerCase();
     let uri = data.answerId
       ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
       : `/questions/${data.questionId}/votes/${direction}`;
@@ -191,6 +192,8 @@ export const questionDetailApi = {
   },
   //질문 추천 비추천 취소
   deleteVote: (data, direction) => {
+    direction = direction.toLowerCase();
+
     let uri = data.answerId
       ? `/questions/${data.questionId}/answers/${data.answerId}/votes/${direction}`
       : `/questions/${data.questionId}/votes/${direction}`;
