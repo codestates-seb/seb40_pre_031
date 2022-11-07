@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogoIcon } from '../atoms/SvgHeaderIcons';
 
-//Stackoverflow 로고 눌렀을 때, 메인페이지 "/"로 연결
+//Stackoverflow 로고 눌렀을 때, 메인페이지 "/main"로 연결
 const HeaderLogoBox = styled.div`
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@ const HeaderLogoBox = styled.div`
 const HeaderLogo = () => {
   return (
     <HeaderLogoBox>
-      <Link to="/">
+      <Link to="/main">
         <LogoIcon />
       </Link>
     </HeaderLogoBox>
