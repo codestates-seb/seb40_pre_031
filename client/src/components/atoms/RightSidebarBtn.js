@@ -68,7 +68,7 @@ const RightSidebarBtn = () => {
 
   return (
     <>
-      {/* 조인 버튼을 클릭 전 <>, 클릭 후 ><>*/}
+      {/* 조인 버튼을 클릭 전 <JoinButton>, 클릭 후 <JoinedButton>*/}
       <ButtonBox onClick={() => setIsJoined(!IsJoined)}>
         {!IsJoined ? <JoinButton>Join</JoinButton> : <JoinedButton />}
       </ButtonBox>
