@@ -27,7 +27,10 @@ const LoginForm = () => {
     //서버에 로그인요청
     authApi
       .getLogin(email, password)
-      .then((res) => dispatch(loginAction(res.data)))
+      .then((res) => {
+        console.log(res);
+        dispatch(loginAction(res.data));
+      })
       .catch(() => alert('Email과 비밀번호를 확인해주세요'));
   };
 

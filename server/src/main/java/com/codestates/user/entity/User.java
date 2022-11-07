@@ -1,7 +1,9 @@
 package com.codestates.user.entity;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -46,7 +48,7 @@ public class User extends BaseTime {
 	private String displayName;
 
 	@Column(nullable = false)
-	private String avatarColor = "#ffffff";
+	private String avatarColor = "rgb(" + color().getRed() + "," + color().getGreen() + "," + color().getBlue() + ")";
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20, nullable = false)
@@ -114,5 +116,13 @@ public class User extends BaseTime {
 		this.email = email;
 		this.password = password;
 		this.displayName = displayName;
+	}
+
+	public Color color() {
+		Random random = new Random();
+		float red = random.nextFloat();
+		float green = random.nextFloat();
+		float blue = random.nextFloat();
+		return new Color(red, green, blue);
 	}
 }

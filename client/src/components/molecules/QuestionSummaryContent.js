@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Avartar from '../atoms/Avartar';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 const QuestionSummaryContent = ({
   question_id,
@@ -19,7 +20,9 @@ const QuestionSummaryContent = ({
           </Link>
         </Title>
       </h3>
-      <QuestionContent>{content}</QuestionContent>
+      <QuestionContent>
+        <ReactMarkdown>{content.slice(0, 120)}</ReactMarkdown>....
+      </QuestionContent>
       <UserBox>
         <Avartar color={color} />
         <Username>{displayname}</Username>

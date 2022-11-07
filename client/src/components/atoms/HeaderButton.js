@@ -79,6 +79,15 @@ const HeaderButton = () => {
     if (!isLogin) Navigate('/main');
   }, [isLogin]);
 
+  //Link to => useNavigate 수정하여 버튼 클릭시 바로 이동할 수 있게 함
+  const Navigate = useNavigate();
+  const gotoLogin = () => {
+    Navigate('/login');
+  };
+  const gotoSignup = () => {
+    Navigate('/signup');
+  };
+
   return (
     <>
       {!isLogin ? (
