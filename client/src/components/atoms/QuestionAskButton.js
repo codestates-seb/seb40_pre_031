@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const QuestionAskButton = () => {
   const navigate = useNavigate();
   const navigateToAsk = () => {
-    navigate('/questions/ask');
+    isLogined && navigate('/questions/ask');
   };
+
+  const isLogined = useSelector((store) => store.authReducer.userStatus);
   return (
     <>
       <AskQuestion onClick={navigateToAsk}>Ask Question</AskQuestion>
