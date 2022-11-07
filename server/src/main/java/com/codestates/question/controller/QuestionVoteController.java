@@ -1,5 +1,7 @@
 package com.codestates.question.controller;
 
+import java.security.Principal;
+
 import javax.validation.constraints.Positive;
 
 import org.springframework.http.ResponseEntity;
@@ -21,48 +23,72 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/questions/{question_id}/votes")
 @RequiredArgsConstructor
 public class QuestionVoteController {
-	private final QuestionService questionService;
 	private final QuestionVoteService questionVoteService;
+	private final QuestionService questionService;
 	private final UserService userService;
 
 	@PostMapping("/up")
-	public ResponseEntity postVoteUp(@PathVariable("question_id") @Positive Long questionId) {
-		QuestionVote questionVote = buildVote(questionId, 1L, VoteStatus.UP);
+	public ResponseEntity postVoteUp(@PathVariable("question_id") @Positive Long questionId,
+		Principal principal) {
+		QuestionVote questionVote = buildVote(
+			questionId,
+			principal.getName(),
+			VoteStatus.UP
+		);
+
 		questionVoteService.updateStatusOrCreateVoteIfNotExist(questionVote);
 
 		return ResponseEntity.ok().build();
 	}
 
 	@DeleteMapping("/up")
-	public ResponseEntity deleteVoteUp(@PathVariable("question_id") @Positive Long questionId) {
-		QuestionVote questionVote = buildVote(questionId, 1L, VoteStatus.UP);
+	public ResponseEntity deleteVoteUp(@PathVariable("question_id") @Positive Long questionId,
+		Principal principal) {
+		QuestionVote questionVote = buildVote(
+			questionId,
+			principal.getName(),
+			VoteStatus.UP
+		);
+
 		questionVoteService.deleteQuestionVote(questionVote);
 
 		return ResponseEntity.ok().build();
 	}
 
 	@PostMapping("/down")
-	public ResponseEntity postVoteDown(@PathVariable("question_id") @Positive Long questionId) {
-		QuestionVote questionVote = buildVote(questionId, 1L, VoteStatus.DOWN);
+	public ResponseEntity postVoteDown(@PathVariable("question_id") @Positive Long questionId,
+		Principal principal) {
+		QuestionVote questionVote = buildVote(
+			questionId,
+			principal.getName(),
+			VoteStatus.DOWN
+		);
+
 		questionVoteService.updateStatusOrCreateVoteIfNotExist(questionVote);
 
 		return ResponseEntity.ok().build();
 	}
 
 	@DeleteMapping("/down")
-	public ResponseEntity deleteVoteDown(@PathVariable("question_id") @Positive Long questionId) {
-		QuestionVote questionVote = buildVote(questionId, 1L, VoteStatus.DOWN);
+	public ResponseEntity deleteVoteDown(@PathVariable("question_id") @Positive Long questionId,
+		Principal principal) {
+		QuestionVote questionVote = buildVote(
+			questionId,
+			principal.getName(),
+			VoteStatus.DOWN
+		);
+
 		questionVoteService.deleteQuestionVote(questionVote);
 
 		return ResponseEntity.ok().build();
 	}
 
-	private QuestionVote buildVote(Long questionId, Long userId, VoteStatus status) {
+	private QuestionVote buildVote(Long questionId, String email, VoteStatus status) {
 		QuestionVote questionVote = QuestionVote.builder()
 			.status(status)
 			.build();
 		questionVote.setQuestion(questionService.findVerifiedQuestion(questionId));
-		questionVote.setUser(userService.findMember(userId));
+		questionVote.setUser(userService.findUserByEmail(email));
 
 		return questionVote;
 	}
