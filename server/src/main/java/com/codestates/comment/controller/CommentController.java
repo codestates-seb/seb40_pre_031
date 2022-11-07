@@ -65,6 +65,8 @@ public class CommentController {
 			comment.getUser().getEmail(),
 			principal.getName()
 		);
+		comment.updateContent(commentPatchDto.getContent());
+
 		CommentResponseDto response = commentMapper.commentToCommentResponseDto(
 			commentService.updateVerifiedComment(comment));
 
