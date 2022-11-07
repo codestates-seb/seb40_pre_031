@@ -39,6 +39,7 @@ public class UsersDetailService implements UserDetailsService {
 			setPassword(user.getPassword());
 			setAvatarColor(user.getAvatarColor());
 			setRoles(user.getRoles());
+			setAvatarColor(user.getAvatarColor());
 		}
 
 		@Override
