@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LogoIcon } from '../atoms/SvgHeaderIcons';
+import { useSelector } from 'react-redux';
 
 //Stackoverflow 로고 눌렀을 때, 메인페이지 "/main"로 연결
 const HeaderLogoBox = styled.div`
@@ -15,11 +16,19 @@ const HeaderLogoBox = styled.div`
 `;
 
 const HeaderLogo = () => {
+  const isLogin = useSelector((store) => store.authReducer.userStatus);
   return (
     <HeaderLogoBox>
-      <Link to="/main">
-        <LogoIcon />
-      </Link>
+      {isLogin ? (
+        <Link to="/">
+          <LogoIcon />
+        </Link>
+      ) : (
+        <Link to="/main">
+          {' '}
+          <LogoIcon />
+        </Link>
+      )}
     </HeaderLogoBox>
   );
 };
