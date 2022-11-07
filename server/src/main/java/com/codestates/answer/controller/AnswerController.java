@@ -70,9 +70,7 @@ public class AnswerController {
 	}
 
 	@DeleteMapping("{answer_id}")
-	public ResponseEntity deleteAnswer(@Positive @PathVariable(name = "answer_id") Long answerId,
-		Principal principal) {
-
+	public ResponseEntity deleteAnswer(@Positive @PathVariable(name = "answer_id") Long answerId, Principal principal) {
 		Answer answer = answerService.findVerifiedAnswer(answerId);
 		checkAnswerAuthor(
 			answer.getUser().getEmail(),
