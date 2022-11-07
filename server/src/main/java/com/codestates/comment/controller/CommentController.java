@@ -1,5 +1,7 @@
 package com.codestates.comment.controller;
 
+import static com.codestates.global.utils.Check.*;
+
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -23,8 +25,6 @@ import com.codestates.comment.dto.CommentResponseDto;
 import com.codestates.comment.entity.Comment;
 import com.codestates.comment.mapper.CommentMapper;
 import com.codestates.comment.service.CommentService;
-import com.codestates.exception.BusinessLogicException;
-import com.codestates.exception.ExceptionCode;
 import com.codestates.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -61,7 +61,7 @@ public class CommentController {
 		Principal principal) {
 
 		Comment comment = commentService.findVerifiedComment(commentId);
-		checkCommentAuthor(
+		checkAuthor(
 			comment.getUser().getEmail(),
 			principal.getName()
 		);
@@ -75,7 +75,7 @@ public class CommentController {
 	public ResponseEntity deleteComment(@Positive @PathVariable(name = "comment_id") Long commentId,
 		Principal principal) {
 		Comment comment = commentService.findVerifiedComment(commentId);
-		checkCommentAuthor(
+		checkAuthor(
 			comment.getUser().getEmail(),
 			principal.getName()
 		);
@@ -92,11 +92,5 @@ public class CommentController {
 		comment.setUser(userService.findUserByEmail(email));
 
 		return comment;
-	}
-
-	private void checkCommentAuthor(String authorEmail, String loginEmail) {
-		if (!authorEmail.equals(loginEmail)) {
-			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
-		}
 	}
 }

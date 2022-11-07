@@ -1,5 +1,7 @@
 package com.codestates.answer.controller;
 
+import static com.codestates.global.utils.Check.*;
+
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -20,8 +22,6 @@ import com.codestates.answer.dto.AnswerPatchDto;
 import com.codestates.answer.dto.AnswerPostDto;
 import com.codestates.answer.entity.Answer;
 import com.codestates.answer.service.AnswerService;
-import com.codestates.exception.BusinessLogicException;
-import com.codestates.exception.ExceptionCode;
 import com.codestates.question.service.QuestionService;
 import com.codestates.user.service.UserService;
 
@@ -58,7 +58,7 @@ public class AnswerController {
 		Principal principal) {
 
 		Answer answer = answerService.findVerifiedAnswer(answerId);
-		checkAnswerAuthor(
+		checkAuthor(
 			answer.getUser().getEmail(),
 			principal.getName()
 		);
@@ -72,7 +72,7 @@ public class AnswerController {
 	@DeleteMapping("{answer_id}")
 	public ResponseEntity deleteAnswer(@Positive @PathVariable(name = "answer_id") Long answerId, Principal principal) {
 		Answer answer = answerService.findVerifiedAnswer(answerId);
-		checkAnswerAuthor(
+		checkAuthor(
 			answer.getUser().getEmail(),
 			principal.getName()
 		);
@@ -89,11 +89,5 @@ public class AnswerController {
 		answer.setUser(userService.findUserByEmail(email));
 
 		return answer;
-	}
-
-	private void checkAnswerAuthor(String authorEmail, String loginEmail) {
-		if (!authorEmail.equals(loginEmail)) {
-			throw new BusinessLogicException(ExceptionCode.NO_PERMISSION);
-		}
 	}
 }
